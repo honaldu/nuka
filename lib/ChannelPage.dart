@@ -38,7 +38,9 @@ class _ChannelPageState extends State<ChannelPage> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 20,),
+                      SizedBox(
+                        height: 20,
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -52,7 +54,7 @@ class _ChannelPageState extends State<ChannelPage> {
                                       color: Colors.grey[300],
                                       blurRadius: 1.0,
                                       spreadRadius: 1.0,
-                                      offset: Offset(5.0, 5.0))
+                                      offset: Offset(3.0, 3.0))
                                 ]),
                             width: 150,
                             height: 200,
@@ -78,7 +80,7 @@ class _ChannelPageState extends State<ChannelPage> {
                                       color: Colors.grey[300],
                                       blurRadius: 1.0,
                                       spreadRadius: 1.0,
-                                      offset: Offset(5.0, 5.0))
+                                      offset: Offset(3.0, 3.0))
                                 ]),
                             width: 150,
                             height: 200,
@@ -115,7 +117,14 @@ class _ChannelPageState extends State<ChannelPage> {
                           child: Container(
                             margin: EdgeInsets.fromLTRB(30, 20, 30, 20),
                             padding: EdgeInsets.fromLTRB(80, 20, 80, 20),
-                            color: Colors.green,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30.0),
+                              border: Border.all(color: Colors.grey[300]),
+                              gradient: LinearGradient(
+                                  colors: [Colors.red, Colors.greenAccent],
+                                  begin: Alignment.centerRight,
+                                  end: Alignment(-1.0, -1.0)),
+                            ),
                             child: Text(
                               '근처 사는 이성 만나기',
                               style: TextStyle(
@@ -136,7 +145,14 @@ class _ChannelPageState extends State<ChannelPage> {
                           child: Container(
                             margin: EdgeInsets.fromLTRB(30, 20, 30, 20),
                             padding: EdgeInsets.fromLTRB(80, 20, 80, 20),
-                            color: Colors.blue,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30.0),
+                              border: Border.all(color: Colors.grey[300]),
+                              gradient: LinearGradient(
+                                  colors: [Colors.red, Colors.blue],
+                                  begin: Alignment.centerRight,
+                                  end: Alignment(-1.0, -1.0)),
+                            ),
                             child: Text(
                               '평가 좋은 이성 만나기',
                               style: TextStyle(
@@ -155,9 +171,16 @@ class _ChannelPageState extends State<ChannelPage> {
                             );
                           },
                           child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30.0),
+                              border: Border.all(color: Colors.grey[300]),
+                              gradient: LinearGradient(
+                                  colors: [Colors.red, Colors.purple],
+                                  begin: Alignment.centerRight,
+                                  end: Alignment(-1.0, -1.0)),
+                            ),
                             margin: EdgeInsets.fromLTRB(30, 20, 30, 20),
                             padding: EdgeInsets.fromLTRB(105, 20, 105, 20),
-                            color: Colors.purple,
                             child: Text(
                               '이상형 만나기',
                               style: TextStyle(
