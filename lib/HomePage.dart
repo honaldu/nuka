@@ -30,13 +30,6 @@ class _MainPageState extends State<MainPage> {
                     Image.asset('Images/Sana0.jpg'),
                     Image.asset('Images/Sana1.jpg'),
                   ],
-                  showIndicator: true,
-                  borderRadius: true,
-                  moveIndicatorFromBottom: 180.0,
-                  noRadiusForIndicator: true,
-                  overlayShadow: true,
-                  overlayShadowColors: Colors.white,
-                  overlayShadowSize: 0.7,
                 ),
               ),
               SizedBox(
@@ -46,28 +39,35 @@ class _MainPageState extends State<MainPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Ink(
-                    decoration: ShapeDecoration(
-                        shape: CircleBorder(), color: Colors.white),
-                    child: Icon(
-                      Icons.favorite,
-                      color: Colors.red,
-                      size: 70,
+                  ClipOval(
+                    child: Material(
+                      color: Colors.white,
+                      child: InkWell(
+                        splashColor: Colors.red,
+                        child: SizedBox(
+                          width: 80,
+                          height: 80,
+                          child: Icon(Icons.favorite,size: 70,color: Colors.red,),
+                        ),
+                        onTap: () {},
+                      ),
                     ),
                   ),
                   SizedBox(
-                    width: 100,
+                    width: 140,
                   ),
-                  Ink(
-                    decoration: BoxDecoration(
-                      border: Border.all(width: 4.0, color: Colors.black),
+                  ClipOval(
+                    child: Material(
                       color: Colors.white,
-                      shape: BoxShape.circle
-                    ),
-                    child: Icon(
-                      Icons.clear,
-                      color: Colors.black,
-                      size: 70,
+                      child: InkWell(
+                        splashColor: Colors.black,
+                        child: SizedBox(
+                          width: 80,
+                          height: 80,
+                          child: Icon(Icons.clear,size: 70,),
+                        ),
+                        onTap: () {},
+                      ),
                     ),
                   ),
                 ],

@@ -122,7 +122,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                   ),
                 ),
                 Center(
-                  child: RaisedButton(
+                  child: FlatButton(
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -130,8 +130,18 @@ class _ProfileSettingState extends State<ProfileSetting> {
                             builder: (context) => new Confirming()),
                       );
                     },
-                    padding: EdgeInsets.all(10),
-                    child: Text('작성 완료'),
+                    child: Container(
+                      margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
+                      padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15.0),
+                        color: Color.fromRGBO(255, 130, 130, 1),
+                      ),
+                      child: Text(
+                        '작성완료',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
                   ),
                 )
               ],
