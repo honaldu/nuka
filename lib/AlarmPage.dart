@@ -1,11 +1,32 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
 
 class AlarmPage extends StatefulWidget {
+
+  final WebSocketChannel channel;
+
+  AlarmPage({Key key, @required this.channel}):super(key:key);
+
   @override
   _AlarmPageState createState() => _AlarmPageState();
 }
 
 class _AlarmPageState extends State<AlarmPage> {
+
+  TextEditingController _controller = TextEditingController();
+
+
+  void _sendMessage() {
+    if (_controller.text.isNotEmpty) {
+      print(_controller.text);
+      widget.channel.sink.add(json.encode({
+        'message': _controller.text,
+      }));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,29 +43,41 @@ class _AlarmPageState extends State<AlarmPage> {
               fontWeight: FontWeight.bold),
         ),
       ),
-      body: ListView(
-        children: <Widget>[
-          Column(
-            children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Icon(
-                    Icons.person,
-                    size: 40,
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Text(
-                    '뀨뀨 님이 좋아요를 눌렀습니다',
-                    style: TextStyle(fontSize: 25),
-                  )
-                ],
-              )
-            ],
-          ),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Form(
+              child: TextFormField(
+                controller: _controller,
+                decoration: InputDecoration(labelText: 'Send a message'),
+              ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height/15,
+              child: StreamBuilder(
+                stream: widget.channel.stream,
+                builder: (context, snapshot) {
+                  if(!snapshot.hasData){
+                    return Container();
+                  }
+                  print(snapshot.data);
+                  return Container(
+                    child: Text(
+                      (snapshot.data != null)?snapshot.data:'',
+                    ),
+                  );
+                },
+              ),
+            )
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _sendMessage,
+        tooltip: 'Send message',
+        child: Icon(Icons.send),
       ),
     );
   }

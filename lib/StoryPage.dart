@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nuka/Utils/rest_api_utils.dart';
+import 'package:web_socket_channel/io.dart';
 import 'StoryWriting.dart';
 import 'StoryDetail.dart';
 import 'AlarmPage.dart';
@@ -29,7 +31,9 @@ class _StoryPageState extends State<StoryPage> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => new AlarmPage()),
+                        MaterialPageRoute(builder: (context) => new AlarmPage(
+                          channel: IOWebSocketChannel.connect(AlarmSocketUrl + '10/'),
+                        )),
                       );
                     },
                     child: Icon(

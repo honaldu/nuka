@@ -21,6 +21,7 @@ dependencies:
   carousel_slider: ^1.4.1
   carousel_pro: ^1.0.0
   settings_ui: ^0.1.1
+  web_socket_channel: ^1.1.0
   flutter:
     sdk: flutter
 
