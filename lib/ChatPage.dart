@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'PeopleWhoLikeMe.dart';
+import 'Chatting.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({Key key}) : super(key: key);
@@ -71,16 +72,25 @@ class _ChatPageState extends State<ChatPage> {
                               ),
                             ],
                           ),
-                          Container(
-                            margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                            padding: EdgeInsets.fromLTRB(130, 20, 130, 20),
-                            color: Colors.grey,
-                            child: Text(
-                              '뭐 해?',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                  color: Colors.white),
+                          FlatButton(
+                            padding: EdgeInsets.all(0),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => new Chatting()),
+                              );
+                            },
+                            child: Container(
+                              margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                              padding: EdgeInsets.fromLTRB(130, 20, 130, 20),
+                              color: Colors.grey,
+                              child: Text(
+                                '뭐 해?',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                    color: Colors.white),
+                              ),
                             ),
                           ),
                         ],
