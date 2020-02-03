@@ -36,12 +36,28 @@ class _ChattingState extends State<Chatting> {
         child: ListView(
           shrinkWrap: true,
           children: <Widget>[
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             Row(
               children: <Widget>[
                 CircleAvatar(
                   child: Icon(Icons.person),
-                )
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text('뀨뀨'),
+                    Container(
+                      margin: EdgeInsets.only(top: 5.0),
+                      child: Text(
+                        '어디 살아?',
+                        style: TextStyle(fontSize: 15),
+                      ),
+                    ),
+                  ],
+                ),
               ],
             )
           ],
