@@ -56,6 +56,7 @@ class _ChattingState extends State<Chatting> {
               icon: Icon(
                 Icons.send,
                 size: 30,
+                color: Color.fromRGBO(236, 128, 130, 1),
               ),
             ),
           ],
