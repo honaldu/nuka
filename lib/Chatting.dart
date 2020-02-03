@@ -31,8 +31,21 @@ class _ChattingState extends State<Chatting> {
               fontWeight: FontWeight.bold),
         ),
       ),
-      body: ListView(
-        children: <Widget>[],
+      body: Container(
+        margin: EdgeInsets.symmetric(horizontal: 10),
+        child: ListView(
+          shrinkWrap: true,
+          children: <Widget>[
+            SizedBox(height: 20,),
+            Row(
+              children: <Widget>[
+                CircleAvatar(
+                  child: Icon(Icons.person),
+                )
+              ],
+            )
+          ],
+        ),
       ),
       bottomNavigationBar: BottomAppBar(
         child: Row(
