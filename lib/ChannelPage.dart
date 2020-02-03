@@ -27,7 +27,8 @@ class _ChannelPageState extends State<ChannelPage> {
                         children: <Widget>[
                           Text(
                             '추천',
-                            style: TextStyle(fontSize: 30),
+                            style: TextStyle(fontSize: 30,color: Colors.red),
+
                           ),
                           SizedBox(
                             width: 10,
@@ -35,6 +36,7 @@ class _ChannelPageState extends State<ChannelPage> {
                           Icon(
                             Icons.shopping_cart,
                             size: 40,
+                            color: Colors.red,
                           ),
                         ],
                       ),
