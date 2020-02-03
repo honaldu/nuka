@@ -27,8 +27,7 @@ class _ChannelPageState extends State<ChannelPage> {
                         children: <Widget>[
                           Text(
                             '추천',
-                            style: TextStyle(fontSize: 30,color: Colors.red),
-
+                            style: TextStyle(fontSize: 30, color: Colors.red),
                           ),
                           SizedBox(
                             width: 10,
@@ -118,7 +117,7 @@ class _ChannelPageState extends State<ChannelPage> {
                           },
                           child: Container(
                             margin: EdgeInsets.fromLTRB(30, 20, 30, 20),
-                            padding: EdgeInsets.fromLTRB(80, 20, 80, 20),
+                            padding: EdgeInsets.fromLTRB(70, 20, 70, 20),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(30.0),
                                 border: Border.all(color: Colors.grey[300]),
@@ -137,7 +136,7 @@ class _ChannelPageState extends State<ChannelPage> {
                               '근처 사는 이성 만나기',
                               style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 15,
+                                  fontSize: 20,
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
@@ -152,7 +151,7 @@ class _ChannelPageState extends State<ChannelPage> {
                           },
                           child: Container(
                             margin: EdgeInsets.fromLTRB(30, 20, 30, 20),
-                            padding: EdgeInsets.fromLTRB(80, 20, 80, 20),
+                            padding: EdgeInsets.fromLTRB(70, 20, 70, 20),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(30.0),
                                 border: Border.all(color: Colors.grey[300]),
@@ -171,7 +170,7 @@ class _ChannelPageState extends State<ChannelPage> {
                               '평가 좋은 이성 만나기',
                               style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 15,
+                                  fontSize: 20,
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
@@ -200,12 +199,12 @@ class _ChannelPageState extends State<ChannelPage> {
                                       offset: Offset(3.0, 3.0))
                                 ]),
                             margin: EdgeInsets.fromLTRB(30, 20, 30, 20),
-                            padding: EdgeInsets.fromLTRB(105, 20, 105, 20),
+                            padding: EdgeInsets.fromLTRB(70, 20, 70, 20),
                             child: Text(
                               '이상형 만나기',
                               style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 15,
+                                  fontSize: 20,
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
