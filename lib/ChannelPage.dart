@@ -184,10 +184,6 @@ class _ChannelPageState extends State<ChannelPage> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(30.0),
                                 border: Border.all(color: Colors.grey[300]),
-                                gradient: LinearGradient(
-                                    colors: [Colors.red, Colors.purple],
-                                    begin: Alignment.centerRight,
-                                    end: Alignment(-1.0, -1.0)),
                                 boxShadow: [
                                   BoxShadow(
                                       color: Colors.grey[300],
