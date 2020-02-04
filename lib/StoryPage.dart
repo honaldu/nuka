@@ -33,6 +33,7 @@ class _StoryPageState extends State<StoryPage> {
                         context,
                         MaterialPageRoute(builder: (context) => new AlarmPage(
                           channel: IOWebSocketChannel.connect(AlarmSocketUrl + '10/'),
+                          myid: 10,
                         )),
                       );
                     },
