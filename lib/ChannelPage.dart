@@ -18,45 +18,94 @@ class _ChannelPageState extends State<ChannelPage> {
           Container(
             child: Column(
               children: <Widget>[
+                Container(
+                  child: Column(
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            '추천',
+                            style: TextStyle(fontSize: 30, color: Colors.black, fontWeight: FontWeight.w800),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Icon(
+                            Icons.shopping_cart,
+                            size: 40,
+                            color: Colors.black,
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8.0),
+                                border: Border.all(color: Colors.grey[300]),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.grey[300],
+                                      blurRadius: 1.0,
+                                      spreadRadius: 1.0,
+                                      offset: Offset(3.0, 3.0))
+                                ]
+                            ),
+                            width: 150,
+                            height: 200,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: Image.asset(
+                                'Images/juhee0.jpg',
+                                width: 150,
+                                height: 150,
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8.0),
+                                border: Border.all(color: Colors.grey[300]),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.grey[300],
+                                      blurRadius: 1.0,
+                                      spreadRadius: 1.0,
+                                      offset: Offset(3.0, 3.0))
+                                ]),
+                            width: 150,
+                            height: 200,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: Image.asset(
+                                'Images/juhee2.jpg',
+                                width: 150,
+                                height: 150,
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
                 Column(
                   children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          '추천',
-                          style: TextStyle(fontSize: 30),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Icon(
-                          Icons.shopping_cart,
-                          size: 40,
-                        ),
-                      ],
-                    ),
                     SizedBox(
                       height: 20,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Image.asset(
-                          'Images/juhee0.jpg',
-                          width: 200,
-                          height: 200,
-                        ),
-                        Image.asset(
-                          'Images/juhee2.jpg',
-                          width: 200,
-                          height: 200,
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 50,),
                     Column(
                       children: <Widget>[
                         FlatButton(
@@ -68,12 +117,30 @@ class _ChannelPageState extends State<ChannelPage> {
                             );
                           },
                           child: Container(
-                            margin: EdgeInsets.fromLTRB(30, 10, 30, 10),
-                            padding: EdgeInsets.fromLTRB(80, 20, 80, 20),
-                            color: Colors.green,
+                            margin: EdgeInsets.fromLTRB(30, 20, 30, 20),
+                            padding: EdgeInsets.fromLTRB(70, 20, 70, 20),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30.0),
+                                color: Colors.redAccent,
+                                border: Border.all(color: Colors.grey[300]),
+
+//                                gradient: LinearGradient(
+//                                    colors: [Colors.red, Colors.orange],
+//                                    begin: Alignment.centerRight,
+//                                    end: Alignment(-1.0, -1.0)),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.grey[300],
+                                      blurRadius: 1.0,
+                                      spreadRadius: 1.0,
+                                      offset: Offset(3.0, 3.0))
+                                ]),
                             child: Text(
                               '근처 사는 이성 만나기',
-                              style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
@@ -86,12 +153,29 @@ class _ChannelPageState extends State<ChannelPage> {
                             );
                           },
                           child: Container(
-                            margin: EdgeInsets.fromLTRB(30, 10, 30, 10),
-                            padding: EdgeInsets.fromLTRB(80, 20, 80, 20),
-                            color: Colors.blue,
+                            margin: EdgeInsets.fromLTRB(30, 20, 30, 20),
+                            padding: EdgeInsets.fromLTRB(70, 20, 70, 20),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30.0),
+                                color: Colors.green,
+                                border: Border.all(color: Colors.grey[300]),
+//                                gradient: LinearGradient(
+//                                    colors: [Colors.red, Colors.blue],
+//                                    begin: Alignment.centerRight,
+//                                    end: Alignment(-1.0, -1.0)),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.grey[300],
+                                      blurRadius: 1.0,
+                                      spreadRadius: 1.0,
+                                      offset: Offset(3.0, 3.0))
+                                ]),
                             child: Text(
                               '평가 좋은 이성 만나기',
-                              style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
@@ -104,12 +188,29 @@ class _ChannelPageState extends State<ChannelPage> {
                             );
                           },
                           child: Container(
-                            margin: EdgeInsets.fromLTRB(30, 10, 30, 10),
-                            padding: EdgeInsets.fromLTRB(105, 20, 105, 20),
-                            color: Colors.purple,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30.0),
+                                color: Colors.blue,
+                                border: Border.all(color: Colors.grey[300]),
+//                                gradient: LinearGradient(
+//                                    colors: [Colors.red, Colors.purple],
+//                                    begin: Alignment.centerRight,
+//                                    end: Alignment(-1.0, -1.0)),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.grey[300],
+                                      blurRadius: 1.0,
+                                      spreadRadius: 1.0,
+                                      offset: Offset(3.0, 3.0))
+                                ]),
+                            margin: EdgeInsets.fromLTRB(30, 20, 30, 20),
+                            padding: EdgeInsets.fromLTRB(70, 20, 70, 20),
                             child: Text(
                               '이상형 만나기',
-                              style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
