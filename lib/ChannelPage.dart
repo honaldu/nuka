@@ -198,8 +198,8 @@ class _ChannelPageState extends State<ChannelPage> {
                                       spreadRadius: 1.0,
                                       offset: Offset(3.0, 3.0))
                                 ]),
-                            margin: EdgeInsets.fromLTRB(30, 20, 30, 20),
-                            padding: EdgeInsets.fromLTRB(70, 20, 70, 20),
+                            margin: EdgeInsets.fromLTRB(70, 20, 70, 20),
+                            padding: EdgeInsets.fromLTRB(60, 20, 60, 20),
                             child: Text(
                               '이상형 만나기',
                               style: TextStyle(
