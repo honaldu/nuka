@@ -27,7 +27,7 @@ class _ChannelPageState extends State<ChannelPage> {
                         children: <Widget>[
                           Text(
                             '추천',
-                            style: TextStyle(fontSize: 30, color: Colors.red),
+                            style: TextStyle(fontSize: 30, color: Colors.black, fontWeight: FontWeight.w800),
                           ),
                           SizedBox(
                             width: 10,
@@ -35,7 +35,7 @@ class _ChannelPageState extends State<ChannelPage> {
                           Icon(
                             Icons.shopping_cart,
                             size: 40,
-                            color: Colors.red,
+                            color: Colors.black,
                           ),
                         ],
                       ),
@@ -56,7 +56,8 @@ class _ChannelPageState extends State<ChannelPage> {
                                       blurRadius: 1.0,
                                       spreadRadius: 1.0,
                                       offset: Offset(3.0, 3.0))
-                                ]),
+                                ]
+                            ),
                             width: 150,
                             height: 200,
                             child: ClipRRect(
@@ -120,11 +121,13 @@ class _ChannelPageState extends State<ChannelPage> {
                             padding: EdgeInsets.fromLTRB(70, 20, 70, 20),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(30.0),
+                                color: Colors.redAccent,
                                 border: Border.all(color: Colors.grey[300]),
-                                gradient: LinearGradient(
-                                    colors: [Colors.red, Colors.orange],
-                                    begin: Alignment.centerRight,
-                                    end: Alignment(-1.0, -1.0)),
+
+//                                gradient: LinearGradient(
+//                                    colors: [Colors.red, Colors.orange],
+//                                    begin: Alignment.centerRight,
+//                                    end: Alignment(-1.0, -1.0)),
                                 boxShadow: [
                                   BoxShadow(
                                       color: Colors.grey[300],
@@ -154,11 +157,12 @@ class _ChannelPageState extends State<ChannelPage> {
                             padding: EdgeInsets.fromLTRB(70, 20, 70, 20),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(30.0),
+                                color: Colors.green,
                                 border: Border.all(color: Colors.grey[300]),
-                                gradient: LinearGradient(
-                                    colors: [Colors.red, Colors.blue],
-                                    begin: Alignment.centerRight,
-                                    end: Alignment(-1.0, -1.0)),
+//                                gradient: LinearGradient(
+//                                    colors: [Colors.red, Colors.blue],
+//                                    begin: Alignment.centerRight,
+//                                    end: Alignment(-1.0, -1.0)),
                                 boxShadow: [
                                   BoxShadow(
                                       color: Colors.grey[300],
@@ -186,11 +190,12 @@ class _ChannelPageState extends State<ChannelPage> {
                           child: Container(
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(30.0),
+                                color: Colors.blue,
                                 border: Border.all(color: Colors.grey[300]),
-                                gradient: LinearGradient(
-                                    colors: [Colors.red, Colors.purple],
-                                    begin: Alignment.centerRight,
-                                    end: Alignment(-1.0, -1.0)),
+//                                gradient: LinearGradient(
+//                                    colors: [Colors.red, Colors.purple],
+//                                    begin: Alignment.centerRight,
+//                                    end: Alignment(-1.0, -1.0)),
                                 boxShadow: [
                                   BoxShadow(
                                       color: Colors.grey[300],
