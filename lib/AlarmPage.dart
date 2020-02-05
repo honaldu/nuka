@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:nuka/Utils/rest_api_utils.dart';
@@ -43,9 +44,9 @@ class _AlarmPageState extends State<AlarmPage> {
 
     //소켓
 
-//    widget.channel.stream.listen((data){
-//      Map<dynamic, dynamic> datamap = json.decode(data);
-//    });
+    widget.channel.stream.listen((data){
+      Map<dynamic, dynamic> datamap = json.decode(data);
+    });
 
     super.initState();
 

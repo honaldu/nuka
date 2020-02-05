@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "42565247419",
+    "firebase_url": "https://nuka-59bec.firebaseio.com",
+    "project_id": "nuka-59bec",
+    "storage_bucket": "nuka-59bec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:42565247419:android:da025e083327426c2de49e",
+        "android_client_info": {
+          "package_name": "com.hou.nuka"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "42565247419-cfkg6na5na9ma9cg6s535e1ap41jiu94.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBunTfXijsPQ6UUwT0rgI8LRWj6CtVfCb4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "42565247419-cfkg6na5na9ma9cg6s535e1ap41jiu94.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
