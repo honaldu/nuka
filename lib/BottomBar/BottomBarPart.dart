@@ -4,7 +4,7 @@ import '../ChatPage.dart';
 import '../ChannelPage.dart';
 import '../ProfilePage.dart';
 import '../StoryPage.dart';
-
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class BottomBarPart extends StatefulWidget {
   @override
@@ -13,7 +13,6 @@ class BottomBarPart extends StatefulWidget {
 
 class _BottomBarPartState extends State<BottomBarPart> {
   final List<Widget> pages = [
-
     ChannelPage(
       key: PageStorageKey('Channel Page'),
     ),
@@ -29,55 +28,45 @@ class _BottomBarPartState extends State<BottomBarPart> {
     ProfilePage(
       key: PageStorageKey('Profile Page'),
     ),
-
   ];
 
   final PageStorageBucket bucket = PageStorageBucket();
 
   int _selectedIndex = 2;
 
-  Widget _bottomNavigationBar(int selectedIndex) => BottomNavigationBar(
-      type: BottomNavigationBarType.fixed,
-      onTap: (int index) => setState(() => _selectedIndex = index),
-      currentIndex: selectedIndex,
-      selectedItemColor: Colors.red,
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.list,
-          ),
-          title: Text('Channel'),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.grid_on,
-          ),
-          title: Text('Story'),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.home,
-          ),
-          title: Text('Home'),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.sms,
-          ),
-          title: Text('Chat'),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.perm_identity,
-          ),
-          title: Text('Profile'),
-        ),
-      ]);
+  Widget _curvedNavigationBar(int selectedIndex) => CurvedNavigationBar(
+          onTap: (int index) => setState(() => _selectedIndex = index),
+          index: selectedIndex,
+          color: Color.fromRGBO(236, 128, 130, 1.0),
+          backgroundColor: Colors.white,
+          buttonBackgroundColor: Color.fromRGBO(236, 128, 130, 1.0),
+          items: <Widget>[
+            Icon(
+              Icons.list,
+              color: Colors.white,
+            ),
+            Icon(
+              Icons.grid_on,
+              color: Colors.white,
+            ),
+            Icon(
+              Icons.home,
+              color: Colors.white,
+            ),
+            Icon(
+              Icons.sms,
+              color: Colors.white,
+            ),
+            Icon(
+              Icons.perm_identity,
+              color: Colors.white,
+            ),
+          ]);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: _bottomNavigationBar(_selectedIndex),
+      bottomNavigationBar: _curvedNavigationBar(_selectedIndex),
       body: PageStorage(bucket: bucket, child: pages[_selectedIndex]),
     );
   }

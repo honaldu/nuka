@@ -82,14 +82,17 @@ class _ChatPageState extends State<ChatPage> {
                             },
                             child: Container(
                               margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                              padding: EdgeInsets.fromLTRB(130, 20, 130, 20),
-                              color: Colors.grey,
-                              child: Text(
-                                '뭐 해?',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
-                                    color: Colors.white),
+                              width: 250,
+                              height: 70,
+                              color: Color.fromRGBO(255, 130, 130, 1),
+                              child: Center(
+                                child: Text(
+                                  '뭐 해?',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20,
+                                      color: Colors.white),
+                                ),
                               ),
                             ),
                           ),
@@ -114,14 +117,17 @@ class _ChatPageState extends State<ChatPage> {
                           ),
                           Container(
                             margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                            padding: EdgeInsets.fromLTRB(130, 20, 130, 20),
-                            color: Colors.grey,
-                            child: Text(
-                              '뭐 해?',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                  color: Colors.white),
+                            width: 250,
+                            height: 70,
+                            color: Color.fromRGBO(255, 130, 130, 1),
+                            child: Center(
+                              child: Text(
+                                '뭐 해?',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                    color: Colors.white),
+                              ),
                             ),
                           ),
                         ],

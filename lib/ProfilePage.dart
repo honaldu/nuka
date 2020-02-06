@@ -52,6 +52,9 @@ class _ProfilePageState extends State<ProfilePage> {
                           size: 70,
                         ),
                       ),
+                      SizedBox(
+                        width: 20,
+                      ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,10 +65,18 @@ class _ProfilePageState extends State<ProfilePage> {
                                 fontSize: 20, fontWeight: FontWeight.bold),
                           ),
                           Container(
-                            margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                            padding: EdgeInsets.fromLTRB(100, 10, 100, 10),
-                            color: Colors.grey[200],
-                            child: Text('Edit Profile'),
+                            decoration: BoxDecoration(
+                              color: Color.fromRGBO(255, 130, 130, 1),
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                            width: 200,
+                            height: 30,
+
+                            child: Center(
+                                child: Text(
+                              'Edit Profile',
+                              style: TextStyle(color: Colors.white),
+                            )),
                           ),
                         ],
                       )
@@ -73,7 +84,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ),
                 SizedBox(
-                  height: 40,
+                  height: 20,
                 ),
                 Container(
                   child: Column(
@@ -81,31 +92,52 @@ class _ProfilePageState extends State<ProfilePage> {
                       FlatButton(
                         onPressed: () {},
                         child: Container(
-                          color: Color.fromRGBO(255, 130, 130, 1),
+                          width: 300,
+                          height: 50,
+
                           margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                          padding: EdgeInsets.fromLTRB(5, 10, 150, 10),
-                          child: Text(
-                            'Check My Content',
-                            style: TextStyle(fontSize: 20),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15.0),
+                            color: Color.fromRGBO(255, 130, 130, 1),
+                          ),
+                          child: Center(
+                            child: Text(
+                              'Check My Content',
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.white,
+                              ),
+                            ),
                           ),
                         ),
                       ),
                       FlatButton(
                         onPressed: () {},
                         child: Container(
+                          width: 300,
+                          height: 50,
+
                           margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                          padding: EdgeInsets.fromLTRB(5, 10, 20, 10),
-                          color: Color.fromRGBO(255, 130, 130, 1),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15.0),
+                            color: Color.fromRGBO(255, 130, 130, 1),
+                          ),
                           child: Row(
                             children: <Widget>[
                               Icon(
                                 Icons.shopping_cart,
                                 size: 30,
+                                color: Colors.white,
                               ),
-                              SizedBox(width: 120,),
+                              SizedBox(
+                                width: 100,
+                              ),
                               Text(
                                 'Store',
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                ),
                               )
                             ],
                           ),
@@ -114,48 +146,87 @@ class _ProfilePageState extends State<ProfilePage> {
                       FlatButton(
                         onPressed: () {},
                         child: Container(
+                          width: 300,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: Color.fromRGBO(255, 130, 130, 1),
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
                           margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                          padding: EdgeInsets.fromLTRB(5, 10, 150, 10),
-                          color: Color.fromRGBO(255, 130, 130, 1),
-                          child: Text(
-                            'Help Center',
-                            style: TextStyle(fontSize: 20),
+                          child: Center(
+                            child: Text(
+                              'Help Center',
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.white,
+                              ),
+                            ),
                           ),
                         ),
                       ),
                       FlatButton(
                         onPressed: () {},
                         child: Container(
+                          width: 300,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15.0),
+                            color: Color.fromRGBO(255, 130, 130, 1),
+                          ),
+
                           margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                          padding: EdgeInsets.fromLTRB(5, 10, 150, 10),
-                          color: Color.fromRGBO(255, 130, 130, 1),
-                          child: Text(
-                            'FeedBack',
-                            style: TextStyle(fontSize: 20),
+                          child: Center(
+                            child: Text(
+                              'FeedBack',
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.white,
+                              ),
+                            ),
                           ),
                         ),
                       ),
                       FlatButton(
                         onPressed: () {},
                         child: Container(
+                          width: 300,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15.0),
+                            color: Color.fromRGBO(255, 130, 130, 1),
+                          ),
+
                           margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                          padding: EdgeInsets.fromLTRB(5, 10, 200, 10),
-                          color: Color.fromRGBO(255, 130, 130, 1),
-                          child: Text(
-                            'Notice',
-                            style: TextStyle(fontSize: 20),
+                          child: Center(
+                            child: Text(
+                              'Notice',
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.white,
+                              ),
+                            ),
                           ),
                         ),
                       ),
                       FlatButton(
                         onPressed: () {},
                         child: Container(
+                          width: 300,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: Color.fromRGBO(255, 130, 130, 1),
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+
                           margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                          padding: EdgeInsets.fromLTRB(5, 10, 200, 10),
-                          color: Color.fromRGBO(255, 130, 130, 1),
-                          child: Text(
-                            'Sign Out',
-                            style: TextStyle(fontSize: 20),
+                          child: Center(
+                            child: Text(
+                              'Sign Out',
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.white,
+                              ),
+                            ),
                           ),
                         ),
                       ),

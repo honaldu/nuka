@@ -20,10 +20,10 @@ class _MainPageState extends State<MainPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               SizedBox(
-                height: 100,
+                height: 50,
               ),
               SizedBox(
-                height: 350.0,
+                height: 300.0,
                 width: 300.0,
                 child: Carousel(
                   images: [
@@ -33,7 +33,7 @@ class _MainPageState extends State<MainPage> {
                 ),
               ),
               SizedBox(
-                height: 70,
+                height: 40,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -44,10 +44,14 @@ class _MainPageState extends State<MainPage> {
                       color: Colors.white,
                       child: InkWell(
                         splashColor: Colors.red,
-                        child: SizedBox(
+                        child: Container(
                           width: 80,
                           height: 80,
-                          child: Icon(Icons.favorite,size: 70,color: Colors.red,),
+                          child: Icon(
+                            Icons.favorite,
+                            size: 70,
+                            color: Colors.red,
+                          ),
                         ),
                         onTap: () {},
                       ),
@@ -61,10 +65,13 @@ class _MainPageState extends State<MainPage> {
                       color: Colors.white,
                       child: InkWell(
                         splashColor: Colors.black,
-                        child: SizedBox(
+                        child: Container(
                           width: 80,
                           height: 80,
-                          child: Icon(Icons.clear,size: 70,),
+                          child: Icon(
+                            Icons.clear,
+                            size: 70,
+                          ),
                         ),
                         onTap: () {},
                       ),

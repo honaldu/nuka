@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'ChannelContents/Ideal.dart';
 import 'ChannelContents/Near.dart';
 import 'ChannelContents/Rate.dart';
+import 'ShopPage.dart';
 
 class ChannelPage extends StatefulWidget {
   const ChannelPage({Key key}) : super(key: key);
@@ -22,20 +23,29 @@ class _ChannelPageState extends State<ChannelPage> {
                   child: Column(
                     children: <Widget>[
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           Text(
                             '추천',
-                            style: TextStyle(fontSize: 30, color: Colors.black, fontWeight: FontWeight.w800),
+                            style: TextStyle(fontSize: 30, color: Colors.black),
                           ),
                           SizedBox(
-                            width: 10,
+                            width: 50,
                           ),
-                          Icon(
-                            Icons.shopping_cart,
-                            size: 40,
-                            color: Colors.black,
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => new ShopPage()),
+                              );
+                            },
+                            child: Icon(
+                              Icons.shopping_cart,
+                              size: 40,
+                              color: Color.fromRGBO(236, 128, 130, 1.0),
+                            ),
                           ),
                         ],
                       ),
@@ -56,8 +66,7 @@ class _ChannelPageState extends State<ChannelPage> {
                                       blurRadius: 1.0,
                                       spreadRadius: 1.0,
                                       offset: Offset(3.0, 3.0))
-                                ]
-                            ),
+                                ]),
                             width: 150,
                             height: 200,
                             child: ClipRRect(
@@ -108,8 +117,8 @@ class _ChannelPageState extends State<ChannelPage> {
                     ),
                     Column(
                       children: <Widget>[
-                        FlatButton(
-                          onPressed: () {
+                        InkWell(
+                          onTap: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -117,17 +126,13 @@ class _ChannelPageState extends State<ChannelPage> {
                             );
                           },
                           child: Container(
-                            margin: EdgeInsets.fromLTRB(30, 20, 30, 20),
-                            padding: EdgeInsets.fromLTRB(70, 20, 70, 20),
+                            width: 300,
+                            height: 80,
+                            margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30.0),
                                 color: Colors.redAccent,
+                                borderRadius: BorderRadius.circular(30.0),
                                 border: Border.all(color: Colors.grey[300]),
-
-//                                gradient: LinearGradient(
-//                                    colors: [Colors.red, Colors.orange],
-//                                    begin: Alignment.centerRight,
-//                                    end: Alignment(-1.0, -1.0)),
                                 boxShadow: [
                                   BoxShadow(
                                       color: Colors.grey[300],
@@ -135,17 +140,19 @@ class _ChannelPageState extends State<ChannelPage> {
                                       spreadRadius: 1.0,
                                       offset: Offset(3.0, 3.0))
                                 ]),
-                            child: Text(
-                              '근처 사는 이성 만나기',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
+                            child: Center(
+                              child: Text(
+                                '근처 사는 이성 만나기',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold),
+                              ),
                             ),
                           ),
                         ),
-                        FlatButton(
-                          onPressed: () {
+                        InkWell(
+                          onTap: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -153,11 +160,12 @@ class _ChannelPageState extends State<ChannelPage> {
                             );
                           },
                           child: Container(
-                            margin: EdgeInsets.fromLTRB(30, 20, 30, 20),
-                            padding: EdgeInsets.fromLTRB(70, 20, 70, 20),
+                            width: 300,
+                            height: 80,
+                            margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
                             decoration: BoxDecoration(
+                                color: Colors.blueAccent,
                                 borderRadius: BorderRadius.circular(30.0),
-                                color: Colors.green,
                                 border: Border.all(color: Colors.grey[300]),
                                 boxShadow: [
                                   BoxShadow(
@@ -166,17 +174,19 @@ class _ChannelPageState extends State<ChannelPage> {
                                       spreadRadius: 1.0,
                                       offset: Offset(3.0, 3.0))
                                 ]),
-                            child: Text(
-                              '평가 좋은 이성 만나기',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
+                            child: Center(
+                              child: Text(
+                                '평가 좋은 이성 만나기',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold),
+                              ),
                             ),
                           ),
                         ),
-                        FlatButton(
-                          onPressed: () {
+                        InkWell(
+                          onTap: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -184,10 +194,13 @@ class _ChannelPageState extends State<ChannelPage> {
                             );
                           },
                           child: Container(
+                            width: 300,
+                            height: 80,
+                            margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(30.0),
-                                color: Colors.blue,
                                 border: Border.all(color: Colors.grey[300]),
+                                color: Colors.purpleAccent,
                                 boxShadow: [
                                   BoxShadow(
                                       color: Colors.grey[300],
@@ -195,14 +208,14 @@ class _ChannelPageState extends State<ChannelPage> {
                                       spreadRadius: 1.0,
                                       offset: Offset(3.0, 3.0))
                                 ]),
-                            margin: EdgeInsets.fromLTRB(70, 20, 70, 20),
-                            padding: EdgeInsets.fromLTRB(60, 20, 60, 20),
-                            child: Text(
-                              '이상형 만나기',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
+                            child: Center(
+                              child: Text(
+                                '이상형 만나기',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold),
+                              ),
                             ),
                           ),
                         ),

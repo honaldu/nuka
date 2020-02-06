@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/painting.dart';
 import 'ConfirmingPage.dart';
+import 'ListCollection.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 class ProfileSetting extends StatefulWidget {
   @override
@@ -10,6 +12,7 @@ class ProfileSetting extends StatefulWidget {
 }
 
 class _ProfileSettingState extends State<ProfileSetting> {
+  String _date = "Not Set";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,10 +21,11 @@ class _ProfileSettingState extends State<ProfileSetting> {
           iconTheme: IconThemeData(color: Color.fromRGBO(236, 128, 130, 1.0)),
         ),
         body: ListView(
+          shrinkWrap: true,
           children: <Widget>[
             Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 CarouselSlider(
                   height: 400.0,
@@ -40,103 +44,364 @@ class _ProfileSettingState extends State<ProfileSetting> {
                     );
                   }).toList(),
                 ),
-                Container(
-                  width: 300,
-                  margin: EdgeInsets.all(3.0),
-                  child: TextField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(), labelText: '닉네임'),
-                  ),
+                SizedBox(
+                  height: 20,
                 ),
                 Container(
+                  margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
                   width: 300,
-                  margin: EdgeInsets.all(3.0),
-                  child: TextField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(), labelText: '생년월일'),
+                  height: 50,
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: Colors.grey[300]),
+                    borderRadius: BorderRadius.circular(15.0),
+                    color: Colors.white,
                   ),
-                ),
-                Container(
-                  width: 300,
-                  margin: EdgeInsets.all(3.0),
-                  child: TextField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(), labelText: '키'),
-                  ),
-                ),
-                Container(
-                  width: 300,
-                  margin: EdgeInsets.all(3.0),
-                  child: TextField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(), labelText: '체형'),
-                  ),
-                ),
-                Container(
-                  width: 300,
-                  margin: EdgeInsets.all(3.0),
-                  child: TextField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(), labelText: '학교'),
-                  ),
-                ),
-                Container(
-                  width: 300,
-                  margin: EdgeInsets.all(3.0),
-                  child: TextField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(), labelText: '직업'),
-                  ),
-                ),
-                Container(
-                  width: 300,
-                  margin: EdgeInsets.all(3.0),
-                  child: TextField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(), labelText: '성격'),
-                  ),
-                ),
-                Container(
-                  width: 300,
-                  margin: EdgeInsets.all(3.0),
-                  child: TextField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(), labelText: '취미'),
-                  ),
-                ),
-                Container(
-                  width: 300,
-                  margin: EdgeInsets.all(3.0),
-                  child: TextField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(), labelText: '자기소개'),
-                  ),
-                ),
-                Center(
-                  child: FlatButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => new Confirming()),
-                      );
-                    },
-                    child: Container(
-                      margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
-                      padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15.0),
-                        color: Color.fromRGBO(255, 130, 130, 1),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      SizedBox(
+                        width: 10,
                       ),
+                      Text(
+                        'Name',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Flexible(
+                        child: Container(
+                          child: TextField(
+                            style: TextStyle(color: Colors.black),
+                            decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: '이름을 입력해 주세요',
+                                hintStyle: TextStyle(color: Colors.grey[300])),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                  width: 300,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: Colors.grey[300]),
+                    borderRadius: BorderRadius.circular(15.0),
+                    color: Colors.white,
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Birth',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      SizedBox(
+                        width: 65,
+                      ),
+                      FlatButton(
+                        onPressed: () {
+                          DatePicker.showDatePicker(context,
+                              showTitleActions: true,
+                              minTime: DateTime(1980, 1, 1),
+                              maxTime: DateTime(2005, 1, 1), onChanged: (date) {
+                            print('change $date');
+                          }, onConfirm: (date) {
+                            print('confirm $date');
+                            _date =
+                                '${date.year} - ${date.month} - ${date.day}';
+                            setState(() {});
+                          },
+                              currentTime: DateTime.now(),
+                              locale: LocaleType.en);
+                          ;
+                        },
+                        child: Text('$_date'),
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                  width: 300,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: Colors.grey[300]),
+                    borderRadius: BorderRadius.circular(15.0),
+                    color: Colors.white,
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Height',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Flexible(
+                        child: Container(
+                          child: TextField(
+                            style: TextStyle(color: Colors.black),
+                            decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: '키를 입력해 주세요',
+                                hintStyle: TextStyle(color: Colors.grey[300])),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                  width: 300,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: Colors.grey[300]),
+                    borderRadius: BorderRadius.circular(15.0),
+                    color: Colors.white,
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Body Shape',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Flexible(
+                        child: Container(
+                          child: DropdownButtonFormField(
+                            items: bodyshape,
+                            onChanged: (value) {},
+                            decoration: InputDecoration(
+                                hintText: '체형을 선택해 주세요',
+                                hintStyle: TextStyle(color: Colors.grey[300])),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                  width: 300,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: Colors.grey[300]),
+                    borderRadius: BorderRadius.circular(15.0),
+                    color: Colors.white,
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Education',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Flexible(
+                        child: Container(
+                          child: DropdownButtonFormField(
+                            items: school,
+                            onChanged: (value) {},
+                            decoration: InputDecoration(
+                                hintText: '학력을 선택해 주세요',
+                                hintStyle: TextStyle(color: Colors.grey[300])),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                  width: 300,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: Colors.grey[300]),
+                    borderRadius: BorderRadius.circular(15.0),
+                    color: Colors.white,
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Job',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Flexible(
+                        child: Container(
+                          child: TextField(
+                            style: TextStyle(color: Colors.black),
+                            decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: '직업을 입력해 주세요',
+                                hintStyle: TextStyle(color: Colors.grey[300])),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                  width: 300,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: Colors.grey[300]),
+                    borderRadius: BorderRadius.circular(15.0),
+                    color: Colors.white,
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Charateristic',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Flexible(
+                        child: Container(
+                          child: TextField(
+                            style: TextStyle(color: Colors.black),
+                            decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: '성격을 선택해 주세요',
+                                hintStyle: TextStyle(color: Colors.grey[300])),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                  width: 300,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: Colors.grey[300]),
+                    borderRadius: BorderRadius.circular(15.0),
+                    color: Colors.white,
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Hobby',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Flexible(
+                        child: DropdownButtonFormField(
+                          items: hobby,
+                          onChanged: (value) {},
+                          decoration: InputDecoration(
+                              hintText: '취미를 선택해 주세요',
+                              hintStyle: TextStyle(color: Colors.grey[300])),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                  width: 300,
+                  height: 100,
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: Colors.grey[300]),
+                    borderRadius: BorderRadius.circular(15.0),
+                    color: Colors.white,
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Self Introduce',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Flexible(
+                        child: Container(
+                          child: TextField(
+                            style: TextStyle(color: Colors.black),
+                            decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: '자기소개를 입력해 주세요',
+                                hintStyle: TextStyle(color: Colors.grey[300])),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                FlatButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => new Confirming()),
+                    );
+                  },
+                  child: Container(
+                    margin: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                    width: 80,
+                    height: 30,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15.0),
+                      color: Color.fromRGBO(255, 130, 130, 1),
+                    ),
+                    child: Center(
                       child: Text(
                         '작성완료',
                         style: TextStyle(color: Colors.white),
