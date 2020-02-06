@@ -14,6 +14,8 @@ class ProfileSetting extends StatefulWidget {
 
 class _ProfileSettingState extends State<ProfileSetting> {
   String _date = "Not Set";
+  String _dropdownValue = '보통';
+  String _dropdownValue2 = '중졸';
 
   @override
   Widget build(BuildContext context) {
@@ -152,7 +154,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                         style: TextStyle(color: Colors.black),
                       ),
                       SizedBox(
-                        width: 100,
+                        width: 60,
                       ),
                       Flexible(
                         child: Container(
@@ -193,22 +195,26 @@ class _ProfileSettingState extends State<ProfileSetting> {
                         style: TextStyle(color: Colors.black),
                       ),
                       SizedBox(
-                        width: 20,
+                        width: 60,
                       ),
-                      Container(
-                        child: Flexible(
-                          child: Container(
-                            child: DropdownButtonFormField(
-                              items: bodyshape,
-                              onChanged: (value) {},
-                              decoration: InputDecoration(
-                                  hintText: '체형을 선택해 주세요',
-                                  border: InputBorder.none,
-                                  hintStyle:
-                                      TextStyle(color: Colors.grey[300])),
-                            ),
-                          ),
-                        ),
+                      DropdownButton<String>(
+                        value: _dropdownValue,
+                        icon: Icon(Icons.arrow_downward),
+                        iconSize: 20,
+                        elevation: 16,
+                        style: TextStyle(fontSize: 15,color:Colors.grey[300]),
+                        onChanged: (String newValue) {
+                          setState(() {
+                            _dropdownValue = newValue;
+                          });
+                        },
+                        items: <String>['보통', '날씬', '탄탄', '통통']
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
                       ),
                     ],
                   ),
@@ -234,19 +240,26 @@ class _ProfileSettingState extends State<ProfileSetting> {
                         style: TextStyle(color: Colors.black),
                       ),
                       SizedBox(
-                        width: 20,
+                        width: 75,
                       ),
-                      Flexible(
-                        child: Container(
-                          child: DropdownButtonFormField(
-                            items: school,
-                            onChanged: (value) {},
-                            decoration: InputDecoration(
-                                hintText: '학력을 선택해 주세요',
-                                border: InputBorder.none,
-                                hintStyle: TextStyle(color: Colors.grey[300])),
-                          ),
-                        ),
+                      DropdownButton<String>(
+                        value: _dropdownValue2,
+                        icon: Icon(Icons.arrow_downward),
+                        iconSize: 20,
+                        elevation: 16,
+                        style: TextStyle(fontSize: 15,color:Colors.grey[300]),
+                        onChanged: (String newValue) {
+                          setState(() {
+                            _dropdownValue2 = newValue;
+                          });
+                        },
+                        items: <String>['중졸', '고졸', '대퇴', '대졸']
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
                       ),
                     ],
                   ),
@@ -272,7 +285,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                         style: TextStyle(color: Colors.black),
                       ),
                       SizedBox(
-                        width: 20,
+                        width: 70,
                       ),
                       Flexible(
                         child: Container(
