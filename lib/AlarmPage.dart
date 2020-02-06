@@ -37,6 +37,7 @@ class _AlarmPageState extends State<AlarmPage> {
     // TODO: implement initState
     AlarmList = List();
     GetMessage().then((data){
+      print(data);
       setState(() {
         AlarmList = data;
       });

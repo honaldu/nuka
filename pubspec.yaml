@@ -22,6 +22,7 @@ dependencies:
   carousel_pro: ^1.0.0
   settings_ui: ^0.1.1
   web_socket_channel: ^1.1.0
+  apple_sign_in: ^0.1.0
   http: ^0.12.0+4
   firebase_auth: ^0.15.4
   google_sign_in: ^4.1.1

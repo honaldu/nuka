@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'dart:io';
 
+import 'package:apple_sign_in/apple_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
@@ -21,7 +23,7 @@ class _SignPageState extends State<SignPage> {
   final FirebaseAuth auth = FirebaseAuth.instance;
   bool isLoggedIn = false;
   SharedPreferences prefs;
-
+  String errorMessage;
 
 
   //자동 로그인을 위해 로그인이 되어있다면 로그인 창 스킵
@@ -44,9 +46,9 @@ class _SignPageState extends State<SignPage> {
         idToken: authentication.idToken,
         accessToken: authentication.accessToken);
     AuthResult authResult = await auth.signInWithCredential(credential);
-//    FirebaseUser user = authResult.user;
-//    FirebaseUser userinfo =await auth.currentUser();
-//    IdTokenResult idTokenResult = await user.getIdToken();
+    FirebaseUser user = authResult.user;
+    FirebaseUser userinfo =await auth.currentUser();
+    IdTokenResult idTokenResult = await user.getIdToken();
 
     //해당 구글 로그인 이메일
     String email = authResult.user.email;
@@ -62,7 +64,6 @@ class _SignPageState extends State<SignPage> {
   //추후에 가입된 회원일시 프로필 작성 페이지 생략
   PostSign(String email, String token) async {
     prefs = await SharedPreferences.getInstance();
-    print('aa');
 
     final Map<String, dynamic> Data = {
       "email": email,
@@ -75,7 +76,6 @@ class _SignPageState extends State<SignPage> {
     if(response.statusCode == 200){
       var utf8convert= utf8.decode(response.bodyBytes);//한글화
       Map data = json.decode(utf8convert);
-      print(data['email']);
       await prefs.setString('email', data['email']);
       await prefs.setString('token', data['token']);
       Navigator.push(
@@ -91,12 +91,82 @@ class _SignPageState extends State<SignPage> {
     }
   }
 
+  //애플 로그인
+  void AppleSign() async {
+    final AuthorizationResult result = await AppleSignIn.performRequests([
+      AppleIdRequest(requestedScopes: [Scope.email, Scope.fullName])
+    ]);
+
+    switch (result.status) {
+      case AuthorizationStatus.authorized:
+
+      // Store user ID
+//        await FlutterSecureStorage()
+//            .write(key: "userId", value: result.credential.user);
+
+
+        PostSign(result.credential.email, result.credential.user);
+
+        break;
+
+      case AuthorizationStatus.error:
+        print("Sign in failed: ${result.error.localizedDescription}");
+        //나중에 토스트 메세지로 실패이유 띄우면됨
+        setState(() {
+          errorMessage = "Sign in failed";
+        });
+        break;
+
+      case AuthorizationStatus.cancelled:
+        print('User cancelled');
+        break;
+    }
+  }
+
+//  isSignInApple() async {
+//    prefs = await SharedPreferences.getInstance();
+//    String token = prefs.getString('token');
+//
+//    if (token == null) {
+//      print("No stored user ID");
+//      return;
+//    }
+//
+//    final credentialState = await AppleSignIn.getCredentialState(token);
+//    switch (credentialState.status) {
+//      case CredentialStatus.authorized:
+//        print("getCredentialState returned authorized");
+//        break;
+//
+//      case CredentialStatus.error:
+//        print(
+//            "getCredentialState returned an error: ${credentialState.error.localizedDescription}");
+//        break;
+//
+//      case CredentialStatus.revoked:
+//        print("getCredentialState returned revoked");
+//        break;
+//
+//      case CredentialStatus.notFound:
+//        print("getCredentialState returned not found");
+//        break;
+//
+//      case CredentialStatus.transferred:
+//        print("getCredentialState returned not transferred");
+//        break;
+//    }
+//  }
+
 
 
   @override
   void initState() {
     // TODO: implement initState
     isSignIn();
+    AppleSignIn.onCredentialRevoked.listen((_) {
+      print("Credentials revoked");
+    });
+//    isSignInApple();
     super.initState();
   }
 
@@ -130,17 +200,12 @@ class _SignPageState extends State<SignPage> {
                   GoogleLogin();
                 },
               ),
-              SignInButton(
+              (Platform.isIOS)?SignInButton(
                 Buttons.Apple,
-                onPressed: () {
-
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => new ProfileSetting()),
-                  );
+                onPressed: () async {
+                  AppleSign();
                 },
-              ),
+              ):Container(),
               SignInButton(
                 Buttons.Facebook,
                 onPressed: () {
