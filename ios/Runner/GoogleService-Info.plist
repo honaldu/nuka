@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>42565247419-li1b67ut9eaphr0m0fd5kjf6f3u7270d.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.42565247419-li1b67ut9eaphr0m0fd5kjf6f3u7270d</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBNVekuMGwvEF2Gf8w04_rcMN8ZctHcedA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>42565247419</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.hou.nuka</string>
+	<key>PROJECT_ID</key>
+	<string>nuka-59bec</string>
+	<key>STORAGE_BUCKET</key>
+	<string>nuka-59bec.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:42565247419:ios:4b05da94d93656492de49e</string>
+	<key>DATABASE_URL</key>
+	<string>https://nuka-59bec.firebaseio.com</string>
+</dict>
+</plist>

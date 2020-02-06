@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 
-import 'package:cached_network_image/cached_network_image.dart';
+
 import 'package:flutter/material.dart';
 import 'package:nuka/Utils/rest_api_utils.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
@@ -79,25 +79,25 @@ class _AlarmPageState extends State<AlarmPage> {
         ),
         child: Row(
           children: <Widget>[
-            Container(
-              width: MediaQuery.of(context).size.width/4.8,
-              height: MediaQuery.of(context).size.height/12,
-              decoration: BoxDecoration(
-                  border: Border.all(width: 1)
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.all(
-                    Radius.circular(10)),
-                child: (ds['nickname'][0]['image1'] != null)
-                    ? CachedNetworkImage(
-                  imageUrl: ds['nickname'][0]['image1'],
-                  fit: BoxFit.cover,
-                )
-                    : Icon(
-                  Icons.person
-                ),
-              ),
-            ),
+//            Container(
+//              width: MediaQuery.of(context).size.width/4.8,
+//              height: MediaQuery.of(context).size.height/12,
+//              decoration: BoxDecoration(
+//                  border: Border.all(width: 1)
+//              ),
+//              child: ClipRRect(
+//                borderRadius: BorderRadius.all(
+//                    Radius.circular(10)),
+//                child: (ds['nickname'][0]['image1'] != null)
+//                    ? CachedNetworkImage(
+//                  imageUrl: ds['nickname'][0]['image1'],
+//                  fit: BoxFit.cover,
+//                )
+//                    : Icon(
+//                  Icons.person
+//                ),
+//              ),
+//            ),
             Column(
               children: <Widget>[
                 //좋아요 누른 사람 닉네임 ds['nickname'][0]['nickname']
