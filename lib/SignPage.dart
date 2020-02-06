@@ -78,6 +78,7 @@ class _SignPageState extends State<SignPage> {
       Map data = json.decode(utf8convert);
       await prefs.setString('email', data['email']);
       await prefs.setString('token', data['token']);
+
       Navigator.push(
         context,
         MaterialPageRoute(
