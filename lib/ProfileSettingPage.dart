@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter/services.dart';
 import 'ConfirmingPage.dart';
 import 'ListCollection.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -13,6 +14,7 @@ class ProfileSetting extends StatefulWidget {
 
 class _ProfileSettingState extends State<ProfileSetting> {
   String _date = "Not Set";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,11 +66,11 @@ class _ProfileSettingState extends State<ProfileSetting> {
                         width: 10,
                       ),
                       Text(
-                        'Name',
+                        'NicName',
                         style: TextStyle(color: Colors.black),
                       ),
                       SizedBox(
-                        width: 20,
+                        width: 40,
                       ),
                       Flexible(
                         child: Container(
@@ -76,7 +78,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                             style: TextStyle(color: Colors.black),
                             decoration: InputDecoration(
                                 border: InputBorder.none,
-                                hintText: '이름을 입력해 주세요',
+                                hintText: '별명을 입력해 주세요',
                                 hintStyle: TextStyle(color: Colors.grey[300])),
                           ),
                         ),
@@ -105,7 +107,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                         style: TextStyle(color: Colors.black),
                       ),
                       SizedBox(
-                        width: 65,
+                        width: 80,
                       ),
                       FlatButton(
                         onPressed: () {
@@ -150,12 +152,16 @@ class _ProfileSettingState extends State<ProfileSetting> {
                         style: TextStyle(color: Colors.black),
                       ),
                       SizedBox(
-                        width: 20,
+                        width: 100,
                       ),
                       Flexible(
                         child: Container(
                           child: TextField(
                             style: TextStyle(color: Colors.black),
+                            keyboardType: TextInputType.number,
+                            inputFormatters: <TextInputFormatter>[
+                              WhitelistingTextInputFormatter.digitsOnly
+                            ],
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: '키를 입력해 주세요',
@@ -189,14 +195,18 @@ class _ProfileSettingState extends State<ProfileSetting> {
                       SizedBox(
                         width: 20,
                       ),
-                      Flexible(
-                        child: Container(
-                          child: DropdownButtonFormField(
-                            items: bodyshape,
-                            onChanged: (value) {},
-                            decoration: InputDecoration(
-                                hintText: '체형을 선택해 주세요',
-                                hintStyle: TextStyle(color: Colors.grey[300])),
+                      Container(
+                        child: Flexible(
+                          child: Container(
+                            child: DropdownButtonFormField(
+                              items: bodyshape,
+                              onChanged: (value) {},
+                              decoration: InputDecoration(
+                                  hintText: '체형을 선택해 주세요',
+                                  border: InputBorder.none,
+                                  hintStyle:
+                                      TextStyle(color: Colors.grey[300])),
+                            ),
                           ),
                         ),
                       ),
@@ -233,6 +243,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                             onChanged: (value) {},
                             decoration: InputDecoration(
                                 hintText: '학력을 선택해 주세요',
+                                border: InputBorder.none,
                                 hintStyle: TextStyle(color: Colors.grey[300])),
                           ),
                         ),
@@ -336,15 +347,6 @@ class _ProfileSettingState extends State<ProfileSetting> {
                       ),
                       SizedBox(
                         width: 20,
-                      ),
-                      Flexible(
-                        child: DropdownButtonFormField(
-                          items: hobby,
-                          onChanged: (value) {},
-                          decoration: InputDecoration(
-                              hintText: '취미를 선택해 주세요',
-                              hintStyle: TextStyle(color: Colors.grey[300])),
-                        ),
                       ),
                     ],
                   ),
