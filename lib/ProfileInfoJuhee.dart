@@ -1,6 +1,10 @@
-import 'package:carousel_pro/carousel_pro.dart';
 
 import 'package:flutter/material.dart';
+import 'package:carousel_pro/carousel_pro.dart';
+import 'package:flutter/painting.dart';
+import 'package:flutter/services.dart';
+import 'ConfirmingPage.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 class ProFileInfo extends StatefulWidget {
   @override
@@ -8,268 +12,598 @@ class ProFileInfo extends StatefulWidget {
 }
 
 class _ProFileInfoState extends State<ProFileInfo> {
+  String _date = "Not Set";
+  String _dropdownValue = '보통';
+  String _dropdownValue2 = '중졸';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: ListView(
-        children: <Widget>[
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 10.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          iconTheme: IconThemeData(color: Color.fromRGBO(236, 128, 130, 1.0)),
+        ),
+        body: ListView(
+          shrinkWrap: true,
+          children: <Widget>[
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Center(
-                  child: SizedBox(
-                    width: 300,
-                    height: 300,
-                    child: Carousel(
-                      images: [
-                        Image.asset('Images/juhee0.jpg'),
-                        Image.asset('Images/juhee1.jpg'),
-                      ],
-                      showIndicator: true,
-                      borderRadius: true,
-                      moveIndicatorFromBottom: 180.0,
-                      noRadiusForIndicator: true,
-                      overlayShadow: true,
-                      overlayShadowColors: Colors.white,
-                      overlayShadowSize: 0.7,
-                    ),
-                  ),
-                ),
-                Text('사나, 23'),
-                Text('Seoul-si, 30km'),
-                Text('163cm, B'),
                 Container(
-                  child: Row(
-                    children: <Widget>[
-                      Icon(Icons.call),
-                      Text('Phone number verified'),
+                  width: 300,
+                  height: 300,
+                  child: Carousel(
+                    images: [
+                      Image.asset('Images/juhee0.jpg'),
+                      Image.asset('Images/juhee1.jpg'),
                     ],
                   ),
                 ),
-                Divider(
-                  height: 1.0,
-                  color: Colors.grey[400],
+                SizedBox(
+                  height: 20,
                 ),
-                Row(
-                  children: <Widget>[
-                    Text(
-                      'Education',
-                    ),
-                    SizedBox(
-                      width: 5.0,
-                    ),
-                    Text(
-                      'University',
-                    ),
-                  ],
+                Container(
+                  margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                  width: 300,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: Colors.grey[300]),
+                    borderRadius: BorderRadius.circular(15.0),
+                    color: Colors.white,
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'NickName',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      SizedBox(
+                        width: 50,
+                      ),
+                      Text('Lovely Juhee'),
+                    ],
+                  ),
                 ),
-                Row(
-                  children: <Widget>[
-                    Text(
-                      'Occupation',
-                    ),
-                    SizedBox(
-                      width: 5.0,
-                    ),
-                    Text(
-                      'Singer',
-                    ),
-                  ],
+                Container(
+                  margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                  width: 300,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: Colors.grey[300]),
+                    borderRadius: BorderRadius.circular(15.0),
+                    color: Colors.white,
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Birth',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      SizedBox(
+                        width: 80,
+                      ),
+                      FlatButton(
+                        onPressed: () {
+                          DatePicker.showDatePicker(context,
+                              showTitleActions: true,
+                              minTime: DateTime(1980, 1, 1),
+                              maxTime: DateTime(2005, 1, 1), onChanged: (date) {
+                            print('change $date');
+                          }, onConfirm: (date) {
+                            print('confirm $date');
+                            _date =
+                                '${date.year} - ${date.month} - ${date.day}';
+                            setState(() {});
+                          },
+                              currentTime: DateTime.now(),
+                              locale: LocaleType.en);
+                          ;
+                        },
+                        child: Text('$_date'),
+                      )
+                    ],
+                  ),
                 ),
-                Divider(
-                  height: 1.0,
-                  color: Colors.grey[400],
+                Container(
+                  margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                  width: 300,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: Colors.grey[300]),
+                    borderRadius: BorderRadius.circular(15.0),
+                    color: Colors.white,
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Height(cm)',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      SizedBox(
+                        width: 70,
+                      ),
+                      Text('158'),
+                    ],
+                  ),
                 ),
-                Row(
-                  children: <Widget>[
-                    Text(
-                      'Religion',
-                    ),
-                    SizedBox(
-                      width: 5.0,
-                    ),
-                    Text(
-                      'Catolic',
-                    ),
-                  ],
+                Container(
+                  margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                  width: 300,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: Colors.grey[300]),
+                    borderRadius: BorderRadius.circular(15.0),
+                    color: Colors.white,
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Body Shape',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      SizedBox(
+                        width: 65,
+                      ),
+                      Text('탄탄'),
+                    ],
+                  ),
                 ),
-                Row(
-                  children: <Widget>[
-                    Text(
-                      'Alcohol',
-                    ),
-                    SizedBox(
-                      width: 5.0,
-                    ),
-                    Text(
-                      'Ocassionally',
-                    ),
-                  ],
+                Container(
+                  margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                  width: 300,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: Colors.grey[300]),
+                    borderRadius: BorderRadius.circular(15.0),
+                    color: Colors.white,
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Education',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      SizedBox(
+                        width: 80,
+                      ),
+                      Text('대퇴'),
+                    ],
+                  ),
                 ),
-                Row(
-                  children: <Widget>[
-                    Text(
-                      'Smoking',
-                    ),
-                    SizedBox(
-                      width: 5.0,
-                    ),
-                    Text(
-                      'Never',
-                    ),
-                  ],
+                Container(
+                  margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                  width: 300,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: Colors.grey[300]),
+                    borderRadius: BorderRadius.circular(15.0),
+                    color: Colors.white,
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Job',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      SizedBox(
+                        width: 110,
+                      ),
+                      Text('가정주부'),
+                    ],
+                  ),
                 ),
-                Divider(
-                  height: 1.0,
-                  color: Colors.grey[400],
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      'Personality',
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Container(
-                          margin: EdgeInsets.fromLTRB(5, 10, 5, 0),
-                          padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15.0),
-                            color: Color.fromRGBO(255, 130, 130, 1),
-                          ),
-                          child: Text(
-                            'Kind',
-                            style: TextStyle(color: Colors.white),
-                          ),
+                Container(
+                  margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                  width: 300,
+                  height: 100,
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: Colors.grey[300]),
+                    borderRadius: BorderRadius.circular(15.0),
+                    color: Colors.white,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Container(
+                        margin: EdgeInsets.fromLTRB(0, 20, 0, 5),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              'Charateristic',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            SizedBox(
+                              width: 30,
+                            ),
+                          ],
                         ),
-                        Container(
-                          margin: EdgeInsets.fromLTRB(5, 10, 5, 0),
-                          padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15.0),
-                            color: Color.fromRGBO(255, 130, 130, 1),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          InkWell(
+                            onTap: () {},
+                            child: Container(
+                              margin: EdgeInsets.fromLTRB(3, 5, 3, 5),
+                              width: 60,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey[300]),
+                                borderRadius: BorderRadius.circular(15.0),
+                                color: Colors.grey[300],
+                              ),
+                              child: Center(
+                                child: Text(
+                                  '긍정적',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
                           ),
-                          child: Text(
-                            'Cute',
-                            style: TextStyle(color: Colors.white),
+                          InkWell(
+                            onTap: () {},
+                            child: Container(
+                              margin: EdgeInsets.fromLTRB(3, 5, 3, 5),
+                              width: 60,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey[300]),
+                                borderRadius: BorderRadius.circular(15.0),
+                                color: Color.fromRGBO(255, 130, 130, 1),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  '현실적',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                  ],
+                          InkWell(
+                            onTap: () {},
+                            child: Container(
+                              margin: EdgeInsets.fromLTRB(3, 5, 3, 5),
+                              width: 60,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey[300]),
+                                borderRadius: BorderRadius.circular(15.0),
+                                  color: Colors.grey[300],
+                              ),
+                              child: Center(
+                                child: Text(
+                                  '외향적',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {},
+                            child: Container(
+                              margin: EdgeInsets.fromLTRB(3, 5, 3, 5),
+                              width: 60,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey[300]),
+                                borderRadius: BorderRadius.circular(15.0),
+                                color: Color.fromRGBO(255, 130, 130, 1),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  '내향적',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      'Hobby',
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Container(
-                          margin: EdgeInsets.fromLTRB(5, 10, 5, 0),
-                          padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15.0),
-                            color: Color.fromRGBO(255, 130, 130, 1),
-                          ),
-                          child: Text(
-                            'Game',
-                            style: TextStyle(color: Colors.white),
-                          ),
+                Container(
+                  margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                  width: 300,
+                  height: 130,
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: Colors.grey[300]),
+                    borderRadius: BorderRadius.circular(15.0),
+                    color: Colors.white,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Container(
+                        margin: EdgeInsets.fromLTRB(0, 20, 0, 5),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              'Hobby',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            SizedBox(
+                              width: 30,
+                            ),
+                            Text('취미를 선택해 주세요'),
+                          ],
                         ),
-                        Container(
-                          margin: EdgeInsets.fromLTRB(5, 10, 5, 0),
-                          padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15.0),
-                            color: Color.fromRGBO(255, 130, 130, 1),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          InkWell(
+                            onTap: () {},
+                            child: Container(
+                              margin: EdgeInsets.fromLTRB(3, 5, 3, 5),
+                              width: 60,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey[300]),
+                                borderRadius: BorderRadius.circular(15.0),
+                                color: Color.fromRGBO(255, 130, 130, 1),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  '영화감상',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
                           ),
-                          child: Text(
-                            'Sleeping',
-                            style: TextStyle(color: Colors.white),
+                          InkWell(
+                            onTap: () {},
+                            child: Container(
+                              margin: EdgeInsets.fromLTRB(3, 5, 3, 5),
+                              width: 60,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey[300]),
+                                borderRadius: BorderRadius.circular(15.0),
+                                color: Color.fromRGBO(255, 130, 130, 1),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  '운동',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                  ],
+                          InkWell(
+                            onTap: () {},
+                            child: Container(
+                              margin: EdgeInsets.fromLTRB(3, 5, 3, 5),
+                              width: 60,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey[300]),
+                                borderRadius: BorderRadius.circular(15.0),
+                                color: Color.fromRGBO(255, 130, 130, 1),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  '독서',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {},
+                            child: Container(
+                              margin: EdgeInsets.fromLTRB(3, 5, 3, 5),
+                              width: 60,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey[300]),
+                                borderRadius: BorderRadius.circular(15.0),
+                                color: Color.fromRGBO(255, 130, 130, 1),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  '게임',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          InkWell(
+                            onTap: () {},
+                            child: Container(
+                              margin: EdgeInsets.fromLTRB(3, 5, 3, 5),
+                              width: 60,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey[300]),
+                                borderRadius: BorderRadius.circular(15.0),
+                                color: Color.fromRGBO(255, 130, 130, 1),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  '여행',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {},
+                            child: Container(
+                              margin: EdgeInsets.fromLTRB(3, 5, 3, 5),
+                              width: 60,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey[300]),
+                                borderRadius: BorderRadius.circular(15.0),
+                                color: Color.fromRGBO(255, 130, 130, 1),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  '요리',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {},
+                            child: Container(
+                              margin: EdgeInsets.fromLTRB(3, 5, 3, 5),
+                              width: 60,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey[300]),
+                                borderRadius: BorderRadius.circular(15.0),
+                                color: Color.fromRGBO(255, 130, 130, 1),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  '음악감상',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {},
+                            child: Container(
+                              margin: EdgeInsets.fromLTRB(3, 5, 3, 5),
+                              width: 60,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey[300]),
+                                borderRadius: BorderRadius.circular(15.0),
+                                color: Color.fromRGBO(255, 130, 130, 1),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  '산책',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      'Ideal Friend Type',
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Container(
-                          margin: EdgeInsets.fromLTRB(5, 10, 5, 0),
-                          padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15.0),
-                            color: Color.fromRGBO(255, 130, 130, 1),
-                          ),
-                          child: Text(
-                            'Kind Hearted',
-                            style: TextStyle(color: Colors.white),
-                          ),
+                Container(
+                  margin: EdgeInsets.fromLTRB(20, 5, 20, 5),
+                  width: 300,
+                  height: 200,
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: Colors.grey[300]),
+                    borderRadius: BorderRadius.circular(15.0),
+                    color: Colors.white,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Container(
+                        margin: EdgeInsets.fromLTRB(0, 20, 0, 5),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              'Self Introduce',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                          ],
                         ),
-                        Container(
-                          margin: EdgeInsets.fromLTRB(5, 10, 5, 0),
-                          padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15.0),
-                            color: Color.fromRGBO(255, 130, 130, 1),
-                          ),
-                          child: Text(
-                            'Sweetest pie',
-                            style: TextStyle(color: Colors.white),
-                          ),
+                      ),
+                      Flexible(
+                        child: Container(
+                          margin: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                          child: Text('호우쟝 남편인 거시와오~')
                         ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                  ],
+                      ),
+                    ],
+                  ),
                 ),
+                FlatButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => new Confirming()),
+                    );
+                  },
+                  child: Container(
+                    margin: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                    width: 80,
+                    height: 30,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15.0),
+                      color: Color.fromRGBO(255, 130, 130, 1),
+                    ),
+                    child: Center(
+                      child: Text(
+                        '작성완료',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                )
               ],
             ),
-          ),
-        ],
-      ),
-      bottomNavigationBar: BottomAppBar(
-        child: Container(
-          child: FlatButton(
-            onPressed: () {},
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15.0),
-                color: Color.fromRGBO(255, 130, 130, 1),
-              ),
-              padding: EdgeInsets.fromLTRB(100, 10, 100, 10),
-              child: Text(
-                'Add Friend',
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
+          ],
+        ));
   }
 }

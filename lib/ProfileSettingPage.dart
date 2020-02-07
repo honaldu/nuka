@@ -4,7 +4,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 import 'ConfirmingPage.dart';
-import 'ListCollection.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 class ProfileSetting extends StatefulWidget {
@@ -16,7 +15,6 @@ class _ProfileSettingState extends State<ProfileSetting> {
   String _date = "Not Set";
   String _dropdownValue = '보통';
   String _dropdownValue2 = '중졸';
-  bool _predded = true;
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +67,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                         width: 10,
                       ),
                       Text(
-                        'NicName',
+                        'NickName',
                         style: TextStyle(color: Colors.black),
                       ),
                       SizedBox(
@@ -152,11 +150,11 @@ class _ProfileSettingState extends State<ProfileSetting> {
                         width: 10,
                       ),
                       Text(
-                        'Height',
+                        'Height(cm)',
                         style: TextStyle(color: Colors.black),
                       ),
                       SizedBox(
-                        width: 60,
+                        width: 40,
                       ),
                       Container(
                         width: 120,
@@ -554,7 +552,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                               ),
                               child: Center(
                                 child: Text(
-                                  '영화감상',
+                                  '여행',
                                   style: TextStyle(color: Colors.white),
                                 ),
                               ),
@@ -573,7 +571,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                               ),
                               child: Center(
                                 child: Text(
-                                  '운동',
+                                  '요리',
                                   style: TextStyle(color: Colors.white),
                                 ),
                               ),
@@ -592,7 +590,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                               ),
                               child: Center(
                                 child: Text(
-                                  '독서',
+                                  '음악감상',
                                   style: TextStyle(color: Colors.white),
                                 ),
                               ),
@@ -611,7 +609,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                               ),
                               child: Center(
                                 child: Text(
-                                  '게임',
+                                  '산책',
                                   style: TextStyle(color: Colors.white),
                                 ),
                               ),
@@ -660,9 +658,10 @@ class _ProfileSettingState extends State<ProfileSetting> {
                           child: TextField(
                             style: TextStyle(color: Colors.black),
                             textAlign: TextAlign.start,
+                            maxLines: 7,
                             decoration: InputDecoration(
                                 border: InputBorder.none,
-                                hintText: '직업을 입력해 주세요',
+                                hintText: '자기소개를 입력해 주세요',
                                 hintStyle: TextStyle(color: Colors.grey[300])),
                           ),
                         ),
