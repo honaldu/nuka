@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_pro/carousel_pro.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key key}) : super(key: key);
@@ -25,11 +25,18 @@ class _MainPageState extends State<MainPage> {
               SizedBox(
                 height: 300.0,
                 width: 300.0,
-                child: Carousel(
-                  images: [
-                    Image.asset('Images/Sana0.jpg'),
-                    Image.asset('Images/Sana1.jpg'),
-                  ],
+                child: Swiper(
+                  itemBuilder: (BuildContext, int index) {
+                    return ClipRRect(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      child: new Image.asset('Images/juhee$index.jpg',
+                          fit: BoxFit.fill),
+                    );
+                  },
+                  itemCount: 3,
+                  itemHeight: 300,
+                  itemWidth: 300,
+                  layout: SwiperLayout.TINDER,
                 ),
               ),
               SizedBox(

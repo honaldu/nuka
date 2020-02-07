@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 import 'ConfirmingPage.dart';
@@ -30,22 +30,22 @@ class _ProfileSettingState extends State<ProfileSetting> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                CarouselSlider(
-                  height: 400.0,
-                  items: [1, 2, 3, 4, 5].map((i) {
-                    return Builder(
-                      builder: (BuildContext context) {
-                        return Container(
-                            width: MediaQuery.of(context).size.width,
-                            margin: EdgeInsets.symmetric(horizontal: 5.0),
-                            decoration: BoxDecoration(color: Colors.amber),
-                            child: Text(
-                              'text $i',
-                              style: TextStyle(fontSize: 16.0),
-                            ));
-                      },
-                    );
-                  }).toList(),
+                SizedBox(
+                  height: 300.0,
+                  width: 300.0,
+                  child: Swiper(
+                    itemBuilder: (BuildContext, int index) {
+                      return ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        child: new Image.asset('Images/Profile.png',
+                            fit: BoxFit.fill),
+                      );
+                    },
+                    itemCount: 3,
+                    itemHeight: 300,
+                    itemWidth: 300,
+                    layout: SwiperLayout.TINDER,
+                  ),
                 ),
                 SizedBox(
                   height: 20,
