@@ -78,6 +78,7 @@ class _SignPageState extends State<SignPage> {
       Map data = json.decode(utf8convert);
       await prefs.setString('email', data['email']);
       await prefs.setString('token', data['token']);
+      await prefs.setInt('id', data['id']);
 
       Navigator.push(
         context,
@@ -164,9 +165,11 @@ class _SignPageState extends State<SignPage> {
   void initState() {
     // TODO: implement initState
     isSignIn();
-    AppleSignIn.onCredentialRevoked.listen((_) {
-      print("Credentials revoked");
-    });
+    if(Platform.isIOS){
+      AppleSignIn.onCredentialRevoked.listen((_) {
+        print("Credentials revoked");
+      });
+    }
 //    isSignInApple();
     super.initState();
   }
