@@ -1,6 +1,13 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:nuka/Utils/rest_api_utils.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:web_socket_channel/io.dart';
 import 'PeopleWhoLikeMe.dart';
 import 'Chatting.dart';
+import 'package:http/http.dart' as http;
 
 class ChatPage extends StatefulWidget {
   const ChatPage({Key key}) : super(key: key);
@@ -9,6 +16,41 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
+
+  int Myid;
+
+  Future GetUserList() async{
+    SharedPreferences prefs =await SharedPreferences.getInstance();
+    http.Response response = await http.get(
+        Uri.encodeFull('${ServerIp}auth/chattinglist/${prefs.getInt('id')}'),
+        headers: Header);
+    var utf8convert= utf8.decode(response.bodyBytes);//한글화
+    return json.decode(utf8convert);
+  }
+
+  Future GetMessage(int myid, int peerid) async{
+    http.Response response = await http.get(
+        Uri.encodeFull('${ServerIp}chat/api/messages/${myid}/${peerid}'),
+        headers: {"Accept": "application/json"});
+    var utf8convert= utf8.decode(response.bodyBytes);//한글화
+    return json.decode(utf8convert);
+  }
+
+  GetMyId() async {
+    SharedPreferences prefs =await SharedPreferences.getInstance();
+    setState(() {
+      Myid = prefs.getInt('id');
+    });
+  }
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    GetMyId();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,83 +97,7 @@ class _ChatPageState extends State<ChatPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Column(
-                            children: <Widget>[
-                              Icon(
-                                Icons.person,
-                                size: 80,
-                              ),
-                              Text(
-                                '뀨뀨',
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                          FlatButton(
-                            padding: EdgeInsets.all(0),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => new Chatting()),
-                              );
-                            },
-                            child: Container(
-                              margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                              width: 250,
-                              height: 70,
-                              color: Color.fromRGBO(255, 130, 130, 1),
-                              child: Center(
-                                child: Text(
-                                  '뭐 해?',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20,
-                                      color: Colors.white),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Column(
-                            children: <Widget>[
-                              Icon(
-                                Icons.person,
-                                size: 80,
-                              ),
-                              Text(
-                                '뀨뀨',
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                          Container(
-                            margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                            width: 250,
-                            height: 70,
-                            color: Color.fromRGBO(255, 130, 130, 1),
-                            child: Center(
-                              child: Text(
-                                '뭐 해?',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
-                                    color: Colors.white),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                      ChatList(context),
                     ],
                   ),
                 ),
@@ -140,6 +106,103 @@ class _ChatPageState extends State<ChatPage> {
           )
         ],
       ),
+    );
+  }
+
+  Widget ChatList(BuildContext context){
+    return FutureBuilder(
+      future: GetUserList(),
+      builder: (context, snapshot) {
+        if(!snapshot.hasData){
+          //나중에 디자인
+          return Text('현재 채팅 중인 유저가 없습니다', style: TextStyle(
+              fontSize: 50,
+              color: Colors.red
+          ),);
+        }
+        return ListView.builder(
+            itemCount:snapshot.data[0]['chttingwith'].length,
+            shrinkWrap: true,
+            itemBuilder: (BuildContext context, int index){
+              if(snapshot.data[0]['chttingwith'].length == 0){
+                //나중에 디자인하기
+                return Text('현재 채팅 중인 유저가 없습니다', style: TextStyle(
+                  fontSize: 50,
+                  color: Colors.red
+                ),);
+              }else{
+                return ChttingUserList(snapshot.data[0]['chttingwith'][index]);
+              }
+
+        });
+      }
+    );
+  }
+
+  Widget ChttingUserList(var ds){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Column(
+          children: <Widget>[
+            (ds['image'] != null)?ClipRRect(
+              borderRadius: BorderRadius.circular(8.0),
+              child: Image.network(
+                ds['image'],
+                width: 150,
+                height: 150,
+                fit: BoxFit.fill,
+              ),
+            ):Icon(
+              //추후 프로필 없는사람 대체 이미지 만들기
+              Icons.person,
+              size: 80,
+            ),
+            Text(
+              (ds['nickname'] != null)?ds['nickname']:'알 수 없음',
+              style: TextStyle(
+                  fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+        InkWell(
+          onTap: () async {
+            SharedPreferences prefs =await SharedPreferences.getInstance();
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => new Chatting(
+                    channel: IOWebSocketChannel.connect((prefs.getInt('id') >= ds['id'])?'ws://192.168.219.100:8000/ws/chatting/${prefs.getInt('id')}-${ds['id']}/':'ws://192.168.219.100:8000/ws/chatting/${ds['id']}-${prefs.getInt('id')}/'),
+                    myid: prefs.getInt('id'),
+                    mynickname: prefs.getString('nickname'),
+                    peerId: ds['id'],
+                    peernickname: ds['nickname'],
+                  )),
+            );
+          },
+          child: FutureBuilder(
+            future: GetMessage(Myid, ds['id']),
+            builder: (context, snapshot) {
+              return Container(
+                margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                width: 250,
+                height: 70,
+                color: Color.fromRGBO(255, 130, 130, 1),
+                child: Center(
+                  child: Text(
+                    (snapshot.data[0] != null)?snapshot.data[0]['message']:'',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: Colors.white),
+                  ),
+                ),
+              );
+            }
+          ),
+        ),
+      ],
     );
   }
 }
