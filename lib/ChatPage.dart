@@ -1,6 +1,4 @@
 import 'dart:convert';
-
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:nuka/Utils/rest_api_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
