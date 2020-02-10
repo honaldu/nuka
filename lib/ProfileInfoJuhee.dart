@@ -5,6 +5,7 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 import 'ConfirmingPage.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 
 class ProFileInfo extends StatefulWidget {
   @override
@@ -32,11 +33,22 @@ class _ProFileInfoState extends State<ProFileInfo> {
                 Container(
                   width: 300,
                   height: 300,
-                  child: Carousel(
-                    images: [
-                      Image.asset('Images/juhee0.jpg'),
-                      Image.asset('Images/juhee1.jpg'),
-                    ],
+                  child: SizedBox(
+                    height: 300.0,
+                    width: 300.0,
+                    child: Swiper(
+                      itemBuilder: (BuildContext, int index) {
+                        return ClipRRect(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          child: new Image.asset('Images/juhee$index.jpg',
+                              fit: BoxFit.fill),
+                        );
+                      },
+                      itemCount: 3,
+                      itemHeight: 300,
+                      itemWidth: 300,
+                      layout: SwiperLayout.TINDER,
+                    ),
                   ),
                 ),
                 SizedBox(
