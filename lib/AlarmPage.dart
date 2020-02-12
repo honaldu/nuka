@@ -47,6 +47,7 @@ class _AlarmPageState extends State<AlarmPage> {
 
     widget.channel.stream.listen((data){
       Map<dynamic, dynamic> datamap = json.decode(data);
+      print(datamap);
     });
 
     super.initState();

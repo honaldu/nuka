@@ -182,6 +182,9 @@ class _ChatPageState extends State<ChatPage> {
           child: FutureBuilder(
             future: GetMessage(Myid, ds['id']),
             builder: (context, snapshot) {
+              if(!snapshot.hasData){
+                return Container();
+              }
               return Container(
                 margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
                 width: 250,

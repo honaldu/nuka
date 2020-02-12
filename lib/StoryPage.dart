@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:nuka/Utils/rest_api_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:web_socket_channel/io.dart';
 import 'StoryWriting.dart';
 import 'StoryDetail.dart';
 import 'AlarmPage.dart';
@@ -43,11 +44,15 @@ class _StoryPageState extends State<StoryPage> {
                 children: <Widget>[
                   FlatButton(
                     padding: EdgeInsets.all(0),
-                    onPressed: () {
+                    onPressed: () async {
+                      SharedPreferences prefs =await SharedPreferences.getInstance();
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => new AlarmPage()),
+                            builder: (context) => new AlarmPage(
+                              channel: IOWebSocketChannel.connect('ws://192.168.219.100:8000/ws/alarm/${prefs.getInt('id')}/'),
+                              myid: prefs.getInt('id'),
+                            )),
                       );
                     },
                     child: Icon(
