@@ -34,6 +34,7 @@ dependencies:
   curved_navigation_bar: ^0.3.2
   flutter_cupertino_date_picker: ^1.0.12
   flutter_swiper: ^1.1.6
+  geolocator: ^5.2.1
   flutter:
     sdk: flutter
 
