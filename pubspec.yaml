@@ -35,6 +35,8 @@ dependencies:
   flutter_cupertino_date_picker: ^1.0.12
   flutter_swiper: ^1.1.6
   geolocator: ^5.2.1
+  in_app_purchase: ^0.3.1
+  firebase_messaging: ^6.0.9
   flutter:
     sdk: flutter
 

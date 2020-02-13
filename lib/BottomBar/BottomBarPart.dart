@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:nuka/Utils/rest_api_utils.dart';
@@ -20,6 +21,7 @@ class BottomBarPart extends StatefulWidget {
 class _BottomBarPartState extends State<BottomBarPart> {
 
   Geolocator geolocator = Geolocator();
+  String fcmToken;
 
   Future<Position> _getLocation() async {
     var currentLocation;
@@ -43,9 +45,21 @@ class _BottomBarPartState extends State<BottomBarPart> {
     prefs.setDouble('longitude', longitude);
     prefs.setDouble('latitude', latitude);
 
-    final Map<String, dynamic> Data = {
-      "longitude": longitude,
-      "latitude": latitude};
+    Map<String, dynamic> Data = {};
+
+    if(fcmToken != null){
+      Data = {
+        "fcmtoken" : fcmToken,
+        "longitude": longitude,
+        "latitude": latitude};
+    }else{
+      Data = {
+        "longitude": longitude,
+        "latitude": latitude};
+    }
+
+
+
 
     String addr = '${ServerIp}auth/user/${prefs.getInt('id')}/';
 
@@ -58,7 +72,6 @@ class _BottomBarPartState extends State<BottomBarPart> {
     if(response.statusCode == 200){
       var utf8convert= utf8.decode(response.bodyBytes);//한글화
       Map data = json.decode(utf8convert);
-      print(data);
     }else{
       print(response.statusCode);
       print(utf8.decode(response.bodyBytes));
@@ -120,9 +133,30 @@ class _BottomBarPartState extends State<BottomBarPart> {
           ]);
 
 
+
+  final FirebaseMessaging _fcm = FirebaseMessaging();
+
+
+  /// Get the token, save it to the database for current user
+  _saveDeviceToken() async {
+    // Get the current user
+
+
+    // Get the token for this device
+    String _fcmToken = await _fcm.getToken();
+
+    // Save it to Firestore
+    if (_fcmToken != null) {
+      setState(() {
+        fcmToken = _fcmToken;
+      });
+    }
+  }
+
   @override
   void initState() {
     // TODO: implement initState
+    _saveDeviceToken();
     AddLocation();
     super.initState();
   }
