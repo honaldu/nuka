@@ -10,6 +10,8 @@ import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:nuka/Utils/rest_api_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'BottomBar/BottomBarMain.dart';
+import 'ConfirmingPage.dart';
 import 'ProfileSettingPage.dart';
 import 'package:http/http.dart' as http;
 
@@ -26,22 +28,71 @@ class _SignPageState extends State<SignPage> {
 
   final GoogleSignIn googleSignIn = GoogleSignIn();
   final FirebaseAuth auth = FirebaseAuth.instance;
-  bool isLoggedIn = false;
   SharedPreferences prefs;
   String errorMessage;
 
 
   //자동 로그인을 위해 로그인이 되어있다면 로그인 창 스킵
   isSignIn() async {
-    isLoggedIn = await googleSignIn.isSignedIn();
-    if(isLoggedIn){
+    SharedPreferences prefs =await SharedPreferences.getInstance();
+    if(prefs.getInt('isactive') != null){
+
+      //이미 활성화된 유저일시에 바로 메인페이지로 이동
       Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => new ProfileSetting()),
+            builder: (context) => new MainPage()),
+
       );
+    }else{
+      //활성화 서버에서 판단함.
+
+      isActive();
+    }
+
+
+  }
+
+
+  GetUserProfile() async{
+    SharedPreferences prefs =await SharedPreferences.getInstance();
+    http.Response response = await http.get(
+        Uri.encodeFull('${ServerIp}auth/user/${prefs.getInt('id')}'),
+        headers: Header);
+    var utf8convert= utf8.decode(response.bodyBytes);//한글화
+
+    return json.decode(utf8convert);
+  }
+
+
+
+  isActive() async {
+    SharedPreferences prefs =await SharedPreferences.getInstance();
+
+    var ds = await GetUserProfile();
+
+
+    if(ds['active'] == true){
+      prefs.setInt("active", 1);
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => new MainPage()));
+    }else if(ds['nickname'] != null){
+      //서버에서 닉네임 설정이 되어있는지 확인한뒤 설정이 되어있다면 웨이팅 페이지로 이동
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => new Confirming()));
+    }else{
+      //서버에서 닉네임 설정이 되어있는지 확인한뒤 설정이 되어있지않다면 프로필 설정으로 이동
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => new ProfileSetting()));
     }
   }
+
 
   //구글 로그인
   GoogleLogin() async {
@@ -85,11 +136,8 @@ class _SignPageState extends State<SignPage> {
       await prefs.setString('token', data['token']);
       await prefs.setInt('id', data['id']);
 
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => new ProfileSetting()),
-      );
+      //서버에서 확인
+      isActive();
     }else{
       print(response.statusCode);
       print(utf8.decode(response.bodyBytes));
@@ -185,7 +233,7 @@ class _SignPageState extends State<SignPage> {
     if (Platform.isIOS) {
       iosSubscription = _fcm.onIosSettingsRegistered.listen((data) {
         // save the token  OR subscribe to a topic here
-        print(data);
+//        print(data);
       });
 
       _fcm.requestNotificationPermissions(IosNotificationSettings());
