@@ -68,6 +68,9 @@ class _LikeMeState extends State<LikeMe> {
                     return FutureBuilder(
                       future: GetUser(ds['from_user']),
                       builder: (context, snapshot2) {
+                        if(!snapshot2.hasData){
+                          return Container();
+                        }
                         var userds = snapshot2.data;
                         return Center(
                           child: (userds['image'] != null)?Image.network(userds['image']):Icon(Icons.person),

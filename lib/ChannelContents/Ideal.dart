@@ -1,4 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:nuka/Utils/rest_api_utils.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Ideal extends StatefulWidget {
   @override
@@ -6,6 +11,17 @@ class Ideal extends StatefulWidget {
 }
 
 class _IdealState extends State<Ideal> {
+
+  GetMyTypePerson() async {
+    SharedPreferences prefs =await SharedPreferences.getInstance();
+    http.Response response = await http.get(
+        Uri.encodeFull('${ServerIp}auth/typematching/${prefs.getInt('id')}'),
+        headers: Header);
+    var utf8convert= utf8.decode(response.bodyBytes);//한글화
+    return json.decode(utf8convert);
+  }
+
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -42,18 +58,38 @@ class _IdealState extends State<Ideal> {
                   style: TextStyle(color: Colors.white),
                 ),
               ),
-              GridView.count(
-                shrinkWrap: true,
-                crossAxisCount: 3,
-                childAspectRatio: (itemWidth / itemHeight),
-                children: List.generate(100, (index) {
-                  return Container(
-                    margin: EdgeInsets.all(1.0),
-                    child: Center(
-                      child: Image.asset('Images/juhee$index.jpg'),
-                    ),
-                  );
-                }),
+              FutureBuilder(
+                  future: GetMyTypePerson(),
+                  builder: (context, snapshot) {
+                    if(!snapshot.hasData){
+                      return Container();
+                    }
+                    return GridView.count(
+                      shrinkWrap: true,
+                      crossAxisCount: 3,
+                      childAspectRatio: (itemWidth / itemHeight),
+                      children: List.generate(snapshot.data.length, (index) {
+                        var ds = snapshot.data[index];
+                        return Container(
+                          margin: EdgeInsets.all(1.0),
+                          child: Center(
+                            child: (ds['image1'] != null)?ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: Image.network(
+                                //임시설정 ,, 필요시 나중에 수정해야함.
+                                'http://127.0.0.1:8000'+ds['image1'],
+                                width: 150,
+                                height: 150,
+                                fit: BoxFit.fill,
+                              ),
+                            ):Icon(
+                                Icons.person
+                            ),
+                          ),
+                        );
+                      }),
+                    );
+                  }
               ),
             ],
           ),
