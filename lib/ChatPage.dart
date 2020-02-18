@@ -111,7 +111,7 @@ class _ChatPageState extends State<ChatPage> {
     return FutureBuilder(
       future: GetUserList(),
       builder: (context, snapshot) {
-        if(!snapshot.hasData){
+        if(!snapshot.hasData || snapshot.data.isEmpty){
           //나중에 디자인
           return Text('현재 채팅 중인 유저가 없습니다', style: TextStyle(
               fontSize: 50,

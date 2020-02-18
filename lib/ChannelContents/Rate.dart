@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:nuka/Utils/rest_api_utils.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class Rate extends StatefulWidget {
@@ -13,8 +14,9 @@ class Rate extends StatefulWidget {
 class _RateState extends State<Rate> {
 
   GetTopRatingUser() async {
+    SharedPreferences prefs =await SharedPreferences.getInstance();
     http.Response response = await http.get(
-        Uri.encodeFull('${ServerIp}auth/toprating'),
+        Uri.encodeFull('${ServerIp}auth/toprating/${prefs.getInt('id')}'),
         headers: Header);
     var utf8convert= utf8.decode(response.bodyBytes);//한글화
     return json.decode(utf8convert);

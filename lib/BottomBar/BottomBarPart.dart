@@ -47,17 +47,11 @@ class _BottomBarPartState extends State<BottomBarPart> {
 
     Map<String, dynamic> Data = {};
 
-    if(fcmToken != null){
-      Data = {
-        "fcmtoken" : fcmToken,
-        "longitude": longitude,
-        "latitude": latitude};
-    }else{
-      Data = {
-        "longitude": longitude,
-        "latitude": latitude};
-    }
 
+    Data = {
+      "location": "POINT (${longitude} ${latitude})",
+      "longitude": longitude,
+      "latitude": latitude};
 
 
 
@@ -77,6 +71,38 @@ class _BottomBarPartState extends State<BottomBarPart> {
       print(utf8.decode(response.bodyBytes));
       //나중에 로그인 실패 메세지 토스트로 만들기
       return null;
+    }
+  }
+
+  AddFCMToken(String fcmtoken) async {
+    if(fcmtoken != null){
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      Map<String, dynamic> Data = {};
+
+
+      Data = {
+        "fcmtoken" : fcmtoken
+      };
+
+
+
+      String addr = '${ServerIp}auth/user/${prefs.getInt('id')}/';
+
+      var response = await http.patch(addr, headers: Header,body: json.encode(Data));
+
+
+
+      // 200 ok. 정상 동작임을 알려준다.
+
+      if(response.statusCode == 200){
+        var utf8convert= utf8.decode(response.bodyBytes);//한글화
+        Map data = json.decode(utf8convert);
+      }else{
+        print(response.statusCode);
+        print(utf8.decode(response.bodyBytes));
+        //나중에 로그인 실패 메세지 토스트로 만들기
+        return null;
+      }
     }
   }
 
@@ -147,9 +173,7 @@ class _BottomBarPartState extends State<BottomBarPart> {
 
     // Save it to Firestore
     if (_fcmToken != null) {
-      setState(() {
-        fcmToken = _fcmToken;
-      });
+      AddFCMToken(_fcmToken);
     }
   }
 
