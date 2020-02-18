@@ -29,6 +29,9 @@ class _ProfilePageState extends State<ProfilePage> {
       body: FutureBuilder(
         future: GetUser(),
         builder: (context, snapshot) {
+          if(!snapshot.hasData){
+            return Container();
+          }
           var ds = snapshot.data;
           return ListView(
             children: <Widget>[
