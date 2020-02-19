@@ -1,10 +1,13 @@
 import 'dart:convert';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'SettingPage.dart';
 import 'package:http/http.dart' as http;
 
+import 'SignPage.dart';
 import 'Utils/rest_api_utils.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -21,6 +24,29 @@ class _ProfilePageState extends State<ProfilePage> {
         headers: Header);
     var utf8convert= utf8.decode(response.bodyBytes);//한글화
     return json.decode(utf8convert);
+  }
+
+  GoogleSignIn googleSignIn = GoogleSignIn();
+
+  signout() async {
+    SharedPreferences _pref = await SharedPreferences.getInstance();
+
+    await FirebaseAuth.instance.signOut();
+    await googleSignIn.disconnect();
+    googleSignIn.signOut().then((value){
+      print('로그아웃완료');
+      _pref.clear();
+      print('정보 clear');
+
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => SignPage()),
+              (Route<dynamic> route) => false);
+    });
+
+
+
+
+
   }
 
   @override
@@ -231,7 +257,9 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           ),
                           FlatButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              signout();
+                            },
                             child: Container(
                               width: 300,
                               height: 50,

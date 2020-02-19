@@ -37,7 +37,6 @@ class _AlarmPageState extends State<AlarmPage> {
     // TODO: implement initState
     AlarmList = List();
     GetMessage().then((data){
-      print(data);
       setState(() {
         AlarmList = data;
       });
@@ -45,10 +44,10 @@ class _AlarmPageState extends State<AlarmPage> {
 
     //소켓
 
-    widget.channel.stream.listen((data){
-      Map<dynamic, dynamic> datamap = json.decode(data);
-      print(datamap);
-    });
+//    widget.channel.stream.listen((data){
+//      Map<dynamic, dynamic> datamap = json.decode(data);
+//      print(datamap);
+//    });
 
     super.initState();
 

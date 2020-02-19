@@ -47,7 +47,7 @@ class _SignPageState extends State<SignPage> {
     }else{
       //활성화 서버에서 판단함.
 
-      isActive();
+      isActive(false);
     }
 
 
@@ -66,7 +66,7 @@ class _SignPageState extends State<SignPage> {
 
 
 
-  isActive() async {
+  isActive(bool Sigin) async {
     SharedPreferences prefs =await SharedPreferences.getInstance();
 
     var ds = await GetUserProfile();
@@ -84,12 +84,14 @@ class _SignPageState extends State<SignPage> {
           context,
           MaterialPageRoute(
               builder: (context) => new Confirming()));
-    }else{
+    }else if(Sigin == true){
       //서버에서 닉네임 설정이 되어있는지 확인한뒤 설정이 되어있지않다면 프로필 설정으로 이동
       Navigator.push(
           context,
           MaterialPageRoute(
               builder: (context) => new ProfileSetting()));
+    }else{
+      return null;
     }
   }
 
@@ -137,7 +139,7 @@ class _SignPageState extends State<SignPage> {
       await prefs.setInt('id', data['id']);
 
       //서버에서 확인
-      isActive();
+      isActive(true);
     }else{
       print(response.statusCode);
       print(utf8.decode(response.bodyBytes));
