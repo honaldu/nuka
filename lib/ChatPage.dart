@@ -171,7 +171,7 @@ class _ChatPageState extends State<ChatPage> {
               context,
               MaterialPageRoute(
                   builder: (context) => new Chatting(
-                    channel: IOWebSocketChannel.connect((prefs.getInt('id') >= ds['id'])?'ws://192.168.219.100:8000/ws/chatting/${prefs.getInt('id')}-${ds['id']}/':'ws://192.168.219.100:8000/ws/chatting/${ds['id']}-${prefs.getInt('id')}/'),
+                    channel: IOWebSocketChannel.connect((prefs.getInt('id') >= ds['id'])?'ws://15.164.212.90:8000/ws/chatting/${prefs.getInt('id')}-${ds['id']}/':'ws://15.164.212.90:8000/ws/chatting/${ds['id']}-${prefs.getInt('id')}/'),
                     myid: prefs.getInt('id'),
                     mynickname: prefs.getString('nickname'),
                     peerId: ds['id'],

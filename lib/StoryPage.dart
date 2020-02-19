@@ -50,7 +50,6 @@ class _StoryPageState extends State<StoryPage> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => new AlarmPage(
-                              channel: IOWebSocketChannel.connect('ws://192.168.219.100:8000/ws/alarm/${prefs.getInt('id')}/'),
                               myid: prefs.getInt('id'),
                             )),
                       );
