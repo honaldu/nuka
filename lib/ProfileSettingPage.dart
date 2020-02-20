@@ -5,6 +5,13 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 import 'ConfirmingPage.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'SizeConfig.dart';
+
+class MyButtonModel {
+  final String buttonText;
+  bool changeButtonColor;
+  MyButtonModel({this.buttonText, this.changeButtonColor = false});
+}
 
 class ProfileSetting extends StatefulWidget {
   @override
@@ -12,10 +19,30 @@ class ProfileSetting extends StatefulWidget {
 }
 
 class _ProfileSettingState extends State<ProfileSetting> {
+  bool changeColor = false;
   String _date = "Not Set";
   String _dropdownValue = '보통';
   String _dropdownValue2 = '중졸';
 
+  List<MyButtonModel> _a = [
+    MyButtonModel(buttonText: '외향적'),
+    MyButtonModel(buttonText: '내향적'),
+    MyButtonModel(buttonText: '긍정적'),
+    MyButtonModel(buttonText: '현실적'),
+  ];
+  List<MyButtonModel> _b = [
+    MyButtonModel(buttonText: '영화감상'),
+    MyButtonModel(buttonText: '운동'),
+    MyButtonModel(buttonText: '독서'),
+    MyButtonModel(buttonText: '게임'),
+  ];
+  List<MyButtonModel> _c = [
+    MyButtonModel(buttonText: '여행'),
+    MyButtonModel(buttonText: '요리'),
+    MyButtonModel(buttonText: '음악감상'),
+    MyButtonModel(buttonText: '산책'),
+  ];
+  List<String> _character =[];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,668 +57,991 @@ class _ProfileSettingState extends State<ProfileSetting> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                SizedBox(
-                  height: 300.0,
-                  width: 300.0,
-                  child: Swiper(
-                    itemBuilder: (BuildContext, int index) {
-                      return ClipRRect(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        child: new Image.asset('Images/Profile.png',
-                            fit: BoxFit.fill),
-                      );
-                    },
-                    itemCount: 3,
-                    itemHeight: 300,
-                    itemWidth: 300,
-                    layout: SwiperLayout.TINDER,
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                  width: 300,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: Colors.grey[300]),
-                    borderRadius: BorderRadius.circular(15.0),
-                    color: Colors.white,
-                  ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'NickName',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      SizedBox(
-                        width: 0,
-                      ),
-                      Flexible(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    InkWell(
+                      onTap: () {},
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(
+                          1 * SizeConfig.widthMultiplier,
+                          1 * SizeConfig.heightMultiplier,
+                          1 * SizeConfig.widthMultiplier,
+                          1 * SizeConfig.heightMultiplier,
+                        ),
                         child: Container(
-                          child: TextField(
-                            textAlign: TextAlign.center,
-                            style: TextStyle(color: Colors.black),
-                            decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: '별명을 입력해 주세요',
-                                hintStyle: TextStyle(color: Colors.grey[300])),
+                          padding: EdgeInsets.fromLTRB(
+                            2 * SizeConfig.widthMultiplier,
+                            4 * SizeConfig.heightMultiplier,
+                            2 * SizeConfig.widthMultiplier,
+                            4 * SizeConfig.heightMultiplier,
+                          ),
+                          decoration: BoxDecoration(
+                            border:
+                            Border.all(width: 1, color: Colors.grey[300]),
+                            borderRadius: BorderRadius.circular(15.0),
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey[300],
+                                  blurRadius: 1.0,
+                                  spreadRadius: 1.0,
+                                  offset: Offset(3.0, 3.0)),
+                            ],
+                          ),
+                          child: Column(
+                            children: <Widget>[
+                              Container(
+                                margin: EdgeInsets.all(10),
+                                child: Icon(
+                                  Icons.add,
+                                  size: 10 * SizeConfig.widthMultiplier,
+                                ),
+                              ),
+                              Text(
+                                'No Recent Image',
+                                style: TextStyle(
+                                    fontSize: 3 * SizeConfig.widthMultiplier),
+                              ),
+                            ],
                           ),
                         ),
                       ),
-                    ],
+                    ),
+                    InkWell(
+                      onTap: () {},
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(
+                          1 * SizeConfig.widthMultiplier,
+                          1 * SizeConfig.heightMultiplier,
+                          1 * SizeConfig.widthMultiplier,
+                          1 * SizeConfig.heightMultiplier,
+                        ),
+                        child: Container(
+                          padding: EdgeInsets.fromLTRB(
+                            2 * SizeConfig.widthMultiplier,
+                            4 * SizeConfig.heightMultiplier,
+                            2 * SizeConfig.widthMultiplier,
+                            4 * SizeConfig.heightMultiplier,
+                          ),
+                          decoration: BoxDecoration(
+                            border:
+                            Border.all(width: 1, color: Colors.grey[300]),
+                            borderRadius: BorderRadius.circular(15.0),
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey[300],
+                                  blurRadius: 1.0,
+                                  spreadRadius: 1.0,
+                                  offset: Offset(3.0, 3.0)),
+                            ],
+                          ),
+                          child: Column(
+                            children: <Widget>[
+                              Container(
+                                margin: EdgeInsets.all(10),
+                                child: Icon(
+                                  Icons.add,
+                                  size: 10 * SizeConfig.widthMultiplier,
+                                ),
+                              ),
+                              Text(
+                                'No Recent Image',
+                                style: TextStyle(
+                                    fontSize: 3 * SizeConfig.widthMultiplier),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {},
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(
+                          1 * SizeConfig.widthMultiplier,
+                          1 * SizeConfig.heightMultiplier,
+                          1 * SizeConfig.widthMultiplier,
+                          1 * SizeConfig.heightMultiplier,
+                        ),
+                        child: Container(
+                          padding: EdgeInsets.fromLTRB(
+                            2 * SizeConfig.widthMultiplier,
+                            4 * SizeConfig.heightMultiplier,
+                            2 * SizeConfig.widthMultiplier,
+                            4 * SizeConfig.heightMultiplier,
+                          ),
+                          decoration: BoxDecoration(
+                            border:
+                            Border.all(width: 1, color: Colors.grey[300]),
+                            borderRadius: BorderRadius.circular(15.0),
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey[300],
+                                  blurRadius: 1.0,
+                                  spreadRadius: 1.0,
+                                  offset: Offset(3.0, 3.0)),
+                            ],
+                          ),
+                          child: Column(
+                            children: <Widget>[
+                              Container(
+                                margin: EdgeInsets.all(10),
+                                child: Icon(
+                                  Icons.add,
+                                  size: 10 * SizeConfig.widthMultiplier,
+                                ),
+                              ),
+                              Text(
+                                'No Recent Image',
+                                style: TextStyle(
+                                    fontSize: 3 * SizeConfig.widthMultiplier),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    InkWell(
+                      onTap: () {},
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(
+                          1 * SizeConfig.widthMultiplier,
+                          1 * SizeConfig.heightMultiplier,
+                          1 * SizeConfig.widthMultiplier,
+                          1 * SizeConfig.heightMultiplier,
+                        ),
+                        child: Container(
+                          padding: EdgeInsets.fromLTRB(
+                            2 * SizeConfig.widthMultiplier,
+                            4 * SizeConfig.heightMultiplier,
+                            2 * SizeConfig.widthMultiplier,
+                            4 * SizeConfig.heightMultiplier,
+                          ),
+                          decoration: BoxDecoration(
+                            border:
+                            Border.all(width: 1, color: Colors.grey[300]),
+                            borderRadius: BorderRadius.circular(15.0),
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey[300],
+                                  blurRadius: 1.0,
+                                  spreadRadius: 1.0,
+                                  offset: Offset(3.0, 3.0)),
+                            ],
+                          ),
+                          child: Column(
+                            children: <Widget>[
+                              Container(
+                                margin: EdgeInsets.all(10),
+                                child: Icon(
+                                  Icons.add,
+                                  size: 10 * SizeConfig.widthMultiplier,
+                                ),
+                              ),
+                              Text(
+                                'No Recent Image',
+                                style: TextStyle(
+                                    fontSize: 3 * SizeConfig.widthMultiplier),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {},
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(
+                          1 * SizeConfig.widthMultiplier,
+                          1 * SizeConfig.heightMultiplier,
+                          1 * SizeConfig.widthMultiplier,
+                          1 * SizeConfig.heightMultiplier,
+                        ),
+                        child: Container(
+                          padding: EdgeInsets.fromLTRB(
+                            2 * SizeConfig.widthMultiplier,
+                            4 * SizeConfig.heightMultiplier,
+                            2 * SizeConfig.widthMultiplier,
+                            4 * SizeConfig.heightMultiplier,
+                          ),
+                          decoration: BoxDecoration(
+                            border:
+                            Border.all(width: 1, color: Colors.grey[300]),
+                            borderRadius: BorderRadius.circular(15.0),
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey[300],
+                                  blurRadius: 1.0,
+                                  spreadRadius: 1.0,
+                                  offset: Offset(3.0, 3.0)),
+                            ],
+                          ),
+                          child: Column(
+                            children: <Widget>[
+                              Container(
+                                margin: EdgeInsets.all(10),
+                                child: Icon(
+                                  Icons.add,
+                                  size: 10 * SizeConfig.widthMultiplier,
+                                ),
+                              ),
+                              Text(
+                                'No Recent Image',
+                                style: TextStyle(
+                                    fontSize: 3 * SizeConfig.widthMultiplier),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {},
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(
+                          1 * SizeConfig.widthMultiplier,
+                          1 * SizeConfig.heightMultiplier,
+                          1 * SizeConfig.widthMultiplier,
+                          1 * SizeConfig.heightMultiplier,
+                        ),
+                        child: Container(
+                          padding: EdgeInsets.fromLTRB(
+                            2 * SizeConfig.widthMultiplier,
+                            4 * SizeConfig.heightMultiplier,
+                            2 * SizeConfig.widthMultiplier,
+                            4 * SizeConfig.heightMultiplier,
+                          ),
+                          decoration: BoxDecoration(
+                            border:
+                            Border.all(width: 1, color: Colors.grey[300]),
+                            borderRadius: BorderRadius.circular(15.0),
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey[300],
+                                  blurRadius: 1.0,
+                                  spreadRadius: 1.0,
+                                  offset: Offset(3.0, 3.0)),
+                            ],
+                          ),
+                          child: Column(
+                            children: <Widget>[
+                              Container(
+                                margin: EdgeInsets.all(10),
+                                child: Icon(
+                                  Icons.add,
+                                  size: 10 * SizeConfig.widthMultiplier,
+                                ),
+                              ),
+                              Text(
+                                'No Recent Image',
+                                style: TextStyle(
+                                    fontSize: 3 * SizeConfig.widthMultiplier),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 2 * SizeConfig.heightMultiplier,
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(
+                    0 * SizeConfig.widthMultiplier,
+                    1 * SizeConfig.heightMultiplier,
+                    0 * SizeConfig.widthMultiplier,
+                    1 * SizeConfig.heightMultiplier,
+                  ),
+                  child: Container(
+                    width: 80 * SizeConfig.widthMultiplier,
+                    height: 8 * SizeConfig.heightMultiplier,
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 1, color: Colors.grey[300]),
+                      borderRadius: BorderRadius.circular(15.0),
+                      color: Colors.white,
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(
+                            2 * SizeConfig.widthMultiplier,
+                            1 * SizeConfig.heightMultiplier,
+                            1 * SizeConfig.widthMultiplier,
+                            1 * SizeConfig.heightMultiplier,
+                          ),
+                          child: Text(
+                            'NickName',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 4 * SizeConfig.widthMultiplier),
+                          ),
+                        ),
+                        Flexible(
+                          child: Container(
+                            child: TextField(
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 4 * SizeConfig.widthMultiplier),
+                              decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: '별명을 입력해 주세요',
+                                  hintStyle:
+                                  TextStyle(color: Colors.grey[300])),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                  width: 300,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: Colors.grey[300]),
-                    borderRadius: BorderRadius.circular(15.0),
-                    color: Colors.white,
+                Padding(
+                  padding: EdgeInsets.fromLTRB(
+                    0 * SizeConfig.widthMultiplier,
+                    1 * SizeConfig.heightMultiplier,
+                    0 * SizeConfig.widthMultiplier,
+                    1 * SizeConfig.heightMultiplier,
                   ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'Birth',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      SizedBox(
-                        width: 80,
-                      ),
-                      FlatButton(
-                        onPressed: () {
-                          DatePicker.showDatePicker(context,
-                              showTitleActions: true,
-                              minTime: DateTime(1980, 1, 1),
-                              maxTime: DateTime(2005, 1, 1), onChanged: (date) {
-                            print('change $date');
-                          }, onConfirm: (date) {
-                            print('confirm $date');
-                            _date =
-                                '${date.year} - ${date.month} - ${date.day}';
-                            setState(() {});
+                  child: Container(
+                    width: 80 * SizeConfig.widthMultiplier,
+                    height: 8 * SizeConfig.heightMultiplier,
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 1, color: Colors.grey[300]),
+                      borderRadius: BorderRadius.circular(15.0),
+                      color: Colors.white,
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(
+                            2 * SizeConfig.widthMultiplier,
+                            1 * SizeConfig.heightMultiplier,
+                            21 * SizeConfig.widthMultiplier,
+                            1 * SizeConfig.heightMultiplier,
+                          ),
+                          child: Text(
+                            'Birth',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 4 * SizeConfig.widthMultiplier),
+                          ),
+                        ),
+                        FlatButton(
+                          onPressed: () {
+                            DatePicker.showDatePicker(context,
+                                showTitleActions: true,
+                                minTime: DateTime(1980, 1, 1),
+                                maxTime: DateTime(2005, 1, 1),
+                                onChanged: (date) {
+                                  print('change $date');
+                                }, onConfirm: (date) {
+                                  print('confirm $date');
+                                  _date =
+                                  '${date.year} - ${date.month} - ${date.day}';
+                                  setState(() {});
+                                },
+                                currentTime: DateTime.now(),
+                                locale: LocaleType.en);
+                            ;
                           },
-                              currentTime: DateTime.now(),
-                              locale: LocaleType.en);
-                          ;
-                        },
-                        child: Text('$_date'),
-                      )
-                    ],
+                          child: Text('$_date'),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                  width: 300,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: Colors.grey[300]),
-                    borderRadius: BorderRadius.circular(15.0),
-                    color: Colors.white,
+                Padding(
+                  padding: EdgeInsets.fromLTRB(
+                    0 * SizeConfig.widthMultiplier,
+                    1 * SizeConfig.heightMultiplier,
+                    0 * SizeConfig.widthMultiplier,
+                    1 * SizeConfig.heightMultiplier,
                   ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'Height(cm)',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      SizedBox(
-                        width: 40,
-                      ),
-                      Container(
-                        width: 120,
-                        child: TextField(
-                          style: TextStyle(color: Colors.black),
-                          maxLength: 3,
-                          textAlign: TextAlign.center,
-                          keyboardType: TextInputType.number,
-                          inputFormatters: <TextInputFormatter>[
-                            WhitelistingTextInputFormatter.digitsOnly,
-                          ],
-                          decoration: InputDecoration(
-                              counterText: '',
-                              border: InputBorder.none,
-                              hintText: '키를 입력해 주세요',
-                              hintStyle: TextStyle(color: Colors.grey[300])),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                  width: 300,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: Colors.grey[300]),
-                    borderRadius: BorderRadius.circular(15.0),
-                    color: Colors.white,
-                  ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'Body Shape',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      SizedBox(
-                        width: 60,
-                      ),
-                      DropdownButton<String>(
-                        value: _dropdownValue,
-                        icon: Icon(Icons.arrow_downward),
-                        iconSize: 20,
-                        elevation: 16,
-                        style: TextStyle(fontSize: 15, color: Colors.black),
-                        onChanged: (String newValue) {
-                          setState(() {
-                            _dropdownValue = newValue;
-                          });
-                        },
-                        items: <String>['보통', '날씬', '탄탄', '통통']
-                            .map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                  width: 300,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: Colors.grey[300]),
-                    borderRadius: BorderRadius.circular(15.0),
-                    color: Colors.white,
-                  ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'Education',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      SizedBox(
-                        width: 75,
-                      ),
-                      DropdownButton<String>(
-                        value: _dropdownValue2,
-                        icon: Icon(Icons.arrow_downward),
-                        iconSize: 20,
-                        elevation: 16,
-                        style: TextStyle(fontSize: 15, color: Colors.black),
-                        onChanged: (String newValue) {
-                          setState(() {
-                            _dropdownValue2 = newValue;
-                          });
-                        },
-                        items: <String>['중졸', '고졸', '대퇴', '대졸']
-                            .map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                  width: 300,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: Colors.grey[300]),
-                    borderRadius: BorderRadius.circular(15.0),
-                    color: Colors.white,
-                  ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'Job',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      SizedBox(
-                        width: 30,
-                      ),
-                      Flexible(
-                        child: Container(
-                          child: TextField(
-                            style: TextStyle(color: Colors.black),
-                            textAlign: TextAlign.center,
-                            decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: '직업을 입력해 주세요',
-                                hintStyle: TextStyle(color: Colors.grey[300])),
+                  child: Container(
+                    width: 80 * SizeConfig.widthMultiplier,
+                    height: 8 * SizeConfig.heightMultiplier,
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 1, color: Colors.grey[300]),
+                      borderRadius: BorderRadius.circular(15.0),
+                      color: Colors.white,
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(
+                            2 * SizeConfig.widthMultiplier,
+                            1 * SizeConfig.heightMultiplier,
+                            1 * SizeConfig.widthMultiplier,
+                            1 * SizeConfig.heightMultiplier,
+                          ),
+                          child: Text(
+                            'Height',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 4 * SizeConfig.widthMultiplier),
                           ),
                         ),
-                      ),
-                    ],
+                        Flexible(
+                          child: Container(
+                            child: TextField(
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 4 * SizeConfig.widthMultiplier),
+                              maxLength: 3,
+                              textAlign: TextAlign.center,
+                              keyboardType: TextInputType.number,
+                              inputFormatters: <TextInputFormatter>[
+                                WhitelistingTextInputFormatter.digitsOnly,
+                              ],
+                              decoration: InputDecoration(
+                                  counterText: '',
+                                  border: InputBorder.none,
+                                  hintText: '키를 입력해 주세요',
+                                  hintStyle:
+                                  TextStyle(color: Colors.grey[300])),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                  width: 300,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: Colors.grey[300]),
-                    borderRadius: BorderRadius.circular(15.0),
-                    color: Colors.white,
+                Padding(
+                  padding: EdgeInsets.fromLTRB(
+                    0 * SizeConfig.widthMultiplier,
+                    1 * SizeConfig.heightMultiplier,
+                    0 * SizeConfig.widthMultiplier,
+                    1 * SizeConfig.heightMultiplier,
                   ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Container(
-                        margin: EdgeInsets.fromLTRB(0, 20, 0, 5),
-                        child: Row(
+                  child: Container(
+                    width: 80 * SizeConfig.widthMultiplier,
+                    height: 8 * SizeConfig.heightMultiplier,
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 1, color: Colors.grey[300]),
+                      borderRadius: BorderRadius.circular(15.0),
+                      color: Colors.white,
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(
+                            2 * SizeConfig.widthMultiplier,
+                            1 * SizeConfig.heightMultiplier,
+                            15 * SizeConfig.widthMultiplier,
+                            1 * SizeConfig.heightMultiplier,
+                          ),
+                          child: Text(
+                            'Body Shape',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 4 * SizeConfig.widthMultiplier),
+                          ),
+                        ),
+                        DropdownButton<String>(
+                          value: _dropdownValue,
+                          icon: Icon(Icons.arrow_downward),
+                          iconSize: 7 * SizeConfig.widthMultiplier,
+                          elevation: 20,
+                          style: TextStyle(
+                              fontSize: 5 * SizeConfig.widthMultiplier,
+                              color: Colors.black),
+                          onChanged: (String newValue) {
+                            setState(() {
+                              _dropdownValue = newValue;
+                            });
+                          },
+                          items: <String>['보통', '날씬', '탄탄', '통통']
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(
+                    0 * SizeConfig.widthMultiplier,
+                    1 * SizeConfig.heightMultiplier,
+                    0 * SizeConfig.widthMultiplier,
+                    1 * SizeConfig.heightMultiplier,
+                  ),
+                  child: Container(
+                    width: 80 * SizeConfig.widthMultiplier,
+                    height: 8 * SizeConfig.heightMultiplier,
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 1, color: Colors.grey[300]),
+                      borderRadius: BorderRadius.circular(15.0),
+                      color: Colors.white,
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(
+                            2 * SizeConfig.widthMultiplier,
+                            1 * SizeConfig.heightMultiplier,
+                            19 * SizeConfig.widthMultiplier,
+                            1 * SizeConfig.heightMultiplier,
+                          ),
+                          child: Text(
+                            'Education',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 4 * SizeConfig.widthMultiplier),
+                          ),
+                        ),
+                        DropdownButton<String>(
+                          value: _dropdownValue2,
+                          icon: Icon(Icons.arrow_downward),
+                          iconSize: 7 * SizeConfig.widthMultiplier,
+                          elevation: 20,
+                          style: TextStyle(
+                              fontSize: 5 * SizeConfig.widthMultiplier,
+                              color: Colors.black),
+                          onChanged: (String newValue) {
+                            setState(() {
+                              _dropdownValue2 = newValue;
+                            });
+                          },
+                          items: <String>['중졸', '고졸', '대퇴', '대졸']
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(
+                    0 * SizeConfig.widthMultiplier,
+                    1 * SizeConfig.heightMultiplier,
+                    0 * SizeConfig.widthMultiplier,
+                    1 * SizeConfig.heightMultiplier,
+                  ),
+                  child: Container(
+                    width: 80 * SizeConfig.widthMultiplier,
+                    height: 8 * SizeConfig.heightMultiplier,
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 1, color: Colors.grey[300]),
+                      borderRadius: BorderRadius.circular(15.0),
+                      color: Colors.white,
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(
+                            2 * SizeConfig.widthMultiplier,
+                            1 * SizeConfig.heightMultiplier,
+                            1 * SizeConfig.widthMultiplier,
+                            1 * SizeConfig.heightMultiplier,
+                          ),
+                          child: Text(
+                            'Job',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 4 * SizeConfig.widthMultiplier),
+                          ),
+                        ),
+                        Flexible(
+                          child: Container(
+                            child: TextField(
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 4 * SizeConfig.widthMultiplier),
+                              textAlign: TextAlign.center,
+                              decoration: InputDecoration(
+                                  counterText: '',
+                                  border: InputBorder.none,
+                                  hintText: '직업을 입력해 주세요',
+                                  hintStyle:
+                                  TextStyle(color: Colors.grey[300])),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(
+                    0 * SizeConfig.widthMultiplier,
+                    1 * SizeConfig.heightMultiplier,
+                    0 * SizeConfig.widthMultiplier,
+                    1 * SizeConfig.heightMultiplier,
+                  ),
+                  child: Container(
+                    width: 80 * SizeConfig.widthMultiplier,
+                    height: 13 * SizeConfig.heightMultiplier,
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 1, color: Colors.grey[300]),
+                      borderRadius: BorderRadius.circular(15.0),
+                      color: Colors.white,
+                    ),
+                    child: Column(
+                      children: <Widget>[
+                        Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
-                            SizedBox(
-                              width: 10,
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(
+                                2 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
+                                1 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
+                              ),
+                              child: Text(
+                                'Characteristic',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 4 * SizeConfig.widthMultiplier),
+                              ),
                             ),
-                            Text(
-                              'Charateristic',
-                              style: TextStyle(color: Colors.black),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(
+                                6 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
+                                1 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
+                              ),
+                              child: Text(
+                                '성격을 선택해 주세요',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 3 * SizeConfig.widthMultiplier),
+                              ),
                             ),
-                            SizedBox(
-                              width: 30,
-                            ),
-                            Text('성격을 선택해 주세요'),
                           ],
                         ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          InkWell(
-                            onTap: () {},
-                            child: Container(
-                              margin: EdgeInsets.fromLTRB(3, 5, 3, 5),
-                              width: 60,
-                              height: 30,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey[300]),
-                                borderRadius: BorderRadius.circular(15.0),
-                                color: Color.fromRGBO(255, 130, 130, 1),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  '긍정적',
-                                  style: TextStyle(color: Colors.white),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: _a
+                                .map(
+                                  (MyButtonModel f) => InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    f.changeButtonColor = !f.changeButtonColor;
+                                  });
+                                },
+                                child: Container(
+                                  width: 17 * SizeConfig.widthMultiplier,
+                                  height: 5 * SizeConfig.heightMultiplier,
+                                  padding:
+                                  EdgeInsets.fromLTRB(10, 5, 10, 5),
+                                  margin: EdgeInsets.fromLTRB(
+                                    1 * SizeConfig.widthMultiplier,
+                                    1 * SizeConfig.heightMultiplier,
+                                    1 * SizeConfig.widthMultiplier,
+                                    1 * SizeConfig.heightMultiplier,
+                                  ),
+                                  decoration: BoxDecoration(
+                                      borderRadius:
+                                      BorderRadius.circular(30.0),
+                                      color: f.changeButtonColor
+                                          ? Color.fromRGBO(255, 130, 130, 1)
+                                          : Colors.grey,
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.grey[300],
+                                            blurRadius: 1.0,
+                                            spreadRadius: 1.0,
+                                            offset: Offset(3.0, 3.0))
+                                      ]),
+                                  child: Center(
+                                    child: Text(
+                                      f.buttonText,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 3 *
+                                              SizeConfig.widthMultiplier,
+                                          color: Colors.white),
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {},
-                            child: Container(
-                              margin: EdgeInsets.fromLTRB(3, 5, 3, 5),
-                              width: 60,
-                              height: 30,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey[300]),
-                                borderRadius: BorderRadius.circular(15.0),
-                                color: Color.fromRGBO(255, 130, 130, 1),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  '현실적',
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {},
-                            child: Container(
-                              margin: EdgeInsets.fromLTRB(3, 5, 3, 5),
-                              width: 60,
-                              height: 30,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey[300]),
-                                borderRadius: BorderRadius.circular(15.0),
-                                color: Color.fromRGBO(255, 130, 130, 1),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  '외향적',
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {},
-                            child: Container(
-                              margin: EdgeInsets.fromLTRB(3, 5, 3, 5),
-                              width: 60,
-                              height: 30,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey[300]),
-                                borderRadius: BorderRadius.circular(15.0),
-                                color: Color.fromRGBO(255, 130, 130, 1),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  '내향적',
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                            )
+                                .toList()),
+                      ],
+                    ),
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                  width: 300,
-                  height: 130,
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: Colors.grey[300]),
-                    borderRadius: BorderRadius.circular(15.0),
-                    color: Colors.white,
+                Padding(
+                  padding: EdgeInsets.fromLTRB(
+                    0 * SizeConfig.widthMultiplier,
+                    1 * SizeConfig.heightMultiplier,
+                    0 * SizeConfig.widthMultiplier,
+                    1 * SizeConfig.heightMultiplier,
                   ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Container(
-                        margin: EdgeInsets.fromLTRB(0, 20, 0, 5),
-                        child: Row(
+                  child: Container(
+                    width: 80 * SizeConfig.widthMultiplier,
+                    height: 20 * SizeConfig.heightMultiplier,
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 1, color: Colors.grey[300]),
+                      borderRadius: BorderRadius.circular(15.0),
+                      color: Colors.white,
+                    ),
+                    child: Column(
+                      children: <Widget>[
+                        Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              'Hobby',
-                              style: TextStyle(color: Colors.black),
-                            ),
-                            SizedBox(
-                              width: 30,
-                            ),
-                            Text('취미를 선택해 주세요'),
-                          ],
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          InkWell(
-                            onTap: () {},
-                            child: Container(
-                              margin: EdgeInsets.fromLTRB(3, 5, 3, 5),
-                              width: 60,
-                              height: 30,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey[300]),
-                                borderRadius: BorderRadius.circular(15.0),
-                                color: Color.fromRGBO(255, 130, 130, 1),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(
+                                2 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
+                                1 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
                               ),
-                              child: Center(
-                                child: Text(
-                                  '영화감상',
-                                  style: TextStyle(color: Colors.white),
-                                ),
+                              child: Text(
+                                'Hobby',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 4 * SizeConfig.widthMultiplier),
                               ),
                             ),
-                          ),
-                          InkWell(
-                            onTap: () {},
-                            child: Container(
-                              margin: EdgeInsets.fromLTRB(3, 5, 3, 5),
-                              width: 60,
-                              height: 30,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey[300]),
-                                borderRadius: BorderRadius.circular(15.0),
-                                color: Color.fromRGBO(255, 130, 130, 1),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(
+                                20 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
+                                1 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
                               ),
-                              child: Center(
-                                child: Text(
-                                  '운동',
-                                  style: TextStyle(color: Colors.white),
-                                ),
+                              child: Text(
+                                '취미를 선택해 주세요',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 3 * SizeConfig.widthMultiplier),
                               ),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {},
-                            child: Container(
-                              margin: EdgeInsets.fromLTRB(3, 5, 3, 5),
-                              width: 60,
-                              height: 30,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey[300]),
-                                borderRadius: BorderRadius.circular(15.0),
-                                color: Color.fromRGBO(255, 130, 130, 1),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  '독서',
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {},
-                            child: Container(
-                              margin: EdgeInsets.fromLTRB(3, 5, 3, 5),
-                              width: 60,
-                              height: 30,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey[300]),
-                                borderRadius: BorderRadius.circular(15.0),
-                                color: Color.fromRGBO(255, 130, 130, 1),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  '게임',
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          InkWell(
-                            onTap: () {},
-                            child: Container(
-                              margin: EdgeInsets.fromLTRB(3, 5, 3, 5),
-                              width: 60,
-                              height: 30,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey[300]),
-                                borderRadius: BorderRadius.circular(15.0),
-                                color: Color.fromRGBO(255, 130, 130, 1),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  '여행',
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {},
-                            child: Container(
-                              margin: EdgeInsets.fromLTRB(3, 5, 3, 5),
-                              width: 60,
-                              height: 30,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey[300]),
-                                borderRadius: BorderRadius.circular(15.0),
-                                color: Color.fromRGBO(255, 130, 130, 1),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  '요리',
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {},
-                            child: Container(
-                              margin: EdgeInsets.fromLTRB(3, 5, 3, 5),
-                              width: 60,
-                              height: 30,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey[300]),
-                                borderRadius: BorderRadius.circular(15.0),
-                                color: Color.fromRGBO(255, 130, 130, 1),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  '음악감상',
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {},
-                            child: Container(
-                              margin: EdgeInsets.fromLTRB(3, 5, 3, 5),
-                              width: 60,
-                              height: 30,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey[300]),
-                                borderRadius: BorderRadius.circular(15.0),
-                                color: Color.fromRGBO(255, 130, 130, 1),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  '산책',
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.fromLTRB(20, 5, 20, 5),
-                  width: 300,
-                  height: 200,
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: Colors.grey[300]),
-                    borderRadius: BorderRadius.circular(15.0),
-                    color: Colors.white,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Container(
-                        margin: EdgeInsets.fromLTRB(0, 20, 0, 5),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              'Self Introduce',
-                              style: TextStyle(color: Colors.black),
-                            ),
-                            SizedBox(
-                              width: 20,
                             ),
                           ],
                         ),
-                      ),
-                      Flexible(
-                        child: Container(
-                          margin: EdgeInsets.symmetric(horizontal: 10),
-                          child: TextField(
-                            style: TextStyle(color: Colors.black),
-                            textAlign: TextAlign.start,
-                            maxLines: 7,
-                            decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: '자기소개를 입력해 주세요',
-                                hintStyle: TextStyle(color: Colors.grey[300])),
-                          ),
-                        ),
-                      ),
-                    ],
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: _b
+                                .map(
+                                  (MyButtonModel f) => InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    f.changeButtonColor = !f.changeButtonColor;
+                                  });
+                                },
+                                child: Container(
+                                  width: 17 * SizeConfig.widthMultiplier,
+                                  height: 5 * SizeConfig.heightMultiplier,
+                                  padding:
+                                  EdgeInsets.fromLTRB(10, 5, 10, 5),
+                                  margin: EdgeInsets.fromLTRB(
+                                    1 * SizeConfig.widthMultiplier,
+                                    1 * SizeConfig.heightMultiplier,
+                                    1 * SizeConfig.widthMultiplier,
+                                    1 * SizeConfig.heightMultiplier,
+                                  ),
+                                  decoration: BoxDecoration(
+                                      borderRadius:
+                                      BorderRadius.circular(30.0),
+                                      color: f.changeButtonColor
+                                          ? Color.fromRGBO(255, 130, 130, 1)
+                                          : Colors.grey,
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.grey[300],
+                                            blurRadius: 1.0,
+                                            spreadRadius: 1.0,
+                                            offset: Offset(3.0, 3.0))
+                                      ]),
+                                  child: Center(
+                                    child: Text(
+                                      f.buttonText,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 3 *
+                                              SizeConfig.widthMultiplier,
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                                .toList()),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: _c
+                                .map(
+                                  (MyButtonModel f) => InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    f.changeButtonColor = !f.changeButtonColor;
+                                  });
+                                },
+                                child: Container(
+                                  width: 17 * SizeConfig.widthMultiplier,
+                                  height: 5 * SizeConfig.heightMultiplier,
+                                  padding:
+                                  EdgeInsets.fromLTRB(10, 5, 10, 5),
+                                  margin: EdgeInsets.fromLTRB(
+                                    1 * SizeConfig.widthMultiplier,
+                                    1 * SizeConfig.heightMultiplier,
+                                    1 * SizeConfig.widthMultiplier,
+                                    1 * SizeConfig.heightMultiplier,
+                                  ),
+                                  decoration: BoxDecoration(
+                                      borderRadius:
+                                      BorderRadius.circular(30.0),
+                                      color: f.changeButtonColor
+                                          ? Color.fromRGBO(255, 130, 130, 1)
+                                          : Colors.grey,
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.grey[300],
+                                            blurRadius: 1.0,
+                                            spreadRadius: 1.0,
+                                            offset: Offset(3.0, 3.0))
+                                      ]),
+                                  child: Center(
+                                    child: Text(
+                                      f.buttonText,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 3 *
+                                              SizeConfig.widthMultiplier,
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                                .toList()),
+                      ],
+                    ),
                   ),
                 ),
-                FlatButton(
-                  onPressed: () {
+                Padding(
+                  padding: EdgeInsets.fromLTRB(
+                    0 * SizeConfig.widthMultiplier,
+                    1 * SizeConfig.heightMultiplier,
+                    0 * SizeConfig.widthMultiplier,
+                    1 * SizeConfig.heightMultiplier,
+                  ),
+                  child: Container(
+                    width: 80 * SizeConfig.widthMultiplier,
+                    height: 30 * SizeConfig.heightMultiplier,
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 1, color: Colors.grey[300]),
+                      borderRadius: BorderRadius.circular(15.0),
+                      color: Colors.white,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(
+                            2 * SizeConfig.widthMultiplier,
+                            1 * SizeConfig.heightMultiplier,
+                            1 * SizeConfig.widthMultiplier,
+                            1 * SizeConfig.heightMultiplier,
+                          ),
+                          child: Text(
+                            'Self Introduce',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 4 * SizeConfig.widthMultiplier),
+                          ),
+                        ),
+                        Flexible(
+                          child: Container(
+                            margin: EdgeInsets.symmetric(horizontal: 10),
+                            child: TextField(
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 4 * SizeConfig.widthMultiplier),
+                              textAlign: TextAlign.start,
+                              maxLines: 7,
+                              decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: '자신을 소개해 주세요',
+                                  hintStyle:
+                                  TextStyle(color: Colors.grey[300])),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => new Confirming()),
                     );
                   },
                   child: Container(
-                    margin: EdgeInsets.fromLTRB(20, 20, 20, 20),
-                    width: 80,
-                    height: 30,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15.0),
-                      color: Color.fromRGBO(255, 130, 130, 1),
+                    width: 20 * SizeConfig.widthMultiplier,
+                    height: 5 * SizeConfig.heightMultiplier,
+                    padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                    margin: EdgeInsets.fromLTRB(
+                      2 * SizeConfig.widthMultiplier,
+                      1 * SizeConfig.heightMultiplier,
+                      2 * SizeConfig.widthMultiplier,
+                      1 * SizeConfig.heightMultiplier,
                     ),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30.0),
+                        color: Color.fromRGBO(255, 130, 130, 1),
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.grey[300],
+                              blurRadius: 1.0,
+                              spreadRadius: 1.0,
+                              offset: Offset(3.0, 3.0))
+                        ]),
                     child: Center(
                       child: Text(
                         '작성완료',
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 4 * SizeConfig.widthMultiplier,
+                            color: Colors.white),
                       ),
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ],

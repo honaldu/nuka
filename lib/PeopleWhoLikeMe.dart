@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:nuka/Utils/rest_api_utils.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'SizeConfig.dart';
 
 class LikeMe extends StatefulWidget {
   @override
@@ -50,7 +51,7 @@ class _LikeMeState extends State<LikeMe> {
       body: ListView(
         children: <Widget>[
           SizedBox(
-            height: 40,
+            height: 6 * SizeConfig.heightMultiplier,
           ),
           FutureBuilder(
             future: GetWhoLikeMe(),

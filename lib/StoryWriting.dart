@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:nuka/Utils/rest_api_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'SizeConfig.dart';
 
 class StoryWriting extends StatefulWidget {
   @override
@@ -119,11 +120,19 @@ class _StoryWritingState extends State<StoryWriting> {
               fontWeight: FontWeight.bold),
         ),
         actions: <Widget>[
-          InkWell(
-            onTap: (){
-              PostContent();
-            },
-              child: Text('완료', style: TextStyle(color: Colors.black,fontSize: 30),)),
+          Padding(
+            padding: EdgeInsets.fromLTRB(
+              2 * SizeConfig.widthMultiplier,
+              0 * SizeConfig.heightMultiplier,
+              3 * SizeConfig.widthMultiplier,
+              2 * SizeConfig.heightMultiplier,
+            ),
+            child: InkWell(
+              onTap: (){
+                PostContent();
+              },
+                child: Text('완료', style: TextStyle(color: Colors.redAccent,fontSize: 20,fontWeight: FontWeight.bold),)),
+          ),
         ],
       ),
       body: Container(
@@ -137,7 +146,7 @@ class _StoryWritingState extends State<StoryWriting> {
                   key: _formkey,
                   child: TextFormField(
                     style: TextStyle(
-                        fontSize:MediaQuery.of(context).textScaleFactor*20,
+                        fontSize: 6 * SizeConfig.widthMultiplier,
                         color: Colors.black),
                     controller: null,
                     maxLength: 100,
@@ -145,7 +154,7 @@ class _StoryWritingState extends State<StoryWriting> {
                     decoration: InputDecoration(
                       counterText: '',
                       hintStyle: TextStyle(
-                        fontSize: MediaQuery.of(context).textScaleFactor*20,
+                        fontSize: 6 * SizeConfig.widthMultiplier,
                         color: Colors.black,
                       ),
                       hintText: '내용을 입력해주세요.',
@@ -166,8 +175,8 @@ class _StoryWritingState extends State<StoryWriting> {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        child: FlatButton(
-          onPressed: () {
+        child: InkWell(
+          onTap: () {
             GetImage();
           },
           child: Container(
@@ -177,15 +186,15 @@ class _StoryWritingState extends State<StoryWriting> {
                 Icon(
                   Icons.photo_filter,
                   color: Color.fromRGBO(236, 128, 130, 1),
-                  size: 30,
+                  size: 10 * SizeConfig.widthMultiplier,
                 ),
                 SizedBox(
-                  width: 20,
+                  width: 8 * SizeConfig.widthMultiplier,
                 ),
                 Text(
                   'Add Photos',
                   style: TextStyle(
-                      color: Color.fromRGBO(236, 128, 130, 1), fontSize: 20),
+                      color: Color.fromRGBO(236, 128, 130, 1), fontSize: 8 * SizeConfig.widthMultiplier),
                 ),
               ],
             ),

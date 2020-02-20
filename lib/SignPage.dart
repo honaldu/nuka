@@ -13,7 +13,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'BottomBar/BottomBarMain.dart';
 import 'ConfirmingPage.dart';
 import 'ProfileSettingPage.dart';
+import 'SizeConfig.dart';
 import 'package:http/http.dart' as http;
+
+import 'dart:ui';
+
+
 
 
 class SignPage extends StatefulWidget {
@@ -277,47 +282,66 @@ class _SignPageState extends State<SignPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                child: Text(
-                  'NuKa',
-                  style: TextStyle(
-                    fontSize: 70,
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromRGBO(238, 146, 130, 1.0),
-                  ),
+        width: double.maxFinite,
+        decoration: new BoxDecoration(
+            image: DecorationImage(
+                image: ExactAssetImage('Images/juhee0.jpg'),
+                fit: BoxFit.cover)),
+        child: ClipRRect(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
+            child: Container(
+              decoration:  BoxDecoration(color: Colors.white.withOpacity(0.0)),
+              child: Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Expanded(
+                      flex: 1,
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(
+                            0,
+                            20 * SizeConfig.heightMultiplier,
+                            0,
+                            8 * SizeConfig.heightMultiplier),
+                        child: Text('NuKa', style: Theme.of(context).textTheme.title),
+                      ),
+                    ),
+                    Expanded(
+                        flex: 1,
+                        child: Column(
+                          children: <Widget>[
+                            SignInButton(
+                              Buttons.Google,
+                              onPressed: () {
+                                GoogleLogin();
+                              },
+                            ),
+                            (Platform.isIOS)
+                                ? SignInButton(
+                              Buttons.Apple,
+                              onPressed: () async {
+                                AppleSign();
+                              },
+                            )
+                                : Container(),
+                            SignInButton(
+                              Buttons.Facebook,
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => new ProfileSetting()),
+                                );
+                              },
+                            ),
+                          ],
+                        ))
+                  ],
                 ),
               ),
-              SizedBox(
-                height: 200,
-              ),
-              SignInButton(
-                Buttons.Google,
-                onPressed: () {
-                  GoogleLogin();
-                },
-              ),
-              (Platform.isIOS)?SignInButton(
-                Buttons.Apple,
-                onPressed: () async {
-                  AppleSign();
-                },
-              ):Container(),
-              SignInButton(
-                Buttons.Facebook,
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => new ProfileSetting()),
-                  );
-                },
-              ),
-            ],
+            ),
           ),
         ),
       ),

@@ -4,6 +4,7 @@ import 'package:nuka/Utils/rest_api_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:web_socket_channel/io.dart';
 import 'PeopleWhoLikeMe.dart';
+import 'SizeConfig.dart';
 import 'Chatting.dart';
 import 'package:http/http.dart' as http;
 
@@ -57,38 +58,52 @@ class _ChatPageState extends State<ChatPage> {
           Container(
             child: Column(
               children: <Widget>[
-                FlatButton(
-                  onPressed: () {
+                InkWell(
+                  onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => new LikeMe()),
                     );
                   },
                   child: Container(
-                    margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                    padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15.0),
-                      color: Color.fromRGBO(255, 130, 130, 1),
+                    width: 90 * SizeConfig.widthMultiplier,
+                    height: 8 * SizeConfig.heightMultiplier,
+                    padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                    margin: EdgeInsets.fromLTRB(
+                      2 * SizeConfig.widthMultiplier,
+                      1 * SizeConfig.heightMultiplier,
+                      2 * SizeConfig.widthMultiplier,
+                      1 * SizeConfig.heightMultiplier,
                     ),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15.0),
+                        color: Color.fromRGBO(255, 130, 130, 1),
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.grey[300],
+                              blurRadius: 1.0,
+                              spreadRadius: 1.0,
+                              offset: Offset(3.0, 3.0))
+                        ]),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Text(
                           '나를 좋아하는 사람들',
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: Colors.white,fontSize: 5 * SizeConfig.widthMultiplier),
                         ),
                         Icon(
                           Icons.keyboard_arrow_right,
                           color: Colors.white,
+                          size: 6 * SizeConfig.widthMultiplier,
                         )
                       ],
                     ),
                   ),
                 ),
                 SizedBox(
-                  height: 100,
+                  height: 10 * SizeConfig.heightMultiplier,
                 ),
                 Container(
                   child: Column(
@@ -114,9 +129,9 @@ class _ChatPageState extends State<ChatPage> {
         if(!snapshot.hasData || snapshot.data.isEmpty){
           //나중에 디자인
           return Text('현재 채팅 중인 유저가 없습니다', style: TextStyle(
-              fontSize: 50,
-              color: Colors.red
-          ),);
+              fontSize: 10 * SizeConfig.widthMultiplier,
+              color: Color.fromRGBO(255, 130, 130, 1),fontWeight: FontWeight.bold
+          ),textAlign: TextAlign.center,);
         }
         return ListView.builder(
             itemCount:snapshot.data[0]['chttingwith'].length,
@@ -148,19 +163,19 @@ class _ChatPageState extends State<ChatPage> {
               borderRadius: BorderRadius.circular(8.0),
               child: Image.network(
                 ds['image'],
-                width: 150,
-                height: 150,
+                width: 40 * SizeConfig.widthMultiplier,
+                height: 40 * SizeConfig.heightMultiplier,
                 fit: BoxFit.fill,
               ),
             ):Icon(
               //추후 프로필 없는사람 대체 이미지 만들기
               Icons.person,
-              size: 80,
+              size: 18 * SizeConfig.widthMultiplier,
             ),
             Text(
               (ds['nickname'] != null)?ds['nickname']:'알 수 없음',
               style: TextStyle(
-                  fontSize: 20, fontWeight: FontWeight.bold),
+                  fontSize: 8 * SizeConfig.widthMultiplier, fontWeight: FontWeight.bold),
             ),
           ],
         ),
@@ -186,16 +201,31 @@ class _ChatPageState extends State<ChatPage> {
                 return Container();
               }
               return Container(
-                margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                width: 250,
-                height: 70,
-                color: Color.fromRGBO(255, 130, 130, 1),
+                width: 60 * SizeConfig.widthMultiplier,
+                height: 8 * SizeConfig.heightMultiplier,
+                padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                margin: EdgeInsets.fromLTRB(
+                  2 * SizeConfig.widthMultiplier,
+                  1 * SizeConfig.heightMultiplier,
+                  2 * SizeConfig.widthMultiplier,
+                  1 * SizeConfig.heightMultiplier,
+                ),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15.0),
+                    color: Color.fromRGBO(255, 130, 130, 1),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.grey[300],
+                          blurRadius: 1.0,
+                          spreadRadius: 1.0,
+                          offset: Offset(3.0, 3.0))
+                    ]),
                 child: Center(
                   child: Text(
                     (snapshot.data[0] != null)?snapshot.data[0]['message']:'',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 20,
+                        fontSize: 4 * SizeConfig.widthMultiplier,
                         color: Colors.white),
                   ),
                 ),

@@ -27,8 +27,8 @@ class _ProFileInfoState extends State<ProFileInfo> {
           shrinkWrap: true,
           children: <Widget>[
             Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Container(
                   width: 300,

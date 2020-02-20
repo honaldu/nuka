@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:settings_ui/settings_ui.dart';
+import 'SizeConfig.dart';
 
 class SetiingPage extends StatefulWidget {
   @override

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'SettingPage.dart';
+import 'SizeConfig.dart';
 import 'package:http/http.dart' as http;
 
 import 'SignPage.dart';
@@ -65,26 +66,27 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: Column(
                   children: <Widget>[
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[
-                        SizedBox(
-                          width: 50,
-                          height: 50,
-                        ),
-                        SizedBox(
-                          width: 50,
-                        ),
-                        FlatButton(
-                          onPressed: () {
+                        InkWell(
+                          onTap: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => new SetiingPage()),
                             );
                           },
-                          child: Icon(
-                            Icons.settings,
-                            size: 50,
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(
+                              0 * SizeConfig.widthMultiplier,
+                              0 * SizeConfig.heightMultiplier,
+                              5 * SizeConfig.widthMultiplier,
+                              0 * SizeConfig.heightMultiplier,
+                            ),
+                            child: Icon(
+                              Icons.settings,
+                              size: 10 * SizeConfig.widthMultiplier,
+                            ),
                           ),
                         ),
                       ],
@@ -94,14 +96,22 @@ class _ProfilePageState extends State<ProfilePage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Container(
-                            margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                            child: Icon(
-                              Icons.person,
-                              size: 70,
+                            padding: EdgeInsets.fromLTRB(
+                              0 * SizeConfig.widthMultiplier,
+                              0 * SizeConfig.heightMultiplier,
+                              0 * SizeConfig.widthMultiplier,
+                              1 * SizeConfig.heightMultiplier,
+                            ),
+                            child: Container(
+                              margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                              child: Icon(
+                                Icons.person,
+                                size: 20 * SizeConfig.widthMultiplier,
+                              ),
                             ),
                           ),
                           SizedBox(
-                            width: 20,
+                            width: 4 * SizeConfig.widthMultiplier,
                           ),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -110,21 +120,35 @@ class _ProfilePageState extends State<ProfilePage> {
                               Text(
                                 (ds['nickname'] != null)?ds['nickname']:'',
                                 style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
+                                    fontSize: 5 * SizeConfig.widthMultiplier,
+                                    fontWeight: FontWeight.bold),
                               ),
-                              Container(
-                                decoration: BoxDecoration(
-                                  color: Color.fromRGBO(255, 130, 130, 1),
-                                  borderRadius: BorderRadius.circular(15.0),
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(
+                                  0 * SizeConfig.widthMultiplier,
+                                  1 * SizeConfig.heightMultiplier,
+                                  0 * SizeConfig.widthMultiplier,
+                                  1 * SizeConfig.heightMultiplier,
                                 ),
-                                width: 200,
-                                height: 30,
-
-                                child: Center(
-                                    child: Text(
-                                  'Edit Profile',
-                                  style: TextStyle(color: Colors.white),
-                                )),
+                                child: Container(
+                                  width: 50 * SizeConfig.widthMultiplier,
+                                  height: 5 * SizeConfig.heightMultiplier,
+                                  decoration: BoxDecoration(
+                                      color: Color.fromRGBO(255, 130, 130, 1),
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.grey[300],
+                                            blurRadius: 1.0,
+                                            spreadRadius: 1.0,
+                                            offset: Offset(3.0, 3.0))
+                                      ]),
+                                  child: Center(
+                                      child: Text(
+                                        'Edit Profile',
+                                        style: TextStyle(color: Colors.white),
+                                      )),
+                                ),
                               ),
                             ],
                           )
@@ -132,157 +156,214 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 1 * SizeConfig.heightMultiplier,
                     ),
                     Container(
                       child: Column(
                         children: <Widget>[
-                          FlatButton(
-                            onPressed: () {},
-                            child: Container(
-                              width: 300,
-                              height: 50,
-
-                              margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15.0),
-                                color: Color.fromRGBO(255, 130, 130, 1),
+                          InkWell(
+                            onTap: () {},
+                            child: Padding(
+                              padding: EdgeInsets.fromLTRB(
+                                0 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
+                                0 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
                               ),
-                              child: Center(
-                                child: Text(
-                                  'Check My Content',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                  ),
-                                ),
+                              child: Container(
+                                width: 90 * SizeConfig.widthMultiplier,
+                                height: 8 * SizeConfig.heightMultiplier,
+                                decoration: BoxDecoration(
+                                    color: Color.fromRGBO(255, 130, 130, 1),
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.grey[300],
+                                          blurRadius: 1.0,
+                                          spreadRadius: 1.0,
+                                          offset: Offset(3.0, 3.0))
+                                    ]),
+                                child: Center(
+                                    child: Text(
+                                      'Check My Profile',
+                                      style: TextStyle(color: Colors.white, fontSize: 6 * SizeConfig.widthMultiplier),
+                                    )),
                               ),
                             ),
                           ),
-                          FlatButton(
-                            onPressed: () {},
-                            child: Container(
-                              width: 300,
-                              height: 50,
-
-                              margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15.0),
-                                color: Color.fromRGBO(255, 130, 130, 1),
+                          InkWell(
+                            onTap: () {},
+                            child: Padding(
+                              padding: EdgeInsets.fromLTRB(
+                                0 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
+                                0 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
                               ),
-                              child: Row(
-                                children: <Widget>[
-                                  Icon(
-                                    Icons.shopping_cart,
-                                    size: 30,
-                                    color: Colors.white,
-                                  ),
-                                  SizedBox(
-                                    width: 100,
-                                  ),
-                                  Text(
-                                    'Store',
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.white,
+                              child: Container(
+                                width: 90 * SizeConfig.widthMultiplier,
+                                height: 8 * SizeConfig.heightMultiplier,
+                                decoration: BoxDecoration(
+                                    color: Color.fromRGBO(255, 130, 130, 1),
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.grey[300],
+                                          blurRadius: 1.0,
+                                          spreadRadius: 1.0,
+                                          offset: Offset(3.0, 3.0))
+                                    ]),
+                                child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: EdgeInsets.fromLTRB(
+                                        2 * SizeConfig.widthMultiplier,
+                                        1 * SizeConfig.heightMultiplier,
+                                        2 * SizeConfig.widthMultiplier,
+                                        1 * SizeConfig.heightMultiplier,
+                                      ),
+                                      child: Icon(
+                                        Icons.shopping_cart,
+                                        size: 8 * SizeConfig.widthMultiplier,
+                                        color: Colors.white,
+                                      ),
                                     ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                          FlatButton(
-                            onPressed: () {},
-                            child: Container(
-                              width: 300,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                color: Color.fromRGBO(255, 130, 130, 1),
-                                borderRadius: BorderRadius.circular(15.0),
-                              ),
-                              margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                              child: Center(
-                                child: Text(
-                                  'Help Center',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                  ),
+                                    Center(
+                                      child: Text(
+                                        'Store',
+                                        style: TextStyle(color: Colors.white, fontSize: 6 * SizeConfig.widthMultiplier),
+                                      ),
+                                    )
+                                  ],
                                 ),
                               ),
                             ),
                           ),
-                          FlatButton(
-                            onPressed: () {},
-                            child: Container(
-                              width: 300,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15.0),
-                                color: Color.fromRGBO(255, 130, 130, 1),
+                          InkWell(
+                            onTap: () {},
+                            child: Padding(
+                              padding: EdgeInsets.fromLTRB(
+                                0 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
+                                0 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
                               ),
+                              child: Container(
+                                width: 90 * SizeConfig.widthMultiplier,
+                                height: 8 * SizeConfig.heightMultiplier,
+                                decoration: BoxDecoration(
+                                    color: Color.fromRGBO(255, 130, 130, 1),
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.grey[300],
+                                          blurRadius: 1.0,
+                                          spreadRadius: 1.0,
+                                          offset: Offset(3.0, 3.0))
+                                    ]),
+                                child: Center(
+                                    child: Text(
+                                      'Help Center',
+                                      style: TextStyle(color: Colors.white, fontSize: 6 * SizeConfig.widthMultiplier),
+                                    )),
+                              ),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {},
+                            child: Padding(
+                              padding: EdgeInsets.fromLTRB(
+                                0 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
+                                0 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
+                              ),
+                              child: Container(
+                                width: 90 * SizeConfig.widthMultiplier,
+                                height: 8 * SizeConfig.heightMultiplier,
+                                decoration: BoxDecoration(
+                                    color: Color.fromRGBO(255, 130, 130, 1),
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.grey[300],
+                                          blurRadius: 1.0,
+                                          spreadRadius: 1.0,
+                                          offset: Offset(3.0, 3.0))
+                                    ]),
+                                child: Center(
+                                    child: Text(
+                                      'FeedBack',
+                                      style: TextStyle(color: Colors.white, fontSize: 6 * SizeConfig.widthMultiplier),
+                                    )),
+                              ),
+                            ),
+                          ),
 
-                              margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                              child: Center(
-                                child: Text(
-                                  'FeedBack',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                  ),
-                                ),
+                          InkWell(
+                            onTap: () {},
+                            child: Padding(
+                              padding: EdgeInsets.fromLTRB(
+                                0 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
+                                0 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
+                              ),
+                              child: Container(
+                                width: 90 * SizeConfig.widthMultiplier,
+                                height: 8 * SizeConfig.heightMultiplier,
+                                decoration: BoxDecoration(
+                                    color: Color.fromRGBO(255, 130, 130, 1),
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.grey[300],
+                                          blurRadius: 1.0,
+                                          spreadRadius: 1.0,
+                                          offset: Offset(3.0, 3.0))
+                                    ]),
+                                child: Center(
+                                    child: Text(
+                                      'Notice',
+                                      style: TextStyle(color: Colors.white, fontSize: 6 * SizeConfig.widthMultiplier),
+                                    )),
                               ),
                             ),
                           ),
-                          FlatButton(
-                            onPressed: () {},
-                            child: Container(
-                              width: 300,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15.0),
-                                color: Color.fromRGBO(255, 130, 130, 1),
-                              ),
 
-                              margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                              child: Center(
-                                child: Text(
-                                  'Notice',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                  ),
-                                ),
+                          InkWell(
+                            onTap: () {},
+                            child: Padding(
+                              padding: EdgeInsets.fromLTRB(
+                                0 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
+                                0 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
                               ),
-                            ),
-                          ),
-                          FlatButton(
-                            onPressed: () {
-                              signout();
-                            },
-                            child: Container(
-                              width: 300,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                color: Color.fromRGBO(255, 130, 130, 1),
-                                borderRadius: BorderRadius.circular(15.0),
-                              ),
-
-                              margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                              child: Center(
-                                child: Text(
-                                  'Sign Out',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                  ),
-                                ),
+                              child: Container(
+                                width: 90 * SizeConfig.widthMultiplier,
+                                height: 8 * SizeConfig.heightMultiplier,
+                                decoration: BoxDecoration(
+                                    color: Color.fromRGBO(255, 130, 130, 1),
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.grey[300],
+                                          blurRadius: 1.0,
+                                          spreadRadius: 1.0,
+                                          offset: Offset(3.0, 3.0))
+                                    ]),
+                                child: Center(
+                                    child: Text(
+                                      'Sign Out',
+                                      style: TextStyle(color: Colors.white, fontSize: 6 * SizeConfig.widthMultiplier),
+                                    )),
                               ),
                             ),
                           ),
                         ],
                       ),
-                    ),
+                    )
                   ],
                 ),
               ),

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:nuka/Utils/rest_api_utils.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:http/http.dart' as http;
+import 'SizeConfig.dart';
 
 class Chatting extends StatefulWidget {
   int peerId, myid;
@@ -76,7 +77,7 @@ class _ChattingState extends State<Chatting> {
         actions: <Widget>[
           Icon(
             Icons.report_problem,
-            size: 40,
+            size: 8*SizeConfig.widthMultiplier,
           ),
           SizedBox(
             width: 10,
@@ -84,12 +85,13 @@ class _ChattingState extends State<Chatting> {
         ],
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(
+          size: 8 * SizeConfig.heightMultiplier,
           color: Color.fromRGBO(236, 128, 130, 1.0),
         ),
         title: Text(
           '${peernickname} 님과의 대화',
           style: TextStyle(
-              fontSize: 20,
+              fontSize: 3 * SizeConfig.heightMultiplier,
               color: Color.fromRGBO(236, 128, 130, 1),
               fontWeight: FontWeight.bold),
         ),
@@ -101,30 +103,52 @@ class _ChattingState extends State<Chatting> {
       ),
       bottomNavigationBar: BottomAppBar(
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            SizedBox(
-              width: 20,
-            ),
-            Container(
-              width: 300,
-              child: TextField(
-                controller: textEditingController,
-                decoration: InputDecoration.collapsed(
-                  hintText: '텍스트를 입력해주세요',
+            Flexible(
+              child: Container(
+                width: 60 * SizeConfig.widthMultiplier,
+                height: 8 * SizeConfig.heightMultiplier,
+                padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                margin: EdgeInsets.fromLTRB(
+                  0 * SizeConfig.widthMultiplier,
+                  1 * SizeConfig.heightMultiplier,
+                  2 * SizeConfig.widthMultiplier,
+                  1 * SizeConfig.heightMultiplier,
+                ),
+                child: TextField(
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 4 * SizeConfig.widthMultiplier),
+                  decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: '대화를 입력해 주세요',
+                      hintStyle:
+                      TextStyle(color: Colors.grey[300])),
                 ),
               ),
             ),
             SizedBox(
               width: 30,
             ),
-            IconButton(
-              onPressed: () {
-                _sendMessage();
-              },
-              icon: Icon(
-                Icons.send,
-                size: 30,
-                color: Color.fromRGBO(236, 128, 130, 1),
+            Container(
+              width: 10 * SizeConfig.widthMultiplier,
+              height: 8 * SizeConfig.heightMultiplier,
+              padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+              margin: EdgeInsets.fromLTRB(
+                0 * SizeConfig.widthMultiplier,
+                1 * SizeConfig.heightMultiplier,
+                1 * SizeConfig.widthMultiplier,
+                1 * SizeConfig.heightMultiplier,
+              ),
+              child: IconButton(
+                onPressed: () {_sendMessage();},
+                icon: Icon(
+                  Icons.send,
+                  size: 8 * SizeConfig.widthMultiplier,
+                  color: Color.fromRGBO(236, 128, 130, 1),
+                ),
               ),
             ),
           ],
