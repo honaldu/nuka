@@ -79,6 +79,7 @@ class _SignPageState extends State<SignPage> {
 
     if(ds['active'] == true){
       prefs.setInt("active", 1);
+      prefs.setString('nickname', ds['nickname']);
       Navigator.push(
           context,
           MaterialPageRoute(

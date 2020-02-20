@@ -36,8 +36,8 @@ class _ChattingState extends State<Chatting> {
     return json.decode(utf8convert);
   }
 
-  void _sendMessage(){
 
+  void _sendMessage(){
     if (textEditingController.text.isNotEmpty) {
       widget.channel.sink.add(json.encode({
         'message': textEditingController.text,
@@ -117,6 +117,7 @@ class _ChattingState extends State<Chatting> {
                   1 * SizeConfig.heightMultiplier,
                 ),
                 child: TextField(
+                  controller: textEditingController,
                   textAlign: TextAlign.start,
                   style: TextStyle(
                       color: Colors.black,
@@ -163,7 +164,7 @@ class _ChattingState extends State<Chatting> {
       children: <Widget>[
         Container(
           child: Text(
-            (ds['message'] != null)? ds['message']: '',style: TextStyle(color: Colors.amber),
+            (ds['message'] != null)? ds['message']: '',style: TextStyle(color: Colors.red),
           ),
         ),
       ],
@@ -172,7 +173,7 @@ class _ChattingState extends State<Chatting> {
       children: <Widget>[
         Container(
           child: Text(
-            (ds['message'] != null)? ds['message']: '',style: TextStyle(color: Colors.white),
+            (ds['message'] != null)? ds['message']: '',style: TextStyle(color: Colors.black),
           ),
         ),
       ],
