@@ -19,7 +19,36 @@ class ProfileSetting extends StatefulWidget {
 }
 
 class _ProfileSettingState extends State<ProfileSetting> {
-  bool changeColor = false;
+  List<bool> _changeColor = [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ];
+  List<String> _character = [
+    'Extrovert',
+    'Introvert',
+    'Optimistic',
+    'Realistic'
+  ];
+  List<String> _hobby = [
+    'movie',
+    'exercise',
+    'reading',
+    'game',
+    'travel',
+    'cooking',
+    'Listening',
+    'Strolling'
+  ];
   String _date = "Not Set";
   String _dropdownValue = '보통';
   String _dropdownValue2 = '중졸';
@@ -42,7 +71,8 @@ class _ProfileSettingState extends State<ProfileSetting> {
     MyButtonModel(buttonText: '음악감상'),
     MyButtonModel(buttonText: '산책'),
   ];
-  List<String> _character =[];
+  List<String> _characterInput = [];
+  List<String> _hobbyInput = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,7 +109,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                           ),
                           decoration: BoxDecoration(
                             border:
-                            Border.all(width: 1, color: Colors.grey[300]),
+                                Border.all(width: 1, color: Colors.grey[300]),
                             borderRadius: BorderRadius.circular(15.0),
                             color: Colors.white,
                             boxShadow: [
@@ -127,7 +157,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                           ),
                           decoration: BoxDecoration(
                             border:
-                            Border.all(width: 1, color: Colors.grey[300]),
+                                Border.all(width: 1, color: Colors.grey[300]),
                             borderRadius: BorderRadius.circular(15.0),
                             color: Colors.white,
                             boxShadow: [
@@ -175,7 +205,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                           ),
                           decoration: BoxDecoration(
                             border:
-                            Border.all(width: 1, color: Colors.grey[300]),
+                                Border.all(width: 1, color: Colors.grey[300]),
                             borderRadius: BorderRadius.circular(15.0),
                             color: Colors.white,
                             boxShadow: [
@@ -229,7 +259,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                           ),
                           decoration: BoxDecoration(
                             border:
-                            Border.all(width: 1, color: Colors.grey[300]),
+                                Border.all(width: 1, color: Colors.grey[300]),
                             borderRadius: BorderRadius.circular(15.0),
                             color: Colors.white,
                             boxShadow: [
@@ -277,7 +307,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                           ),
                           decoration: BoxDecoration(
                             border:
-                            Border.all(width: 1, color: Colors.grey[300]),
+                                Border.all(width: 1, color: Colors.grey[300]),
                             borderRadius: BorderRadius.circular(15.0),
                             color: Colors.white,
                             boxShadow: [
@@ -325,7 +355,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                           ),
                           decoration: BoxDecoration(
                             border:
-                            Border.all(width: 1, color: Colors.grey[300]),
+                                Border.all(width: 1, color: Colors.grey[300]),
                             borderRadius: BorderRadius.circular(15.0),
                             color: Colors.white,
                             boxShadow: [
@@ -404,7 +434,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                                   border: InputBorder.none,
                                   hintText: '별명을 입력해 주세요',
                                   hintStyle:
-                                  TextStyle(color: Colors.grey[300])),
+                                      TextStyle(color: Colors.grey[300])),
                             ),
                           ),
                         ),
@@ -452,13 +482,13 @@ class _ProfileSettingState extends State<ProfileSetting> {
                                 minTime: DateTime(1980, 1, 1),
                                 maxTime: DateTime(2005, 1, 1),
                                 onChanged: (date) {
-                                  print('change $date');
-                                }, onConfirm: (date) {
-                                  print('confirm $date');
-                                  _date =
+                              print('change $date');
+                            }, onConfirm: (date) {
+                              print('confirm $date');
+                              _date =
                                   '${date.year} - ${date.month} - ${date.day}';
-                                  setState(() {});
-                                },
+                              setState(() {});
+                            },
                                 currentTime: DateTime.now(),
                                 locale: LocaleType.en);
                             ;
@@ -519,7 +549,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                                   border: InputBorder.none,
                                   hintText: '키를 입력해 주세요',
                                   hintStyle:
-                                  TextStyle(color: Colors.grey[300])),
+                                      TextStyle(color: Colors.grey[300])),
                             ),
                           ),
                         ),
@@ -688,7 +718,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                                   border: InputBorder.none,
                                   hintText: '직업을 입력해 주세요',
                                   hintStyle:
-                                  TextStyle(color: Colors.grey[300])),
+                                      TextStyle(color: Colors.grey[300])),
                             ),
                           ),
                         ),
@@ -748,53 +778,174 @@ class _ProfileSettingState extends State<ProfileSetting> {
                           ],
                         ),
                         Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: _a
-                                .map(
-                                  (MyButtonModel f) => InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    f.changeButtonColor = !f.changeButtonColor;
-                                  });
-                                },
-                                child: Container(
-                                  width: 17 * SizeConfig.widthMultiplier,
-                                  height: 5 * SizeConfig.heightMultiplier,
-                                  padding:
-                                  EdgeInsets.fromLTRB(10, 5, 10, 5),
-                                  margin: EdgeInsets.fromLTRB(
-                                    1 * SizeConfig.widthMultiplier,
-                                    1 * SizeConfig.heightMultiplier,
-                                    1 * SizeConfig.widthMultiplier,
-                                    1 * SizeConfig.heightMultiplier,
-                                  ),
-                                  decoration: BoxDecoration(
-                                      borderRadius:
-                                      BorderRadius.circular(30.0),
-                                      color: f.changeButtonColor
-                                          ? Color.fromRGBO(255, 130, 130, 1)
-                                          : Colors.grey,
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: Colors.grey[300],
-                                            blurRadius: 1.0,
-                                            spreadRadius: 1.0,
-                                            offset: Offset(3.0, 3.0))
-                                      ]),
-                                  child: Center(
-                                    child: Text(
-                                      f.buttonText,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 3 *
-                                              SizeConfig.widthMultiplier,
-                                          color: Colors.white),
-                                    ),
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  _changeColor[0] = !_changeColor[0];
+                                  _characterInput.insert(2, _character[2]);
+                                });
+                              },
+                              child: Container(
+                                width: 17 * SizeConfig.widthMultiplier,
+                                height: 5 * SizeConfig.heightMultiplier,
+                                padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                                margin: EdgeInsets.fromLTRB(
+                                  1 * SizeConfig.widthMultiplier,
+                                  1 * SizeConfig.heightMultiplier,
+                                  1 * SizeConfig.widthMultiplier,
+                                  1 * SizeConfig.heightMultiplier,
+                                ),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30.0),
+                                    color: _changeColor[0]
+                                        ? Color.fromRGBO(255, 130, 130, 1)
+                                        : Colors.grey,
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.grey[300],
+                                          blurRadius: 1.0,
+                                          spreadRadius: 1.0,
+                                          offset: Offset(3.0, 3.0))
+                                    ]),
+                                child: Center(
+                                  child: Text(
+                                    '외향적',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize:
+                                            3 * SizeConfig.widthMultiplier,
+                                        color: Colors.white),
                                   ),
                                 ),
                               ),
-                            )
-                                .toList()),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  _changeColor[1] = !_changeColor[1];
+                                  _characterInput.insert(1, _character[1]);
+                                });
+                              },
+                              child: Container(
+                                width: 17 * SizeConfig.widthMultiplier,
+                                height: 5 * SizeConfig.heightMultiplier,
+                                padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                                margin: EdgeInsets.fromLTRB(
+                                  1 * SizeConfig.widthMultiplier,
+                                  1 * SizeConfig.heightMultiplier,
+                                  1 * SizeConfig.widthMultiplier,
+                                  1 * SizeConfig.heightMultiplier,
+                                ),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30.0),
+                                    color: _changeColor[1]
+                                        ? Color.fromRGBO(255, 130, 130, 1)
+                                        : Colors.grey,
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.grey[300],
+                                          blurRadius: 1.0,
+                                          spreadRadius: 1.0,
+                                          offset: Offset(3.0, 3.0))
+                                    ]),
+                                child: Center(
+                                  child: Text(
+                                    '내향적',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize:
+                                            3 * SizeConfig.widthMultiplier,
+                                        color: Colors.white),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  _changeColor[2] = !_changeColor[2];
+                                  _characterInput.insert(2, _character[2]);
+                                });
+                              },
+                              child: Container(
+                                width: 17 * SizeConfig.widthMultiplier,
+                                height: 5 * SizeConfig.heightMultiplier,
+                                padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                                margin: EdgeInsets.fromLTRB(
+                                  1 * SizeConfig.widthMultiplier,
+                                  1 * SizeConfig.heightMultiplier,
+                                  1 * SizeConfig.widthMultiplier,
+                                  1 * SizeConfig.heightMultiplier,
+                                ),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30.0),
+                                    color: _changeColor[2]
+                                        ? Color.fromRGBO(255, 130, 130, 1)
+                                        : Colors.grey,
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.grey[300],
+                                          blurRadius: 1.0,
+                                          spreadRadius: 1.0,
+                                          offset: Offset(3.0, 3.0))
+                                    ]),
+                                child: Center(
+                                  child: Text(
+                                    '긍정적',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize:
+                                            3 * SizeConfig.widthMultiplier,
+                                        color: Colors.white),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  _changeColor[3] = !_changeColor[3];
+                                  _characterInput.insert(3, _character[3]);
+                                });
+                              },
+                              child: Container(
+                                width: 17 * SizeConfig.widthMultiplier,
+                                height: 5 * SizeConfig.heightMultiplier,
+                                padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                                margin: EdgeInsets.fromLTRB(
+                                  1 * SizeConfig.widthMultiplier,
+                                  1 * SizeConfig.heightMultiplier,
+                                  1 * SizeConfig.widthMultiplier,
+                                  1 * SizeConfig.heightMultiplier,
+                                ),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30.0),
+                                    color: _changeColor[3]
+                                        ? Color.fromRGBO(255, 130, 130, 1)
+                                        : Colors.grey,
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.grey[300],
+                                          blurRadius: 1.0,
+                                          spreadRadius: 1.0,
+                                          offset: Offset(3.0, 3.0))
+                                    ]),
+                                child: Center(
+                                  child: Text(
+                                    '현실적',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize:
+                                            3 * SizeConfig.widthMultiplier,
+                                        color: Colors.white),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),
@@ -851,101 +1002,343 @@ class _ProfileSettingState extends State<ProfileSetting> {
                           ],
                         ),
                         Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: _b
-                                .map(
-                                  (MyButtonModel f) => InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    f.changeButtonColor = !f.changeButtonColor;
-                                  });
-                                },
-                                child: Container(
-                                  width: 17 * SizeConfig.widthMultiplier,
-                                  height: 5 * SizeConfig.heightMultiplier,
-                                  padding:
-                                  EdgeInsets.fromLTRB(10, 5, 10, 5),
-                                  margin: EdgeInsets.fromLTRB(
-                                    1 * SizeConfig.widthMultiplier,
-                                    1 * SizeConfig.heightMultiplier,
-                                    1 * SizeConfig.widthMultiplier,
-                                    1 * SizeConfig.heightMultiplier,
-                                  ),
-                                  decoration: BoxDecoration(
-                                      borderRadius:
-                                      BorderRadius.circular(30.0),
-                                      color: f.changeButtonColor
-                                          ? Color.fromRGBO(255, 130, 130, 1)
-                                          : Colors.grey,
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: Colors.grey[300],
-                                            blurRadius: 1.0,
-                                            spreadRadius: 1.0,
-                                            offset: Offset(3.0, 3.0))
-                                      ]),
-                                  child: Center(
-                                    child: Text(
-                                      f.buttonText,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 3 *
-                                              SizeConfig.widthMultiplier,
-                                          color: Colors.white),
-                                    ),
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  _changeColor[4] = !_changeColor[4];
+                                  _hobbyInput.insert(0, _hobby[0]);
+                                });
+                              },
+                              child: Container(
+                                width: 17 * SizeConfig.widthMultiplier,
+                                height: 5 * SizeConfig.heightMultiplier,
+                                padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                                margin: EdgeInsets.fromLTRB(
+                                  1 * SizeConfig.widthMultiplier,
+                                  1 * SizeConfig.heightMultiplier,
+                                  1 * SizeConfig.widthMultiplier,
+                                  1 * SizeConfig.heightMultiplier,
+                                ),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30.0),
+                                    color: _changeColor[4]
+                                        ? Color.fromRGBO(255, 130, 130, 1)
+                                        : Colors.grey,
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.grey[300],
+                                          blurRadius: 1.0,
+                                          spreadRadius: 1.0,
+                                          offset: Offset(3.0, 3.0))
+                                    ]),
+                                child: Center(
+                                  child: Text(
+                                    '영화감상',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize:
+                                            3 * SizeConfig.widthMultiplier,
+                                        color: Colors.white),
                                   ),
                                 ),
                               ),
-                            )
-                                .toList()),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  _changeColor[5] = !_changeColor[5];
+                                  _hobbyInput.insert(1, _hobby[1]);
+                                });
+                              },
+                              child: Container(
+                                width: 17 * SizeConfig.widthMultiplier,
+                                height: 5 * SizeConfig.heightMultiplier,
+                                padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                                margin: EdgeInsets.fromLTRB(
+                                  1 * SizeConfig.widthMultiplier,
+                                  1 * SizeConfig.heightMultiplier,
+                                  1 * SizeConfig.widthMultiplier,
+                                  1 * SizeConfig.heightMultiplier,
+                                ),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30.0),
+                                    color: _changeColor[5]
+                                        ? Color.fromRGBO(255, 130, 130, 1)
+                                        : Colors.grey,
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.grey[300],
+                                          blurRadius: 1.0,
+                                          spreadRadius: 1.0,
+                                          offset: Offset(3.0, 3.0))
+                                    ]),
+                                child: Center(
+                                  child: Text(
+                                    '운동',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize:
+                                            3 * SizeConfig.widthMultiplier,
+                                        color: Colors.white),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  _changeColor[6] = !_changeColor[6];
+                                  _hobbyInput.insert(2, _hobby[2]);
+                                });
+                              },
+                              child: Container(
+                                width: 17 * SizeConfig.widthMultiplier,
+                                height: 5 * SizeConfig.heightMultiplier,
+                                padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                                margin: EdgeInsets.fromLTRB(
+                                  1 * SizeConfig.widthMultiplier,
+                                  1 * SizeConfig.heightMultiplier,
+                                  1 * SizeConfig.widthMultiplier,
+                                  1 * SizeConfig.heightMultiplier,
+                                ),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30.0),
+                                    color: _changeColor[6]
+                                        ? Color.fromRGBO(255, 130, 130, 1)
+                                        : Colors.grey,
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.grey[300],
+                                          blurRadius: 1.0,
+                                          spreadRadius: 1.0,
+                                          offset: Offset(3.0, 3.0))
+                                    ]),
+                                child: Center(
+                                  child: Text(
+                                    '독서',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize:
+                                            3 * SizeConfig.widthMultiplier,
+                                        color: Colors.white),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  _changeColor[7] = !_changeColor[7];
+                                  _hobbyInput.insert(3, _hobby[3]);
+                                });
+                              },
+                              child: Container(
+                                width: 17 * SizeConfig.widthMultiplier,
+                                height: 5 * SizeConfig.heightMultiplier,
+                                padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                                margin: EdgeInsets.fromLTRB(
+                                  1 * SizeConfig.widthMultiplier,
+                                  1 * SizeConfig.heightMultiplier,
+                                  1 * SizeConfig.widthMultiplier,
+                                  1 * SizeConfig.heightMultiplier,
+                                ),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30.0),
+                                    color: _changeColor[7]
+                                        ? Color.fromRGBO(255, 130, 130, 1)
+                                        : Colors.grey,
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.grey[300],
+                                          blurRadius: 1.0,
+                                          spreadRadius: 1.0,
+                                          offset: Offset(3.0, 3.0))
+                                    ]),
+                                child: Center(
+                                  child: Text(
+                                    '게임',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize:
+                                            3 * SizeConfig.widthMultiplier,
+                                        color: Colors.white),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                         Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: _c
-                                .map(
-                                  (MyButtonModel f) => InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    f.changeButtonColor = !f.changeButtonColor;
-                                  });
-                                },
-                                child: Container(
-                                  width: 17 * SizeConfig.widthMultiplier,
-                                  height: 5 * SizeConfig.heightMultiplier,
-                                  padding:
-                                  EdgeInsets.fromLTRB(10, 5, 10, 5),
-                                  margin: EdgeInsets.fromLTRB(
-                                    1 * SizeConfig.widthMultiplier,
-                                    1 * SizeConfig.heightMultiplier,
-                                    1 * SizeConfig.widthMultiplier,
-                                    1 * SizeConfig.heightMultiplier,
-                                  ),
-                                  decoration: BoxDecoration(
-                                      borderRadius:
-                                      BorderRadius.circular(30.0),
-                                      color: f.changeButtonColor
-                                          ? Color.fromRGBO(255, 130, 130, 1)
-                                          : Colors.grey,
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: Colors.grey[300],
-                                            blurRadius: 1.0,
-                                            spreadRadius: 1.0,
-                                            offset: Offset(3.0, 3.0))
-                                      ]),
-                                  child: Center(
-                                    child: Text(
-                                      f.buttonText,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 3 *
-                                              SizeConfig.widthMultiplier,
-                                          color: Colors.white),
-                                    ),
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  _changeColor[8] = !_changeColor[8];
+                                  _hobbyInput.insert(4, _hobby[4]);
+                                });
+                              },
+                              child: Container(
+                                width: 17 * SizeConfig.widthMultiplier,
+                                height: 5 * SizeConfig.heightMultiplier,
+                                padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                                margin: EdgeInsets.fromLTRB(
+                                  1 * SizeConfig.widthMultiplier,
+                                  1 * SizeConfig.heightMultiplier,
+                                  1 * SizeConfig.widthMultiplier,
+                                  1 * SizeConfig.heightMultiplier,
+                                ),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30.0),
+                                    color: _changeColor[8]
+                                        ? Color.fromRGBO(255, 130, 130, 1)
+                                        : Colors.grey,
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.grey[300],
+                                          blurRadius: 1.0,
+                                          spreadRadius: 1.0,
+                                          offset: Offset(3.0, 3.0))
+                                    ]),
+                                child: Center(
+                                  child: Text(
+                                    '여행',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize:
+                                            3 * SizeConfig.widthMultiplier,
+                                        color: Colors.white),
                                   ),
                                 ),
                               ),
-                            )
-                                .toList()),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  _changeColor[9] = !_changeColor[9];
+                                  _hobbyInput.insert(5, _hobby[5]);
+                                });
+                              },
+                              child: Container(
+                                width: 17 * SizeConfig.widthMultiplier,
+                                height: 5 * SizeConfig.heightMultiplier,
+                                padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                                margin: EdgeInsets.fromLTRB(
+                                  1 * SizeConfig.widthMultiplier,
+                                  1 * SizeConfig.heightMultiplier,
+                                  1 * SizeConfig.widthMultiplier,
+                                  1 * SizeConfig.heightMultiplier,
+                                ),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30.0),
+                                    color: _changeColor[9]
+                                        ? Color.fromRGBO(255, 130, 130, 1)
+                                        : Colors.grey,
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.grey[300],
+                                          blurRadius: 1.0,
+                                          spreadRadius: 1.0,
+                                          offset: Offset(3.0, 3.0))
+                                    ]),
+                                child: Center(
+                                  child: Text(
+                                    '요리',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize:
+                                            3 * SizeConfig.widthMultiplier,
+                                        color: Colors.white),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  _changeColor[10] = !_changeColor[10];
+                                  _hobbyInput.insert(6, _hobby[6]);
+                                });
+                              },
+                              child: Container(
+                                width: 17 * SizeConfig.widthMultiplier,
+                                height: 5 * SizeConfig.heightMultiplier,
+                                padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                                margin: EdgeInsets.fromLTRB(
+                                  1 * SizeConfig.widthMultiplier,
+                                  1 * SizeConfig.heightMultiplier,
+                                  1 * SizeConfig.widthMultiplier,
+                                  1 * SizeConfig.heightMultiplier,
+                                ),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30.0),
+                                    color:_changeColor[10]
+                                        ? Color.fromRGBO(255, 130, 130, 1)
+                                        : Colors.grey,
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.grey[300],
+                                          blurRadius: 1.0,
+                                          spreadRadius: 1.0,
+                                          offset: Offset(3.0, 3.0))
+                                    ]),
+                                child: Center(
+                                  child: Text(
+                                    '음악감상',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize:
+                                            3 * SizeConfig.widthMultiplier,
+                                        color: Colors.white),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  _changeColor[11] = !_changeColor[11];
+                                  _hobbyInput.insert(7, _hobby[7]);
+                                });
+                              },
+                              child: Container(
+                                width: 17 * SizeConfig.widthMultiplier,
+                                height: 5 * SizeConfig.heightMultiplier,
+                                padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                                margin: EdgeInsets.fromLTRB(
+                                  1 * SizeConfig.widthMultiplier,
+                                  1 * SizeConfig.heightMultiplier,
+                                  1 * SizeConfig.widthMultiplier,
+                                  1 * SizeConfig.heightMultiplier,
+                                ),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30.0),
+                                    color: _changeColor[11]
+                                        ? Color.fromRGBO(255, 130, 130, 1)
+                                        : Colors.grey,
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.grey[300],
+                                          blurRadius: 1.0,
+                                          spreadRadius: 1.0,
+                                          offset: Offset(3.0, 3.0))
+                                    ]),
+                                child: Center(
+                                  child: Text(
+                                    '산책',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize:
+                                            3 * SizeConfig.widthMultiplier,
+                                        color: Colors.white),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),
@@ -996,7 +1389,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                                   border: InputBorder.none,
                                   hintText: '자신을 소개해 주세요',
                                   hintStyle:
-                                  TextStyle(color: Colors.grey[300])),
+                                      TextStyle(color: Colors.grey[300])),
                             ),
                           ),
                         ),
