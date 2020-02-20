@@ -124,31 +124,31 @@ class _ChatPageState extends State<ChatPage> {
 
   Widget ChatList(BuildContext context){
     return FutureBuilder(
-      future: GetUserList(),
-      builder: (context, snapshot) {
-        if(!snapshot.hasData || snapshot.data.isEmpty){
-          //나중에 디자인
-          return Text('현재 채팅 중인 유저가 없습니다', style: TextStyle(
-              fontSize: 10 * SizeConfig.widthMultiplier,
-              color: Color.fromRGBO(255, 130, 130, 1),fontWeight: FontWeight.bold
-          ),textAlign: TextAlign.center,);
-        }
-        return ListView.builder(
-            itemCount:snapshot.data[0]['chttingwith'].length,
-            shrinkWrap: true,
-            itemBuilder: (BuildContext context, int index){
-              if(snapshot.data[0]['chttingwith'].length == 0){
-                //나중에 디자인하기
-                return Text('현재 채팅 중인 유저가 없습니다', style: TextStyle(
-                  fontSize: 50,
-                  color: Colors.red
-                ),);
-              }else{
-                return ChttingUserList(snapshot.data[0]['chttingwith'][index]);
-              }
+        future: GetUserList(),
+        builder: (context, snapshot) {
+          if(!snapshot.hasData || snapshot.data.isEmpty){
+            //나중에 디자인
+            return Text('현재 채팅 중인 유저가 없습니다', style: TextStyle(
+                fontSize: 10 * SizeConfig.widthMultiplier,
+                color: Color.fromRGBO(255, 130, 130, 1),fontWeight: FontWeight.bold
+            ),textAlign: TextAlign.center,);
+          }
+          return ListView.builder(
+              itemCount:snapshot.data[0]['chttingwith'].length,
+              shrinkWrap: true,
+              itemBuilder: (BuildContext context, int index){
+                if(snapshot.data[0]['chttingwith'].length == 0){
+                  //나중에 디자인하기
+                  return Text('현재 채팅 중인 유저가 없습니다', style: TextStyle(
+                      fontSize: 50,
+                      color: Colors.red
+                  ),);
+                }else{
+                  return ChttingUserList(snapshot.data[0]['chttingwith'][index]);
+                }
 
-        });
-      }
+              });
+        }
     );
   }
 
@@ -195,42 +195,42 @@ class _ChatPageState extends State<ChatPage> {
             );
           },
           child: FutureBuilder(
-            future: GetMessage(Myid, ds['id']),
-            builder: (context, snapshot) {
-              if(!snapshot.hasData || snapshot.data.isEmpty){
-                return Container();
-              }
-              return Container(
-                width: 60 * SizeConfig.widthMultiplier,
-                height: 8 * SizeConfig.heightMultiplier,
-                padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                margin: EdgeInsets.fromLTRB(
-                  2 * SizeConfig.widthMultiplier,
-                  1 * SizeConfig.heightMultiplier,
-                  2 * SizeConfig.widthMultiplier,
-                  1 * SizeConfig.heightMultiplier,
-                ),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15.0),
-                    color: Color.fromRGBO(255, 130, 130, 1),
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.grey[300],
-                          blurRadius: 1.0,
-                          spreadRadius: 1.0,
-                          offset: Offset(3.0, 3.0))
-                    ]),
-                child: Center(
-                  child: Text(
-                    (snapshot.data[0] != null)?snapshot.data[0]['message']:'',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 4 * SizeConfig.widthMultiplier,
-                        color: Colors.white),
+              future: GetMessage(Myid, ds['id']),
+              builder: (context, snapshot) {
+                if(!snapshot.hasData || snapshot.data.isEmpty){
+                  return Container();
+                }
+                return Container(
+                  width: 60 * SizeConfig.widthMultiplier,
+                  height: 8 * SizeConfig.heightMultiplier,
+                  padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                  margin: EdgeInsets.fromLTRB(
+                    2 * SizeConfig.widthMultiplier,
+                    1 * SizeConfig.heightMultiplier,
+                    2 * SizeConfig.widthMultiplier,
+                    1 * SizeConfig.heightMultiplier,
                   ),
-                ),
-              );
-            }
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15.0),
+                      color: Color.fromRGBO(255, 130, 130, 1),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.grey[300],
+                            blurRadius: 1.0,
+                            spreadRadius: 1.0,
+                            offset: Offset(3.0, 3.0))
+                      ]),
+                  child: Center(
+                    child: Text(
+                      (snapshot.data[0] != null)?snapshot.data[0]['message']:'',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 4 * SizeConfig.widthMultiplier,
+                          color: Colors.white),
+                    ),
+                  ),
+                );
+              }
           ),
         ),
       ],

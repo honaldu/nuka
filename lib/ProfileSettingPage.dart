@@ -784,7 +784,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                               onTap: () {
                                 setState(() {
                                   _changeColor[0] = !_changeColor[0];
-                                  _characterInput.insert(2, _character[2]);
+                                  _characterInput.insert(0, _character[0]);
                                 });
                               },
                               child: Container(
