@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'BottomBar/BottomBarMain.dart';
-import 'SizeMultiplier.dart';
+import 'SizeConfig.dart';
 
 class Confirming extends StatefulWidget {
   @override
@@ -31,7 +31,7 @@ class _ConfirmingState extends State<Confirming> {
               filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
               child: Container(
                 decoration:
-                    BoxDecoration(color: Colors.white.withOpacity(0.0)),
+                BoxDecoration(color: Colors.white.withOpacity(0.0)),
                 child: Center(
                   child: Center(
                     child: Column(

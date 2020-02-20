@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'SignPage.dart';
-import 'package:nuka/SizeMultiplier.dart';
+import 'package:nuka/SizeConfig.dart';
 import 'package:flutter/animation.dart';
 import 'package:nuka/Styling.dart';
 //애니메이션 추가 페이지. 애니메이션 추가 요망
@@ -39,7 +39,7 @@ class _EntranceState extends State<Entrance> with TickerProviderStateMixin {
           child: new Center(
             child: FlatButton(
               onPressed: () {
-               Navigator.of(context).push(CreateRoute());
+                Navigator.of(context).push(CreateRoute());
               },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -100,6 +100,6 @@ Route CreateRoute() {
         var Curve = Curves.easeIn;
         var tween = Tween(begin: begin,end: end).chain(CurveTween(curve: Curve));
         return SlideTransition(position: animation.drive(tween),
-        child: child,);
+          child: child,);
       });
 }

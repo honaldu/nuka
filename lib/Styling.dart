@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'SizeMultiplier.dart';
+import 'SizeConfig.dart';
 
 class AppTheme {
   AppTheme._();

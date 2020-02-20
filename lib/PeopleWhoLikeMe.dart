@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'ProfileInfoJuhee.dart';
-import 'SizeMultiplier.dart';
-import 'package:nuka/Styling.dart';
+import 'package:nuka/Utils/rest_api_utils.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'SizeConfig.dart';
 
 class LikeMe extends StatefulWidget {
   @override
@@ -9,6 +12,26 @@ class LikeMe extends StatefulWidget {
 }
 
 class _LikeMeState extends State<LikeMe> {
+
+
+  Future GetWhoLikeMe() async{
+    SharedPreferences prefs =await SharedPreferences.getInstance();
+    http.Response response = await http.get(
+        Uri.encodeFull('${ServerIp}auth/relation/${prefs.getInt('id')}/l'),
+        headers: Header);
+    var utf8convert= utf8.decode(response.bodyBytes);//한글화
+    return json.decode(utf8convert);
+  }
+
+  GetUser(int userid) async {
+    http.Response response = await http.get(
+        Uri.encodeFull('${ServerIp}auth/user/$userid'),
+        headers: Header);
+    var utf8convert= utf8.decode(response.bodyBytes);//한글화
+    return json.decode(utf8convert);
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,53 +51,41 @@ class _LikeMeState extends State<LikeMe> {
       body: ListView(
         children: <Widget>[
           SizedBox(
-            height: 40,
+            height: 6 * SizeConfig.heightMultiplier,
           ),
-          GridView.count(
-            shrinkWrap: true,
-            crossAxisCount: 3,
-            children: List.generate(
-              100,
-              (index) {
-                return InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => new ProFileInfo()),
+          FutureBuilder(
+            future: GetWhoLikeMe(),
+            builder: (context, snapshot) {
+              if(!snapshot.hasData){
+                return Container();
+              }
+              return GridView.count(
+                shrinkWrap: true,
+                crossAxisCount: 3,
+                children: List.generate(
+                  snapshot.data.length,
+                  (index) {
+                    var ds = snapshot.data[index];
+                    return FutureBuilder(
+                      future: GetUser(ds['from_user']),
+                      builder: (context, snapshot2) {
+                        if(!snapshot2.hasData){
+                          return Container();
+                        }
+                        var userds = snapshot2.data;
+                        return Center(
+                          child: (userds['image'] != null)?Image.network(userds['image']):Icon(Icons.person),
+                        );
+                      }
                     );
                   },
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: 1 * SizeConfig.heightMultiplier),
-                    child: Container(
-                      width: 10 * SizeConfig.widthMultiplier,
-                      height: 30 * SizeConfig.heightMultiplier,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8.0),
-                          border: Border.all(color: Colors.grey[300]),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.grey[300],
-                                blurRadius: 1.0,
-                                spreadRadius: 1.0,
-                                offset: Offset(3.0, 3.0))
-                          ]),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Image.asset(
-                          'Images/juhee$index.jpg',
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
+                ),
+              );
+            }
           ),
         ],
       ),
+
     );
   }
 }

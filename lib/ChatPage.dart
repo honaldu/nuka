@@ -4,7 +4,7 @@ import 'package:nuka/Utils/rest_api_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:web_socket_channel/io.dart';
 import 'PeopleWhoLikeMe.dart';
-import 'SizeMultiplier.dart';
+import 'SizeConfig.dart';
 import 'Chatting.dart';
 import 'package:http/http.dart' as http;
 
@@ -196,9 +196,26 @@ class _ChatPageState extends State<ChatPage> {
           },
           child: FutureBuilder(
             future: GetMessage(Myid, ds['id']),
-            builder: (context, snapshot) {
-              if(!snapshot.hasData){
-                return Container();
+            builder: (context, snapshot2) {
+              if(!snapshot2.hasData || snapshot2.data.isEmpty){
+                return Container(
+                  child: InkWell(
+                    onTap: () async {
+                      SharedPreferences prefs =await SharedPreferences.getInstance();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => new Chatting(
+                              channel: IOWebSocketChannel.connect((prefs.getInt('id') >= ds['id'])?'ws://15.164.212.90:8000/ws/chatting/${prefs.getInt('id')}-${ds['id']}/':'ws://15.164.212.90:8000/ws/chatting/${ds['id']}-${prefs.getInt('id')}/'),
+                              myid: prefs.getInt('id'),
+                              mynickname: prefs.getString('nickname'),
+                              peerId: ds['id'],
+                              peernickname: ds['nickname'],
+                            )),
+                      );
+                    },
+                      child: Text('채팅방들가기 << 임시')),
+                );
               }
               return Container(
                 width: 60 * SizeConfig.widthMultiplier,
@@ -222,7 +239,7 @@ class _ChatPageState extends State<ChatPage> {
                     ]),
                 child: Center(
                   child: Text(
-                    (snapshot.data[0] != null)?snapshot.data[0]['message']:'',
+                    (snapshot2.data[0] != null)?snapshot2.data[0]['message']:'',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 4 * SizeConfig.widthMultiplier,
