@@ -197,7 +197,7 @@ class _ChatPageState extends State<ChatPage> {
           child: FutureBuilder(
             future: GetMessage(Myid, ds['id']),
             builder: (context, snapshot) {
-              if(!snapshot.hasData){
+              if(!snapshot.hasData || snapshot.data.isEmpty){
                 return Container();
               }
               return Container(
