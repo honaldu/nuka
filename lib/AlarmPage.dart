@@ -10,10 +10,10 @@ import 'package:http/http.dart' as http;
 
 class AlarmPage extends StatefulWidget {
 
-
+  final WebSocketChannel channel;
   int myid;
 
-  AlarmPage({Key key,@required this.myid}):super(key:key);
+  AlarmPage({Key key, @required this.channel, @required this.myid}):super(key:key);
 
   @override
   _AlarmPageState createState() => _AlarmPageState();
@@ -37,6 +37,7 @@ class _AlarmPageState extends State<AlarmPage> {
     // TODO: implement initState
     AlarmList = List();
     GetMessage().then((data){
+      print(data);
       setState(() {
         AlarmList = data;
       });
@@ -44,10 +45,9 @@ class _AlarmPageState extends State<AlarmPage> {
 
     //소켓
 
-//    widget.channel.stream.listen((data){
-//      Map<dynamic, dynamic> datamap = json.decode(data);
-//      print(datamap);
-//    });
+    widget.channel.stream.listen((data){
+      Map<dynamic, dynamic> datamap = json.decode(data);
+    });
 
     super.initState();
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'SizeConfig.dart';
+import 'SizeMultiplier.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:nuka/Styling.dart';
 
@@ -51,7 +51,7 @@ class _MainPageState extends State<MainPage> {
                           ),
                           ClipRRect(
                             borderRadius:
-                            BorderRadius.all(Radius.circular(30)),
+                                BorderRadius.all(Radius.circular(30)),
                             child: FadeInImage(
                               placeholder: MemoryImage(kTransparentImage),
                               image: AssetImage(

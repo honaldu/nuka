@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'BottomBarPart.dart';
+import 'package:nuka/Styling.dart';
+import 'package:nuka/SizeMultiplier.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -9,8 +11,19 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: BottomBarPart(),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return OrientationBuilder(
+          builder: (context, orientation) {
+            SizeConfig().init(constraints, orientation);
+            return MaterialApp(
+              home: BottomBarPart(),
+              debugShowCheckedModeBanner: false,
+              theme: AppTheme.lightTheme,
+            );
+          },
+        );
+      },
     );
   }
 }

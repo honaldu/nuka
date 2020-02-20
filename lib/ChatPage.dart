@@ -4,7 +4,7 @@ import 'package:nuka/Utils/rest_api_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:web_socket_channel/io.dart';
 import 'PeopleWhoLikeMe.dart';
-import 'SizeConfig.dart';
+import 'SizeMultiplier.dart';
 import 'Chatting.dart';
 import 'package:http/http.dart' as http;
 

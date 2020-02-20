@@ -5,7 +5,7 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 import 'ConfirmingPage.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
-import 'SizeConfig.dart';
+import 'SizeMultiplier.dart';
 
 class MyButtonModel {
   final String buttonText;
@@ -79,7 +79,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                           ),
                           decoration: BoxDecoration(
                             border:
-                            Border.all(width: 1, color: Colors.grey[300]),
+                                Border.all(width: 1, color: Colors.grey[300]),
                             borderRadius: BorderRadius.circular(15.0),
                             color: Colors.white,
                             boxShadow: [
@@ -127,7 +127,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                           ),
                           decoration: BoxDecoration(
                             border:
-                            Border.all(width: 1, color: Colors.grey[300]),
+                                Border.all(width: 1, color: Colors.grey[300]),
                             borderRadius: BorderRadius.circular(15.0),
                             color: Colors.white,
                             boxShadow: [
@@ -175,7 +175,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                           ),
                           decoration: BoxDecoration(
                             border:
-                            Border.all(width: 1, color: Colors.grey[300]),
+                                Border.all(width: 1, color: Colors.grey[300]),
                             borderRadius: BorderRadius.circular(15.0),
                             color: Colors.white,
                             boxShadow: [
@@ -229,7 +229,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                           ),
                           decoration: BoxDecoration(
                             border:
-                            Border.all(width: 1, color: Colors.grey[300]),
+                                Border.all(width: 1, color: Colors.grey[300]),
                             borderRadius: BorderRadius.circular(15.0),
                             color: Colors.white,
                             boxShadow: [
@@ -277,7 +277,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                           ),
                           decoration: BoxDecoration(
                             border:
-                            Border.all(width: 1, color: Colors.grey[300]),
+                                Border.all(width: 1, color: Colors.grey[300]),
                             borderRadius: BorderRadius.circular(15.0),
                             color: Colors.white,
                             boxShadow: [
@@ -325,7 +325,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                           ),
                           decoration: BoxDecoration(
                             border:
-                            Border.all(width: 1, color: Colors.grey[300]),
+                                Border.all(width: 1, color: Colors.grey[300]),
                             borderRadius: BorderRadius.circular(15.0),
                             color: Colors.white,
                             boxShadow: [
@@ -404,7 +404,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                                   border: InputBorder.none,
                                   hintText: '별명을 입력해 주세요',
                                   hintStyle:
-                                  TextStyle(color: Colors.grey[300])),
+                                      TextStyle(color: Colors.grey[300])),
                             ),
                           ),
                         ),
@@ -452,13 +452,13 @@ class _ProfileSettingState extends State<ProfileSetting> {
                                 minTime: DateTime(1980, 1, 1),
                                 maxTime: DateTime(2005, 1, 1),
                                 onChanged: (date) {
-                                  print('change $date');
-                                }, onConfirm: (date) {
-                                  print('confirm $date');
-                                  _date =
+                              print('change $date');
+                            }, onConfirm: (date) {
+                              print('confirm $date');
+                              _date =
                                   '${date.year} - ${date.month} - ${date.day}';
-                                  setState(() {});
-                                },
+                              setState(() {});
+                            },
                                 currentTime: DateTime.now(),
                                 locale: LocaleType.en);
                             ;
@@ -519,7 +519,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                                   border: InputBorder.none,
                                   hintText: '키를 입력해 주세요',
                                   hintStyle:
-                                  TextStyle(color: Colors.grey[300])),
+                                      TextStyle(color: Colors.grey[300])),
                             ),
                           ),
                         ),
@@ -688,7 +688,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                                   border: InputBorder.none,
                                   hintText: '직업을 입력해 주세요',
                                   hintStyle:
-                                  TextStyle(color: Colors.grey[300])),
+                                      TextStyle(color: Colors.grey[300])),
                             ),
                           ),
                         ),
@@ -748,52 +748,52 @@ class _ProfileSettingState extends State<ProfileSetting> {
                           ],
                         ),
                         Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
                             children: _a
                                 .map(
                                   (MyButtonModel f) => InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    f.changeButtonColor = !f.changeButtonColor;
-                                  });
-                                },
-                                child: Container(
-                                  width: 17 * SizeConfig.widthMultiplier,
-                                  height: 5 * SizeConfig.heightMultiplier,
-                                  padding:
-                                  EdgeInsets.fromLTRB(10, 5, 10, 5),
-                                  margin: EdgeInsets.fromLTRB(
-                                    1 * SizeConfig.widthMultiplier,
-                                    1 * SizeConfig.heightMultiplier,
-                                    1 * SizeConfig.widthMultiplier,
-                                    1 * SizeConfig.heightMultiplier,
-                                  ),
-                                  decoration: BoxDecoration(
-                                      borderRadius:
-                                      BorderRadius.circular(30.0),
-                                      color: f.changeButtonColor
-                                          ? Color.fromRGBO(255, 130, 130, 1)
-                                          : Colors.grey,
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: Colors.grey[300],
-                                            blurRadius: 1.0,
-                                            spreadRadius: 1.0,
-                                            offset: Offset(3.0, 3.0))
-                                      ]),
-                                  child: Center(
-                                    child: Text(
-                                      f.buttonText,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 3 *
-                                              SizeConfig.widthMultiplier,
-                                          color: Colors.white),
+                                    onTap: () {
+                                      setState(() {
+                                        f.changeButtonColor = !f.changeButtonColor;
+                                      });
+                                    },
+                                    child: Container(
+                                      width: 17 * SizeConfig.widthMultiplier,
+                                      height: 5 * SizeConfig.heightMultiplier,
+                                      padding:
+                                      EdgeInsets.fromLTRB(10, 5, 10, 5),
+                                      margin: EdgeInsets.fromLTRB(
+                                        1 * SizeConfig.widthMultiplier,
+                                        1 * SizeConfig.heightMultiplier,
+                                        1 * SizeConfig.widthMultiplier,
+                                        1 * SizeConfig.heightMultiplier,
+                                      ),
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                          BorderRadius.circular(30.0),
+                                          color: f.changeButtonColor
+                                              ? Color.fromRGBO(255, 130, 130, 1)
+                                              : Colors.grey,
+                                          boxShadow: [
+                                            BoxShadow(
+                                                color: Colors.grey[300],
+                                                blurRadius: 1.0,
+                                                spreadRadius: 1.0,
+                                                offset: Offset(3.0, 3.0))
+                                          ]),
+                                      child: Center(
+                                        child: Text(
+                                          f.buttonText,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 3 *
+                                                  SizeConfig.widthMultiplier,
+                                              color: Colors.white),
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ),
-                            )
+                                )
                                 .toList()),
                       ],
                     ),
@@ -851,7 +851,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                           ],
                         ),
                         Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
                             children: _b
                                 .map(
                                   (MyButtonModel f) => InkWell(
@@ -996,7 +996,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                                   border: InputBorder.none,
                                   hintText: '자신을 소개해 주세요',
                                   hintStyle:
-                                  TextStyle(color: Colors.grey[300])),
+                                      TextStyle(color: Colors.grey[300])),
                             ),
                           ),
                         ),

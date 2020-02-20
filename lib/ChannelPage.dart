@@ -3,7 +3,8 @@ import 'ChannelContents/Ideal.dart';
 import 'ChannelContents/Near.dart';
 import 'ChannelContents/Rate.dart';
 import 'ShopPage.dart';
-import 'SizeConfig.dart';
+import 'SizeMultiplier.dart';
+import 'package:nuka/Styling.dart';
 
 class ChannelPage extends StatefulWidget {
   const ChannelPage({Key key}) : super(key: key);
