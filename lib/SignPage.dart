@@ -282,6 +282,8 @@ class _SignPageState extends State<SignPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomPadding: true,
       body: Container(
         width: double.maxFinite,
         decoration: new BoxDecoration(
