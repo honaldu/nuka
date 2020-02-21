@@ -188,6 +188,8 @@ class _BottomBarPartState extends State<BottomBarPart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomPadding: true,
       bottomNavigationBar: _curvedNavigationBar(_selectedIndex),
       body: PageStorage(bucket: bucket, child: pages[_selectedIndex]),
     );
