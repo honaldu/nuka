@@ -76,7 +76,7 @@ class _ChatPageState extends State<ChatPage> {
                       1 * SizeConfig.heightMultiplier,
                     ),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15.0),
+                        borderRadius: BorderRadius.circular(3 * SizeConfig.heightMultiplier),
                         color: Color.fromRGBO(255, 130, 130, 1),
                         boxShadow: [
                           BoxShadow(

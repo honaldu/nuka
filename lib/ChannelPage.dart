@@ -66,15 +66,12 @@ class _ChannelPageState extends State<ChannelPage> {
                             child: Icon(
                               Icons.shopping_cart,
                               size: 10 * SizeConfig.widthMultiplier,
-                              color: Colors.black,
+                              color: Color.fromRGBO(255, 130, 130, 1),
                             ),
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 1,
-                    ),
                   ],
                 ),
                 Row(
@@ -89,6 +86,7 @@ class _ChannelPageState extends State<ChannelPage> {
                         0.5 * SizeConfig.heightMultiplier,
                       ),
                       child: Stack(
+                        alignment: Alignment.center,
                         children: <Widget>[
                           Padding(
                             padding: EdgeInsets.fromLTRB(
@@ -127,6 +125,7 @@ class _ChannelPageState extends State<ChannelPage> {
                         0.5 * SizeConfig.heightMultiplier,
                       ),
                       child: Stack(
+                        alignment: Alignment.center,
                         children: <Widget>[
                           Padding(
                             padding: EdgeInsets.fromLTRB(
@@ -166,21 +165,14 @@ class _ChannelPageState extends State<ChannelPage> {
                     Padding(
                       padding: EdgeInsets.fromLTRB(
                         0.5 * SizeConfig.widthMultiplier,
-                        0.5 * SizeConfig.heightMultiplier,
+                        0 * SizeConfig.heightMultiplier,
                         0.5 * SizeConfig.widthMultiplier,
                         0.5 * SizeConfig.heightMultiplier,
                       ),
                       child: Stack(
+                        alignment: Alignment.center,
                         children: <Widget>[
-                          Padding(
-                            padding: EdgeInsets.fromLTRB(
-                              3 * SizeConfig.widthMultiplier,
-                              3 * SizeConfig.heightMultiplier,
-                              3 * SizeConfig.widthMultiplier,
-                              3 * SizeConfig.heightMultiplier,
-                            ),
-                            child: CircularProgressIndicator(),
-                          ),
+                          CircularProgressIndicator(),
                           ClipRRect(
                             borderRadius: BorderRadius.all(Radius.circular(20)),
                             child: FadeInImage(
@@ -204,11 +196,12 @@ class _ChannelPageState extends State<ChannelPage> {
                     Padding(
                       padding: EdgeInsets.fromLTRB(
                         0.5 * SizeConfig.widthMultiplier,
-                        0.5 * SizeConfig.heightMultiplier,
+                        0 * SizeConfig.heightMultiplier,
                         0.5 * SizeConfig.widthMultiplier,
                         0.5 * SizeConfig.heightMultiplier,
                       ),
                       child: Stack(
+                        alignment: Alignment.center,
                         children: <Widget>[
                           Padding(
                             padding: EdgeInsets.fromLTRB(

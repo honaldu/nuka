@@ -90,7 +90,7 @@ class _StoryPageState extends State<StoryPage> {
                         ),
                         decoration: BoxDecoration(
                           border: Border.all(width: 1, color: Colors.grey[300]),
-                          borderRadius: BorderRadius.circular(15.0),
+                          borderRadius: BorderRadius.circular(5 * SizeConfig.widthMultiplier),
                           color: Colors.white,
                           boxShadow: [
                             BoxShadow(
@@ -133,7 +133,7 @@ class _StoryPageState extends State<StoryPage> {
                         height: 5 * SizeConfig.heightMultiplier,
                         decoration: BoxDecoration(
                           color: Color.fromRGBO(255, 130, 130, 1),
-                          borderRadius: BorderRadius.circular(10.0),
+                          borderRadius: BorderRadius.circular(3.0 * SizeConfig.widthMultiplier),
                           boxShadow: [
                             BoxShadow(
                                 color: Colors.grey[300],

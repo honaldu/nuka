@@ -308,15 +308,23 @@ class _SignPageState extends State<SignPage> {
                                   child: Row(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     children: <Widget>[
-                                      Image.asset(
-                                        'Images/google.png',
-                                        height: 7 * SizeConfig.heightMultiplier,
-                                        width: 7 * SizeConfig.widthMultiplier,
+                                      Padding(
+                                        padding: EdgeInsets.fromLTRB(
+                                          4 * SizeConfig.widthMultiplier,
+                                          0 * SizeConfig.heightMultiplier,
+                                          1 * SizeConfig.widthMultiplier,
+                                          0 * SizeConfig.heightMultiplier,
+                                        ),
+                                        child: Image.asset(
+                                          'Images/google.png',
+                                          height: 7 * SizeConfig.heightMultiplier,
+                                          width: 7 * SizeConfig.widthMultiplier,
+                                        ),
                                       ),
                                       SizedBox(
-                                        width: 20,
+                                        width: 5 * SizeConfig.widthMultiplier,
                                       ),
                                       Text(
                                         'Sign In With Google',
@@ -354,15 +362,23 @@ class _SignPageState extends State<SignPage> {
                                       child: Row(
                                         crossAxisAlignment:
                                         CrossAxisAlignment.center,
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment.start,
                                         children: <Widget>[
-                                          Image.asset(
-                                            'Images/apple.png',
-                                            height: 7 * SizeConfig.heightMultiplier,
-                                            width: 7 * SizeConfig.widthMultiplier,
+                                          Padding(
+                                            padding: EdgeInsets.fromLTRB(
+                                              4 * SizeConfig.widthMultiplier,
+                                              0 * SizeConfig.heightMultiplier,
+                                              1 * SizeConfig.widthMultiplier,
+                                              0 * SizeConfig.heightMultiplier,
+                                            ),
+                                            child: Image.asset(
+                                              'Images/apple.png',
+                                              height: 7 * SizeConfig.heightMultiplier,
+                                              width: 7 * SizeConfig.widthMultiplier,
+                                            ),
                                           ),
                                           SizedBox(
-                                            width: 20,
+                                            width: 5 * SizeConfig.widthMultiplier,
                                           ),
                                           Text(
                                             'Sign In With Apple',
@@ -405,15 +421,23 @@ class _SignPageState extends State<SignPage> {
                                   child: Row(
                                     crossAxisAlignment:
                                     CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     children: <Widget>[
-                                      Image.asset(
-                                        'Images/facebook.png',
-                                        height: 7 * SizeConfig.heightMultiplier,
-                                        width: 7 * SizeConfig.widthMultiplier,
+                                      Padding(
+                                        padding: EdgeInsets.fromLTRB(
+                                          4 * SizeConfig.widthMultiplier,
+                                          0 * SizeConfig.heightMultiplier,
+                                          1 * SizeConfig.widthMultiplier,
+                                          0 * SizeConfig.heightMultiplier,
+                                        ),
+                                        child: Image.asset(
+                                          'Images/facebook.png',
+                                          height: 7 * SizeConfig.heightMultiplier,
+                                          width: 7 * SizeConfig.widthMultiplier,
+                                        ),
                                       ),
                                       SizedBox(
-                                        width: 4 * SizeConfig.widthMultiplier,
+                                        width: 3 * SizeConfig.widthMultiplier,
                                       ),
                                       Text(
                                         'Sign In With Facebook',
