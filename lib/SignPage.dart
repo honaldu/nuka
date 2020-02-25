@@ -18,89 +18,65 @@ import 'package:http/http.dart' as http;
 
 import 'dart:ui';
 
-
-
-
 class SignPage extends StatefulWidget {
   @override
   _SignPageState createState() => _SignPageState();
 }
 
 class _SignPageState extends State<SignPage> {
-
-
-
-
   final GoogleSignIn googleSignIn = GoogleSignIn();
   final FirebaseAuth auth = FirebaseAuth.instance;
   SharedPreferences prefs;
   String errorMessage;
 
-
   //자동 로그인을 위해 로그인이 되어있다면 로그인 창 스킵
   isSignIn() async {
-    SharedPreferences prefs =await SharedPreferences.getInstance();
-    if(prefs.getInt('isactive') != null){
-
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.getInt('isactive') != null) {
       //이미 활성화된 유저일시에 바로 메인페이지로 이동
       Navigator.push(
         context,
-        MaterialPageRoute(
-            builder: (context) => new MainPage()),
-
+        MaterialPageRoute(builder: (context) => new MainPage()),
       );
-    }else{
+    } else {
       //활성화 서버에서 판단함.
 
       isActive(false);
     }
-
-
   }
 
-
-  GetUserProfile() async{
-    SharedPreferences prefs =await SharedPreferences.getInstance();
+  GetUserProfile() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     http.Response response = await http.get(
         Uri.encodeFull('${ServerIp}auth/user/${prefs.getInt('id')}'),
         headers: Header);
-    var utf8convert= utf8.decode(response.bodyBytes);//한글화
+    var utf8convert = utf8.decode(response.bodyBytes); //한글화
 
     return json.decode(utf8convert);
   }
 
-
-
   isActive(bool Sigin) async {
-    SharedPreferences prefs =await SharedPreferences.getInstance();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
 
     var ds = await GetUserProfile();
 
-
-    if(ds['active'] == true){
+    if (ds['active'] == true) {
       prefs.setInt("active", 1);
       prefs.setString('nickname', ds['nickname']);
       Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => new MainPage()));
-    }else if(ds['nickname'] != null){
+          context, MaterialPageRoute(builder: (context) => new MainPage()));
+    } else if (ds['nickname'] != null) {
       //서버에서 닉네임 설정이 되어있는지 확인한뒤 설정이 되어있다면 웨이팅 페이지로 이동
       Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => new Confirming()));
-    }else if(Sigin == true){
+          context, MaterialPageRoute(builder: (context) => new Confirming()));
+    } else if (Sigin == true) {
       //서버에서 닉네임 설정이 되어있는지 확인한뒤 설정이 되어있지않다면 프로필 설정으로 이동
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => new ProfileSetting()));
-    }else{
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => new ProfileSetting()));
+    } else {
       return null;
     }
   }
-
 
   //구글 로그인
   GoogleLogin() async {
@@ -111,7 +87,7 @@ class _SignPageState extends State<SignPage> {
         accessToken: authentication.accessToken);
     AuthResult authResult = await auth.signInWithCredential(credential);
     FirebaseUser user = authResult.user;
-    FirebaseUser userinfo =await auth.currentUser();
+    FirebaseUser userinfo = await auth.currentUser();
     IdTokenResult idTokenResult = await user.getIdToken();
 
     //해당 구글 로그인 이메일
@@ -119,9 +95,7 @@ class _SignPageState extends State<SignPage> {
     //해당 구글 로그인 토큰ID
     String token = authResult.user.uid;
 
-
     PostSign(email, token);
-
   }
 
   //서버로 이메일과 토큰을 보내 가입 및 로그인을 진행함
@@ -129,16 +103,14 @@ class _SignPageState extends State<SignPage> {
   PostSign(String email, String token) async {
     prefs = await SharedPreferences.getInstance();
 
-    final Map<String, dynamic> Data = {
-      "email": email,
-      "token": token};
+    final Map<String, dynamic> Data = {"email": email, "token": token};
 
     var response = await http.post(SignUrl, body: json.encode(Data));
 
     // 200 ok. 정상 동작임을 알려준다.
 
-    if(response.statusCode == 200){
-      var utf8convert= utf8.decode(response.bodyBytes);//한글화
+    if (response.statusCode == 200) {
+      var utf8convert = utf8.decode(response.bodyBytes); //한글화
       Map data = json.decode(utf8convert);
       await prefs.setString('email', data['email']);
       await prefs.setString('token', data['token']);
@@ -146,7 +118,7 @@ class _SignPageState extends State<SignPage> {
 
       //서버에서 확인
       isActive(true);
-    }else{
+    } else {
       print(response.statusCode);
       print(utf8.decode(response.bodyBytes));
       //나중에 로그인 실패 메세지 토스트로 만들기
@@ -163,10 +135,9 @@ class _SignPageState extends State<SignPage> {
     switch (result.status) {
       case AuthorizationStatus.authorized:
 
-      // Store user ID
+        // Store user ID
 //        await FlutterSecureStorage()
 //            .write(key: "userId", value: result.credential.user);
-
 
         PostSign(result.credential.email, result.credential.user);
 
@@ -220,17 +191,14 @@ class _SignPageState extends State<SignPage> {
 //    }
 //  }
 
-
   final FirebaseMessaging _fcm = FirebaseMessaging();
   StreamSubscription iosSubscription;
-
-
 
   @override
   void initState() {
     // TODO: implement initState
     isSignIn();
-    if(Platform.isIOS){
+    if (Platform.isIOS) {
       AppleSignIn.onCredentialRevoked.listen((_) {
         print("Credentials revoked");
       });
@@ -277,8 +245,6 @@ class _SignPageState extends State<SignPage> {
     );
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -294,7 +260,7 @@ class _SignPageState extends State<SignPage> {
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
             child: Container(
-              decoration:  BoxDecoration(color: Colors.white.withOpacity(0.0)),
+              decoration: BoxDecoration(color: Colors.white.withOpacity(0.0)),
               child: Center(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -308,36 +274,159 @@ class _SignPageState extends State<SignPage> {
                             20 * SizeConfig.heightMultiplier,
                             0,
                             8 * SizeConfig.heightMultiplier),
-                        child: Text('NuKa', style: Theme.of(context).textTheme.title),
+                        child: Text(
+                          'NuKa',
+                          style: TextStyle(
+                              color: Color.fromRGBO(255, 130, 130, 1),
+                              fontSize: 10 * SizeConfig.heightMultiplier),
+                        ),
                       ),
                     ),
                     Expanded(
                         flex: 1,
                         child: Column(
                           children: <Widget>[
-                            SignInButton(
-                              Buttons.Google,
-                              onPressed: () {
+                            InkWell(
+                              onTap: () {
                                 GoogleLogin();
                               },
+                              child: Padding(
+                                padding: EdgeInsets.fromLTRB(
+                                  0 * SizeConfig.widthMultiplier,
+                                  1 * SizeConfig.heightMultiplier,
+                                  0 * SizeConfig.widthMultiplier,
+                                  1 * SizeConfig.heightMultiplier,
+                                ),
+                                child: Container(
+                                  width: 65 * SizeConfig.widthMultiplier,
+                                  height: 8 * SizeConfig.heightMultiplier,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(
+                                        8.0 * SizeConfig.heightMultiplier),
+                                  ),
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Image.asset(
+                                        'Images/google.png',
+                                        height: 7 * SizeConfig.heightMultiplier,
+                                        width: 7 * SizeConfig.widthMultiplier,
+                                      ),
+                                      SizedBox(
+                                        width: 20,
+                                      ),
+                                      Text(
+                                        'Sign In With Google',
+                                        style: TextStyle(
+                                          color: Colors.grey[400],
+                                          fontSize:
+                                              4 * SizeConfig.widthMultiplier,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
                             ),
                             (Platform.isIOS)
-                                ? SignInButton(
-                              Buttons.Apple,
-                              onPressed: () async {
+                                ? InkWell(
+                              onTap: () async {
                                 AppleSign();
                               },
-                            )
+                                  child: Padding(
+                                    padding: EdgeInsets.fromLTRB(
+                                      0 * SizeConfig.widthMultiplier,
+                                      1 * SizeConfig.heightMultiplier,
+                                      0 * SizeConfig.widthMultiplier,
+                                      1 * SizeConfig.heightMultiplier,
+                                    ),
+                                    child: Container(
+                                      width: 65 * SizeConfig.widthMultiplier,
+                                      height: 8 * SizeConfig.heightMultiplier,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(
+                                            8.0 * SizeConfig.heightMultiplier),
+                                      ),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: <Widget>[
+                                          Image.asset(
+                                            'Images/apple.png',
+                                            height: 7 * SizeConfig.heightMultiplier,
+                                            width: 7 * SizeConfig.widthMultiplier,
+                                          ),
+                                          SizedBox(
+                                            width: 20,
+                                          ),
+                                          Text(
+                                            'Sign In With Apple',
+                                            style: TextStyle(
+                                              color: Colors.grey[400],
+                                              fontSize:
+                                              4 * SizeConfig.widthMultiplier,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                )
                                 : Container(),
-                            SignInButton(
-                              Buttons.Facebook,
-                              onPressed: () {
+                            InkWell(
+                              onTap: () {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => new ProfileSetting()),
+                                      builder: (context) =>
+                                      new ProfileSetting()),
                                 );
                               },
+                              child: Padding(
+                                padding: EdgeInsets.fromLTRB(
+                                  0 * SizeConfig.widthMultiplier,
+                                  1 * SizeConfig.heightMultiplier,
+                                  0 * SizeConfig.widthMultiplier,
+                                  1 * SizeConfig.heightMultiplier,
+                                ),
+                                child: Container(
+                                  width: 65 * SizeConfig.widthMultiplier,
+                                  height: 8 * SizeConfig.heightMultiplier,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(
+                                        8.0 * SizeConfig.heightMultiplier),
+                                  ),
+                                  child: Row(
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Image.asset(
+                                        'Images/facebook.png',
+                                        height: 7 * SizeConfig.heightMultiplier,
+                                        width: 7 * SizeConfig.widthMultiplier,
+                                      ),
+                                      SizedBox(
+                                        width: 4 * SizeConfig.widthMultiplier,
+                                      ),
+                                      Text(
+                                        'Sign In With Facebook',
+                                        style: TextStyle(
+                                          color: Colors.grey[400],
+                                          fontSize:
+                                          4 * SizeConfig.widthMultiplier,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
                             ),
                           ],
                         ))
