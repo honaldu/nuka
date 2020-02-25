@@ -41,10 +41,11 @@ class _ChannelPageState extends State<ChannelPage> {
                             0.5 * SizeConfig.heightMultiplier,
                           ),
                           child: Text(
-                            '추천',
+                            'Today\'s recommends',
                             style: TextStyle(
                                 color: Colors.black,
-                                fontSize: 8 * SizeConfig.widthMultiplier),
+                                fontSize: 5 * SizeConfig.widthMultiplier,
+                                fontWeight: FontWeight.bold),
                           ),
                         ),
                         Padding(
@@ -72,7 +73,7 @@ class _ChannelPageState extends State<ChannelPage> {
                       ],
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 1,
                     ),
                   ],
                 ),
@@ -82,10 +83,10 @@ class _ChannelPageState extends State<ChannelPage> {
                   children: <Widget>[
                     Padding(
                       padding: EdgeInsets.fromLTRB(
-                        1 * SizeConfig.widthMultiplier,
-                        1 * SizeConfig.heightMultiplier,
-                        1 * SizeConfig.widthMultiplier,
-                        1 * SizeConfig.heightMultiplier,
+                        0.5 * SizeConfig.widthMultiplier,
+                        0.5 * SizeConfig.heightMultiplier,
+                        0.5 * SizeConfig.widthMultiplier,
+                        0.5 * SizeConfig.heightMultiplier,
                       ),
                       child: Stack(
                         children: <Widget>[
@@ -99,8 +100,7 @@ class _ChannelPageState extends State<ChannelPage> {
                             child: CircularProgressIndicator(),
                           ),
                           ClipRRect(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20)),
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
                             child: FadeInImage(
                               placeholder: MemoryImage(kTransparentImage),
                               image: AssetImage(
@@ -119,13 +119,12 @@ class _ChannelPageState extends State<ChannelPage> {
                         ],
                       ),
                     ),
-                    SizedBox(width: 3 * SizeConfig.widthMultiplier,),
                     Padding(
                       padding: EdgeInsets.fromLTRB(
-                        1 * SizeConfig.widthMultiplier,
-                        1 * SizeConfig.heightMultiplier,
-                        1 * SizeConfig.widthMultiplier,
-                        1 * SizeConfig.heightMultiplier,
+                        0.5 * SizeConfig.widthMultiplier,
+                        0.5 * SizeConfig.heightMultiplier,
+                        0.5 * SizeConfig.widthMultiplier,
+                        0.5 * SizeConfig.heightMultiplier,
                       ),
                       child: Stack(
                         children: <Widget>[
@@ -139,8 +138,7 @@ class _ChannelPageState extends State<ChannelPage> {
                             child: CircularProgressIndicator(),
                           ),
                           ClipRRect(
-                            borderRadius:
-                            BorderRadius.all(Radius.circular(20)),
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
                             child: FadeInImage(
                               placeholder: MemoryImage(kTransparentImage),
                               image: AssetImage(
@@ -167,10 +165,10 @@ class _ChannelPageState extends State<ChannelPage> {
                   children: <Widget>[
                     Padding(
                       padding: EdgeInsets.fromLTRB(
-                        1 * SizeConfig.widthMultiplier,
-                        1 * SizeConfig.heightMultiplier,
-                        1 * SizeConfig.widthMultiplier,
-                        1 * SizeConfig.heightMultiplier,
+                        0.5 * SizeConfig.widthMultiplier,
+                        0.5 * SizeConfig.heightMultiplier,
+                        0.5 * SizeConfig.widthMultiplier,
+                        0.5 * SizeConfig.heightMultiplier,
                       ),
                       child: Stack(
                         children: <Widget>[
@@ -184,8 +182,7 @@ class _ChannelPageState extends State<ChannelPage> {
                             child: CircularProgressIndicator(),
                           ),
                           ClipRRect(
-                            borderRadius:
-                            BorderRadius.all(Radius.circular(20)),
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
                             child: FadeInImage(
                               placeholder: MemoryImage(kTransparentImage),
                               image: AssetImage(
@@ -204,13 +201,12 @@ class _ChannelPageState extends State<ChannelPage> {
                         ],
                       ),
                     ),
-                    SizedBox(width: 3 * SizeConfig.widthMultiplier,),
                     Padding(
                       padding: EdgeInsets.fromLTRB(
-                        1 * SizeConfig.widthMultiplier,
-                        1 * SizeConfig.heightMultiplier,
-                        1 * SizeConfig.widthMultiplier,
-                        1 * SizeConfig.heightMultiplier,
+                        0.5 * SizeConfig.widthMultiplier,
+                        0.5 * SizeConfig.heightMultiplier,
+                        0.5 * SizeConfig.widthMultiplier,
+                        0.5 * SizeConfig.heightMultiplier,
                       ),
                       child: Stack(
                         children: <Widget>[
@@ -224,8 +220,7 @@ class _ChannelPageState extends State<ChannelPage> {
                             child: CircularProgressIndicator(),
                           ),
                           ClipRRect(
-                            borderRadius:
-                            BorderRadius.all(Radius.circular(20)),
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
                             child: FadeInImage(
                               placeholder: MemoryImage(kTransparentImage),
                               image: AssetImage(
@@ -271,7 +266,8 @@ class _ChannelPageState extends State<ChannelPage> {
                         width: 95 * SizeConfig.widthMultiplier,
                         height: 10 * SizeConfig.heightMultiplier,
                         decoration: BoxDecoration(
-                            color: Colors.greenAccent,
+                            color: Colors.white,
+                            border: Border.all(color: Colors.grey[300]),
                             borderRadius: BorderRadius.circular(30.0),
                             boxShadow: [
                               BoxShadow(
@@ -280,13 +276,50 @@ class _ChannelPageState extends State<ChannelPage> {
                                   spreadRadius: 1.0,
                                   offset: Offset(3.0, 3.0))
                             ]),
-                        child: Center(
-                          child: Text(
-                            '근처 이성 만나기',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 8 * SizeConfig.widthMultiplier),
-                          ),
+                        child: Row(
+                          children: <Widget>[
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(
+                                4 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
+                                3 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
+                              ),
+                              child: Icon(
+                                Icons.explore,
+                                size: 8 * SizeConfig.widthMultiplier,
+                                color: Colors.redAccent,
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(
+                                1 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
+                                6 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
+                              ),
+                              child: Text(
+                                '근처 이성 만나기',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 6 * SizeConfig.widthMultiplier),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(
+                                18.5 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
+                                3 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
+                              ),
+                              child: Icon(
+                                Icons.fiber_new,
+                                color: Color.fromRGBO(255, 130, 130, 1),
+                                size: 8 * SizeConfig.widthMultiplier,
+                              ),
+                            )
+                          ],
                         ),
                       ),
                     ),
@@ -309,8 +342,10 @@ class _ChannelPageState extends State<ChannelPage> {
                         width: 95 * SizeConfig.widthMultiplier,
                         height: 10 * SizeConfig.heightMultiplier,
                         decoration: BoxDecoration(
-                            color: Colors.blueAccent,
-                            borderRadius: BorderRadius.circular(30.0),
+                            color: Colors.white,
+                            border: Border.all(color: Colors.grey[300]),
+                            borderRadius: BorderRadius.circular(
+                                10 * SizeConfig.widthMultiplier),
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.grey[300],
@@ -318,13 +353,50 @@ class _ChannelPageState extends State<ChannelPage> {
                                   spreadRadius: 1.0,
                                   offset: Offset(3.0, 3.0))
                             ]),
-                        child: Center(
-                          child: Text(
-                            '평가 좋은 이성 만나기',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 8 * SizeConfig.widthMultiplier),
-                          ),
+                        child: Row(
+                          children: <Widget>[
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(
+                                4 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
+                                3 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
+                              ),
+                              child: Icon(
+                                Icons.thumb_up,
+                                size: 8 * SizeConfig.widthMultiplier,
+                                color: Colors.blueAccent,
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(
+                                1 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
+                                6 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
+                              ),
+                              child: Text(
+                                '평가 좋은 이성 만나기',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 6 * SizeConfig.widthMultiplier),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(
+                                7 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
+                                3 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
+                              ),
+                              child: Icon(
+                                Icons.fiber_new,
+                                color: Color.fromRGBO(255, 130, 130, 1),
+                                size: 8 * SizeConfig.widthMultiplier,
+                              ),
+                            )
+                          ],
                         ),
                       ),
                     ),
@@ -347,7 +419,8 @@ class _ChannelPageState extends State<ChannelPage> {
                         width: 95 * SizeConfig.widthMultiplier,
                         height: 10 * SizeConfig.heightMultiplier,
                         decoration: BoxDecoration(
-                            color: Colors.purpleAccent,
+                            color: Colors.white,
+                            border: Border.all(color: Colors.grey[300]),
                             borderRadius: BorderRadius.circular(30.0),
                             boxShadow: [
                               BoxShadow(
@@ -356,13 +429,50 @@ class _ChannelPageState extends State<ChannelPage> {
                                   spreadRadius: 1.0,
                                   offset: Offset(3.0, 3.0))
                             ]),
-                        child: Center(
-                          child: Text(
-                            '이상형 만나기',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 8 * SizeConfig.widthMultiplier),
-                          ),
+                        child: Row(
+                          children: <Widget>[
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(
+                                4 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
+                                3 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
+                              ),
+                              child: Icon(
+                                Icons.loyalty,
+                                size: 8 * SizeConfig.widthMultiplier,
+                                color: Colors.purpleAccent,
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(
+                                1 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
+                                6 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
+                              ),
+                              child: Text(
+                                '이상형 만나기',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 6 * SizeConfig.widthMultiplier),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(
+                                25 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
+                                3 * SizeConfig.widthMultiplier,
+                                1 * SizeConfig.heightMultiplier,
+                              ),
+                              child: Icon(
+                                Icons.fiber_new,
+                                color: Color.fromRGBO(255, 130, 130, 1),
+                                size: 8 * SizeConfig.widthMultiplier,
+                              ),
+                            )
+                          ],
                         ),
                       ),
                     ),

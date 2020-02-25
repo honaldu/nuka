@@ -1,5 +1,3 @@
-
-
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
@@ -15,7 +13,6 @@ class StoryWriting extends StatefulWidget {
 }
 
 class _StoryWritingState extends State<StoryWriting> {
-
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   String content;
   File ImageFile;
@@ -23,7 +20,7 @@ class _StoryWritingState extends State<StoryWriting> {
   SharedPreferences prefs;
   http.MultipartFile multipartFile;
 
-  Future GetImage()async{
+  Future GetImage() async {
     ImageFile = await ImagePicker.pickImage(source: ImageSource.gallery);
     setState(() {});
   }
@@ -31,25 +28,23 @@ class _StoryWritingState extends State<StoryWriting> {
   PostIntData(int postid) async {
     prefs = await SharedPreferences.getInstance();
 
-
-
     Map<String, dynamic> Data = {
       "author": prefs.getInt('id'),
-      "user": prefs.getInt('id')};
-
+      "user": prefs.getInt('id')
+    };
 
     String addr = '${ServerIp}api/story/${prefs.getInt('id')}/${postid}/';
 
-
-    var response = await http.patch(addr, headers: Header,body: json.encode(Data));
+    var response =
+        await http.patch(addr, headers: Header, body: json.encode(Data));
 
     // 200 ok. 정상 동작임을 알려준다.
 
-    if(response.statusCode == 200){
-      var utf8convert= utf8.decode(response.bodyBytes);//한글화
+    if (response.statusCode == 200) {
+      var utf8convert = utf8.decode(response.bodyBytes); //한글화
       Map data = json.decode(utf8convert);
       Navigator.pop(context);
-    }else{
+    } else {
       print(response.statusCode);
       print(utf8.decode(response.bodyBytes));
       //나중에 로그인 실패 메세지 토스트로 만들기
@@ -58,9 +53,9 @@ class _StoryWritingState extends State<StoryWriting> {
   }
 
   PostContent() async {
-    if(content != null){
+    if (content != null) {
       prefs = await SharedPreferences.getInstance();
-      if(ImageFile != null){
+      if (ImageFile != null) {
         imagepath = ImageFile.path;
       }
 
@@ -68,37 +63,33 @@ class _StoryWritingState extends State<StoryWriting> {
       var postUri = Uri.parse(addr);
 
       http.MultipartRequest request = http.MultipartRequest("POST", postUri);
-      if(ImageFile != null){
+      if (ImageFile != null) {
         multipartFile = await http.MultipartFile.fromPath('image', imagepath);
       }
-
 
       request.fields['content'] = content;
       request.fields['email'] = prefs.getString('email');
       //나중에 프로필 설정 끝나면 바꾸기
       request.fields['gender'] = "True";
-      if(ImageFile != null){
+      if (ImageFile != null) {
         request.files.add(multipartFile);
       }
 
       request.send().then((result) async {
-        http.Response.fromStream(result).then((response){
-          if(response.statusCode == 200 || response.statusCode == 201){
-            var utf8convert= utf8.decode(response.bodyBytes);//한글화
+        http.Response.fromStream(result).then((response) {
+          if (response.statusCode == 200 || response.statusCode == 201) {
+            var utf8convert = utf8.decode(response.bodyBytes); //한글화
             Map data = json.decode(utf8convert);
             PostIntData(data['id']);
             return null;
-          }else{
+          } else {
             print(response.body);
             //나중에 오류라는 토스트 메세지 넣기
             return null;
           }
         });
       });
-
-
-
-    }else{
+    } else {
       //나중에 내용을 입력하라는 토스트메세지 넣기
       print('내용입력');
     }
@@ -123,15 +114,21 @@ class _StoryWritingState extends State<StoryWriting> {
           Padding(
             padding: EdgeInsets.fromLTRB(
               2 * SizeConfig.widthMultiplier,
+              1 * SizeConfig.heightMultiplier,
+              5 * SizeConfig.widthMultiplier,
               0 * SizeConfig.heightMultiplier,
-              3 * SizeConfig.widthMultiplier,
-              2 * SizeConfig.heightMultiplier,
             ),
             child: InkWell(
-              onTap: (){
-                PostContent();
-              },
-                child: Text('완료', style: TextStyle(color: Colors.redAccent,fontSize: 20,fontWeight: FontWeight.bold),)),
+                onTap: () {
+                  PostContent();
+                },
+                child: Text(
+                  '완료',
+                  style: TextStyle(
+                      color: Colors.redAccent,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold),
+                )),
           ),
         ],
       ),
@@ -158,9 +155,9 @@ class _StoryWritingState extends State<StoryWriting> {
                         color: Colors.black,
                       ),
                       hintText: '내용을 입력해주세요.',
-                      border:InputBorder.none,
+                      border: InputBorder.none,
                     ),
-                    onChanged: (value)=> content = value,
+                    onChanged: (value) => content = value,
                   ),
                 ),
               ),
@@ -168,7 +165,8 @@ class _StoryWritingState extends State<StoryWriting> {
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Container(
-                child: (ImageFile != null)?Image.file(ImageFile):Container(),
+                child:
+                    (ImageFile != null) ? Image.file(ImageFile) : Container(),
               ),
             ),
           ],
@@ -194,7 +192,8 @@ class _StoryWritingState extends State<StoryWriting> {
                 Text(
                   'Add Photos',
                   style: TextStyle(
-                      color: Color.fromRGBO(236, 128, 130, 1), fontSize: 8 * SizeConfig.widthMultiplier),
+                      color: Color.fromRGBO(236, 128, 130, 1),
+                      fontSize: 8 * SizeConfig.widthMultiplier),
                 ),
               ],
             ),

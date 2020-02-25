@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 import 'ConfirmingPage.dart';
@@ -8,9 +7,7 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'SizeConfig.dart';
 
 class MyButtonModel {
-  final String buttonText;
   bool changeButtonColor;
-  MyButtonModel({this.buttonText, this.changeButtonColor = false});
 }
 
 class ProfileSetting extends StatefulWidget {
@@ -53,24 +50,8 @@ class _ProfileSettingState extends State<ProfileSetting> {
   String _dropdownValue = '보통';
   String _dropdownValue2 = '중졸';
 
-  List<MyButtonModel> _a = [
-    MyButtonModel(buttonText: '외향적'),
-    MyButtonModel(buttonText: '내향적'),
-    MyButtonModel(buttonText: '긍정적'),
-    MyButtonModel(buttonText: '현실적'),
-  ];
-  List<MyButtonModel> _b = [
-    MyButtonModel(buttonText: '영화감상'),
-    MyButtonModel(buttonText: '운동'),
-    MyButtonModel(buttonText: '독서'),
-    MyButtonModel(buttonText: '게임'),
-  ];
-  List<MyButtonModel> _c = [
-    MyButtonModel(buttonText: '여행'),
-    MyButtonModel(buttonText: '요리'),
-    MyButtonModel(buttonText: '음악감상'),
-    MyButtonModel(buttonText: '산책'),
-  ];
+
+
   List<String> _characterInput = [];
   List<String> _hobbyInput = [];
   @override
@@ -595,10 +576,10 @@ class _ProfileSettingState extends State<ProfileSetting> {
                         DropdownButton<String>(
                           value: _dropdownValue,
                           icon: Icon(Icons.arrow_downward),
-                          iconSize: 7 * SizeConfig.widthMultiplier,
+                          iconSize: 6 * SizeConfig.widthMultiplier,
                           elevation: 20,
                           style: TextStyle(
-                              fontSize: 5 * SizeConfig.widthMultiplier,
+                              fontSize: 4.5 * SizeConfig.widthMultiplier,
                               color: Colors.black),
                           onChanged: (String newValue) {
                             setState(() {
@@ -653,10 +634,10 @@ class _ProfileSettingState extends State<ProfileSetting> {
                         DropdownButton<String>(
                           value: _dropdownValue2,
                           icon: Icon(Icons.arrow_downward),
-                          iconSize: 7 * SizeConfig.widthMultiplier,
+                          iconSize: 6 * SizeConfig.widthMultiplier,
                           elevation: 20,
                           style: TextStyle(
-                              fontSize: 5 * SizeConfig.widthMultiplier,
+                              fontSize: 4.5 * SizeConfig.widthMultiplier,
                               color: Colors.black),
                           onChanged: (String newValue) {
                             setState(() {
